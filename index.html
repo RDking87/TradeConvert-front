@@ -702,6 +702,180 @@ body::before{
   .scan-form{padding:20px}
   .hero-title{font-size:36px}
 }
+
+/* ─── BOOKING CTA BLOCK ──────────────────────────────────────────────────── */
+.booking-cta{
+  background:linear-gradient(135deg,rgba(249,115,22,0.15) 0%,rgba(249,115,22,0.06) 100%);
+  border:2px solid var(--orange);
+  border-radius:var(--radius-lg);
+  padding:28px 24px 24px;
+  margin-bottom:24px;
+  position:relative;
+  overflow:hidden;
+}
+.booking-cta::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,#f97316,#fb923c,#f97316);
+  background-size:200% 100%;
+  animation:shimmer 2.5s linear infinite;
+}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.booking-cta-eyebrow{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--orange);
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.booking-cta-headline{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(20px,5vw,26px);
+  line-height:1.08;
+  margin-bottom:10px;
+}
+.booking-cta-body{
+  font-size:14px;
+  color:var(--white-80);
+  line-height:1.55;
+  margin-bottom:20px;
+}
+.booking-cta-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+@media(min-width:480px){.booking-cta-buttons{flex-direction:row}}
+.btn-book{
+  flex:1;
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  border-radius:var(--radius);
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:17px;
+  letter-spacing:0.03em;
+  padding:15px 20px;
+  cursor:pointer;
+  text-transform:uppercase;
+  text-align:center;
+  text-decoration:none;
+  display:block;
+  transition:background .2s,transform .1s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(249,115,22,0.35);
+}
+.btn-book:hover{background:var(--orange-dark);box-shadow:0 6px 28px rgba(249,115,22,0.45);transform:translateY(-1px)}
+.btn-book:active{transform:scale(0.98)}
+.btn-book-outline{
+  flex:1;
+  background:transparent;
+  color:var(--white-80);
+  border:1.5px solid var(--navy-border);
+  border-radius:var(--radius);
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:0.02em;
+  padding:14px 20px;
+  cursor:pointer;
+  text-transform:uppercase;
+  text-align:center;
+  text-decoration:none;
+  display:block;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.btn-book-outline:hover{border-color:var(--white-50);color:#fff;background:var(--white-20)}
+.booking-trust-line{
+  font-size:12px;
+  color:var(--white-50);
+  text-align:center;
+  margin-top:14px;
+}
+
+/* ─── URGENCY CALLOUT ─────────────────────────────────────────────────────── */
+.urgency-callout{
+  background:rgba(239,68,68,0.08);
+  border:1px solid rgba(239,68,68,0.2);
+  border-radius:var(--radius);
+  padding:12px 16px;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  color:#fca5a5;
+  font-weight:500;
+  line-height:1.4;
+}
+.urgency-icon{font-size:18px;flex-shrink:0}
+
+/* ─── DE-EMPHASISED DETAILS ──────────────────────────────────────────────── */
+.details-section{opacity:0.85}
+.details-nudge{
+  font-size:13px;
+  color:var(--white-50);
+  font-style:italic;
+  margin-bottom:18px;
+  margin-top:4px;
+  text-align:center;
+  line-height:1.5;
+}
+
+/* ─── DUAL LEAD BUTTONS ──────────────────────────────────────────────────── */
+.lead-btn-group{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:8px;
+}
+.btn-lead-book{
+  width:100%;
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  border-radius:var(--radius);
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:17px;
+  letter-spacing:0.03em;
+  padding:15px 20px;
+  cursor:pointer;
+  text-transform:uppercase;
+  text-align:center;
+  text-decoration:none;
+  display:block;
+  transition:background .2s,transform .1s,box-shadow .2s;
+  box-shadow:0 4px 16px rgba(249,115,22,0.3);
+}
+.btn-lead-book:hover{background:var(--orange-dark);box-shadow:0 6px 24px rgba(249,115,22,0.4)}
+.btn-lead-book:active{transform:scale(0.98)}
+
+/* ─── SUCCESS BOOKING BUTTON ─────────────────────────────────────────────── */
+.success-book-btn{
+  display:inline-block;
+  margin-top:24px;
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  border-radius:var(--radius);
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:18px;
+  letter-spacing:0.03em;
+  padding:15px 32px;
+  cursor:pointer;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background .2s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(249,115,22,0.35);
+}
+.success-book-btn:hover{background:var(--orange-dark);box-shadow:0 6px 28px rgba(249,115,22,0.45)}
 </style>
 </head>
 <body>
@@ -863,6 +1037,12 @@ body::before{
       </div>
     </div>
 
+    <!-- Urgency callout -->
+    <div class="urgency-callout" id="urgency-callout" style="display:none">
+      <span class="urgency-icon">⚡</span>
+      <span id="urgency-text"></span>
+    </div>
+
     <!-- Fallback notice -->
     <div class="fallback-notice" id="fallback-notice" style="display:none">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
@@ -895,24 +1075,40 @@ body::before{
       </div>
     </div>
 
-    <!-- Score breakdown -->
-    <div class="section-title">Score Breakdown</div>
-    <div class="breakdown-bars" id="breakdown-bars"></div>
+    <!-- ★ PRIMARY BOOKING CTA — sits between screenshot and breakdown ★ -->
+    <div class="booking-cta">
+      <div class="booking-cta-eyebrow">Free 10-Minute Review</div>
+      <div class="booking-cta-headline">Want Us To Show You Exactly What To Fix First?</div>
+      <div class="booking-cta-body">You're likely losing jobs because of the issues on this page. Book a free review and we'll walk you through the biggest problems and the fastest wins — specific to your trade and area.</div>
+      <div class="booking-cta-buttons">
+        <a class="btn-book" href="#" onclick="openBooking(event)">Book My Free Review →</a>
+        <a class="btn-book-outline" href="#lead-card-section" onclick="scrollToLead(event)">Email Me The Full Report →</a>
+      </div>
+      <div class="booking-trust-line">No obligation. No hard sell. Just a clear walkthrough.</div>
+    </div>
 
-    <!-- Issues -->
-    <div class="section-title" id="issues-title" style="display:none">Likely Issues Found</div>
-    <ul class="issues-list" id="issues-list"></ul>
+    <!-- De-emphasised details -->
+    <div class="details-section">
+      <div class="details-nudge">We'll walk you through these on your free review, or send the full breakdown by email.</div>
 
-    <!-- Fixes -->
-    <div class="section-title" id="fixes-title" style="display:none">Priority Fixes</div>
-    <ul class="fixes-list" id="fixes-list"></ul>
+      <!-- Score breakdown -->
+      <div class="section-title">Score Breakdown</div>
+      <div class="breakdown-bars" id="breakdown-bars"></div>
+
+      <!-- Issues -->
+      <div class="section-title" id="issues-title" style="display:none">What May Be Costing You Work</div>
+      <ul class="issues-list" id="issues-list"></ul>
+
+      <!-- Fixes -->
+      <div class="section-title" id="fixes-title" style="display:none">Fastest Fixes To Recover Lost Jobs</div>
+      <ul class="fixes-list" id="fixes-list"></ul>
+    </div>
 
     <!-- Lead capture -->
-    <div class="lead-card">
-      <div class="lead-card-title">Get Your Full Audit Report</div>
+    <div class="lead-card" id="lead-card-section">
+      <div class="lead-card-title">Choose Your Next Step</div>
       <div class="lead-card-sub">
-        We'll review your site manually and send a detailed action plan — specific to your trade and area.
-        Free, no obligation.
+        Book a free review if you want us to talk you through the biggest issues live, or request the full breakdown by email.
       </div>
 
       <div id="lead-error" class="error-banner"></div>
@@ -932,13 +1128,13 @@ body::before{
         </div>
       </div>
 
-      <button class="btn-audit" id="btn-lead-submit" onclick="submitLead()">
-        Send Me the Full Report →
-      </button>
+      <div class="lead-btn-group">
+        <a class="btn-lead-book" href="#" onclick="bookAndCapture(event)">Book My Free Review →</a>
+        <button class="btn-audit" id="btn-lead-submit" onclick="submitLead('report')">Send Me The Full Breakdown →</button>
+      </div>
 
       <div class="disclaimer">
-        Automated first-pass scan based on live site signals. Free full audit by a real human follows on request.
-        No spam, unsubscribe any time.
+        Automated first-pass scan based on live site signals. Free review by a real human — no hard sell, no obligation.
       </div>
     </div>
 
@@ -948,11 +1144,12 @@ body::before{
   <section id="state-success" class="state">
     <div class="success-screen">
       <div class="success-icon">✅</div>
-      <div class="success-title">You're on the list!</div>
+      <div class="success-title">You're In</div>
       <p class="success-sub">
-        We've received your details. A member of our team will review your site
-        and send your full report within 1 working day.
+        We've received your details. If you requested the full breakdown, we'll send it shortly.
+        If you want a review call, use the link below to secure a slot.
       </p>
+      <a class="success-book-btn" href="#" onclick="openBooking(event)">Book My Free Review →</a>
     </div>
   </section>
 
@@ -972,6 +1169,7 @@ body::before{
 const BACKEND_URL      = '/.netlify/functions/scan';  // ← Netlify function
 const LEAD_BACKEND_URL = '/.netlify/functions/lead';  // ← Netlify function
 const PSI_API_KEY      = 'AIzaSyC1mlD1VaZ_QxeW8gsQ2oEO70irol2tGeI'; // ← paste key here
+const BOOKING_URL      = 'https://calendly.com/your-link'; // ← paste your Calendly URL here
 
 /* ─── STATE ──────────────────────────────────────────────────────────────── */
 let scanResult = null;
@@ -1211,6 +1409,17 @@ function renderResults(data) {
     document.getElementById('missed-card').style.display = 'flex';
   }
 
+  // ── Urgency callout ───────────────────────────────────────────────────────
+  if (score < 75) {
+    const msgs = {
+      poor: 'Based on this score, your site is likely turning away jobs every single week.',
+      fair: 'At this score, your site may be costing you work every single month.',
+      good: 'A few targeted fixes could meaningfully increase the jobs your site wins.'
+    };
+    document.getElementById('urgency-text').textContent = msgs[tier];
+    document.getElementById('urgency-callout').style.display = 'flex';
+  }
+
   // ── Fallback notice ───────────────────────────────────────────────────────
   const flags = data.fallbackFlags || {};
   const failedServices = [];
@@ -1289,8 +1498,38 @@ function renderResults(data) {
   }
 }
 
+/* ─── BOOKING + SCROLL HELPERS ───────────────────────────────────────────── */
+function openBooking(e) {
+  if (e) e.preventDefault();
+  if (BOOKING_URL && BOOKING_URL !== 'https://calendly.com/your-link') {
+    window.open(BOOKING_URL, '_blank', 'noopener');
+  } else {
+    document.getElementById('lead-card-section').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function scrollToLead(e) {
+  if (e) e.preventDefault();
+  document.getElementById('lead-card-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function bookAndCapture(e) {
+  if (e) e.preventDefault();
+  const name  = document.getElementById('inp-name').value.trim();
+  const email = document.getElementById('inp-email').value.trim();
+  if (name && email && email.includes('@')) {
+    const phone = document.getElementById('inp-phone').value.trim();
+    fetch(LEAD_BACKEND_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, intent: 'booking', scanPayload: scanResult })
+    }).catch(() => {});
+  }
+  openBooking(null);
+}
+
 /* ─── SUBMIT LEAD ────────────────────────────────────────────────────────── */
-async function submitLead() {
+async function submitLead(intent) {
   const name  = document.getElementById('inp-name').value.trim();
   const email = document.getElementById('inp-email').value.trim();
   const phone = document.getElementById('inp-phone').value.trim();
@@ -1319,7 +1558,7 @@ async function submitLead() {
     const res = await fetch(LEAD_BACKEND_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, phone, scanPayload: scanResult })
+      body: JSON.stringify({ name, email, phone, intent: intent || 'report', scanPayload: scanResult })
     });
     if (!res.ok) throw new Error(`Server error ${res.status}`);
     showState('state-success');
@@ -1327,7 +1566,7 @@ async function submitLead() {
     console.error('[Lead]', err);
     errEl.textContent = 'Submission failed — please try again or email us directly.';
     errEl.style.display = 'block';
-    btn.textContent = 'Send Me the Full Report →';
+    btn.textContent = 'Send Me The Full Breakdown →';
     btn.disabled = false;
   }
 }
