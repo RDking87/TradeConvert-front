@@ -84,7 +84,15 @@ var apiUrl = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?' +
     '&strategy=mobile' +
     '&key=' + key +
     '&category=performance' +
-    '&fields=' + encodeURIComponent(fields);
+    '&fields=' + fields;
+```
+
+Just remove the `encodeURIComponent()` wrapper around `fields` — the commas and slashes in the fields string must be sent as plain text, not percent-encoded. Google's API doesn't accept them encoded.
+
+Commit that single character change, wait for deploy, and the logs should show:
+```
+[PSI] Response in ~3000ms | ok: true | status: 200
+[PSI] Performance score: 43
 
   console.log('[PSI] Calling API, timeout:', PSI_TIMEOUT + 'ms');
   var t0 = Date.now();
