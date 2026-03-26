@@ -1072,8 +1072,14 @@ async function startScan() {
 
 /* ─── RENDER RESULTS ─────────────────────────────────────────────────────── */
 function renderResults(data) {
-  const score   = data.score.total;
-  const scores  = data.score.breakdown;
+  const score   = data.totalScore;
+const scores  = {
+  speed:          data.categoryScores.speed.score,
+  mobileClarity:  data.categoryScores.mobileClarity.score,
+  ctaStrength:    data.categoryScores.ctaStrength.score,
+  trustSignals:   data.categoryScores.trustSignals.score,
+  localRelevance: data.categoryScores.localRelevance.score,
+};
 
   // ── Score circle ────────────────────────────────────────────────────────
   const tier = score >= 70 ? 'good' : score >= 45 ? 'fair' : 'poor';
@@ -1114,12 +1120,12 @@ function renderResults(data) {
   document.getElementById('results-sub').textContent       = subs[tier];
 
   // ── Missed enquiries ──────────────────────────────────────────────────────
-  if (data.missed?.estimatedMissed != null) {
-    document.getElementById('missed-number').textContent = `~${data.missed.estimatedMissed} jobs`;
-    document.getElementById('missed-label').textContent  = `estimated monthly jobs potentially being missed`;
-    document.getElementById('missed-card').style.display = 'flex';
-  } else if (data.missed?.missRate) {
-    document.getElementById('missed-number').textContent = `~${data.missed.missRate}%`;
+  if (data.missedEnquiries?.min != null) {
+    document.getElementById('missed-number').textContent = data.missedEnquiries.label;
+document.getElementById('missed-label').textContent  = 'estimated monthly jobs potentially being missed';
+document.getElementById('missed-card').style.display = 'flex';
+} else if (false) {
+document.getElementById('missed-number').textContent = '';
     document.getElementById('missed-label').textContent  = `of potential enquiries may not be converting`;
     document.getElementById('missed-card').style.display = 'flex';
   }
