@@ -15,7 +15,7 @@
 
 // ─── TIMEOUTS ─────────────────────────────────────────────────────────────────
 // Conservative so we never hit Netlify's default 10s function limit.
-const PSI_TIMEOUT        = 8000;
+const PSI_TIMEOUT        = 9500;
 const SCREENSHOT_TIMEOUT = 8000;
 const HOMEPAGE_TIMEOUT   = 6000;
 
@@ -70,11 +70,21 @@ async function fetchPageSpeed(url) {
     return { ok: false, fallback: true, reason: 'no_api_key', performanceScore: null };
   }
 
-  var apiUrl = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?' +
+var fields = [
+  'lighthouseResult/categories/performance/score',
+  'lighthouseResult/audits/largest-contentful-paint/displayValue',
+  'lighthouseResult/audits/cumulative-layout-shift/displayValue',
+  'lighthouseResult/audits/first-contentful-paint/displayValue',
+  'lighthouseResult/audits/total-blocking-time/displayValue',
+  'loadingExperience/overall_category',
+].join(',');
+
+var apiUrl = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?' +
     'url=' + encodeURIComponent(url) +
     '&strategy=mobile' +
     '&key=' + key +
-    '&category=performance';
+    '&category=performance' +
+    '&fields=' + encodeURIComponent(fields);
 
   console.log('[PSI] Calling API, timeout:', PSI_TIMEOUT + 'ms');
   var t0 = Date.now();
