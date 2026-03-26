@@ -966,9 +966,8 @@ body::before{
  * e.g. https://your-domain.vercel.app/api/scan
  * or   http://localhost:3001/api/scan  (local dev)
  */
-const BACKEND_URL      = '/api/scan';   // ← UPDATE THIS
-const LEAD_BACKEND_URL = '/api/lead';   // ← UPDATE THIS
-
+const BACKEND_URL      = '/.netlify/functions/scan';  // ✅
+const LEAD_BACKEND_URL = '/.netlify/functions/lead';  // ✅
 /* ─── STATE ──────────────────────────────────────────────────────────────── */
 let scanResult = null;
 
