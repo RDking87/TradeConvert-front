@@ -149,138 +149,123 @@ body::before{
 .entry-right{}
 
 /* ─── RESULTS LAYOUT ─────────────────────────────────────────────────────── */
+
+/* Desktop: true split grid */
 .results-split{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:28px;
+  align-items:start;
   padding-top:36px;
-  max-width:780px;
+  max-width:1060px;
   margin:0 auto;
 }
 
-/* Unified anchor result card */
-.result-anchor-card{
+/* Left = evidence column */
+.results-left{
+  display:block;
+  order:1;
+}
+
+/* Right = sticky action column */
+.results-right{
+  order:2;
+  position:sticky;
+  top:24px;
+  display:block;
+}
+
+/* Mobile: stack, action first */
+@media(max-width:860px){
+  .results-split{
+    grid-template-columns:1fr;
+    gap:0;
+    padding-top:24px;
+  }
+  .results-left{
+    order:2;
+    margin-top:20px;
+  }
+  .results-right{
+    order:1;
+    position:static;
+  }
+}
+
+/* ── RIGHT PANEL — action card ─────────────────────────────────────────── */
+.action-panel{
   background:var(--navy-card);
   border:1px solid var(--navy-border);
   border-radius:var(--radius-lg);
-  padding:24px;
-  margin-bottom:0;
+  padding:22px;
 }
 
-/* Top row: score + text */
-.anchor-top-row{
-  display:flex;
-  align-items:flex-start;
-  gap:18px;
-  margin-bottom:18px;
-}
-
-/* Preview panel inside anchor card */
-.anchor-preview{
-  border-radius:var(--radius);
-  overflow:hidden;
-  border:1px solid var(--navy-border);
-  margin-bottom:18px;
-  flex-shrink:0;
-  width:180px;
-}
-@media(max-width:600px){
-  .anchor-top-row{flex-direction:column}
-  .anchor-preview{width:100%}
-}
-.anchor-preview-header{
-  background:var(--navy-mid);
-  padding:7px 10px;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  border-bottom:1px solid var(--navy-border);
-}
-.anchor-browser-dots{display:flex;gap:5px}
-.anchor-browser-dot{width:7px;height:7px;border-radius:50%}
-.anchor-url-text{
-  font-size:9px;
-  color:var(--white-50);
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  flex:1;
-}
-
-/* Score info block */
-.anchor-score-info{
-  flex:1;
-  min-width:0;
-}
-.anchor-score-row{
+/* Score + headline inside action panel */
+.action-score-row{
   display:flex;
   align-items:center;
   gap:16px;
-  margin-bottom:12px;
+  margin-bottom:16px;
+  background:transparent;
+  border:none;
+  border-radius:0;
+  padding:0;
 }
-.anchor-score-circle{
+.action-score-circle{
   width:80px;height:80px;
   position:relative;
   flex-shrink:0;
 }
-.anchor-score-circle svg{transform:rotate(-90deg)}
-.anchor-score-text{flex:1}
-.anchor-headline{
+.action-score-circle svg{transform:rotate(-90deg)}
+.action-score-text-block{flex:1}
+.action-headline{
   font-family:var(--font-display);
   font-weight:900;
-  font-size:clamp(16px,2.5vw,20px);
+  font-size:clamp(17px,2.5vw,22px);
   line-height:1.1;
-  margin-bottom:3px;
+  margin-bottom:4px;
 }
-.anchor-sub{
+.action-sub{
   font-size:12px;
   color:var(--white-50);
   line-height:1.4;
 }
 
-/* Missed + urgency inside anchor */
-.anchor-missed{
+/* Missed + urgency in right panel */
+.action-missed{
   background:rgba(249,115,22,0.08);
   border:1px solid rgba(249,115,22,0.2);
   border-radius:var(--radius);
-  padding:10px 14px;
+  padding:10px 13px;
   margin-bottom:10px;
   display:flex;
   align-items:center;
   gap:10px;
 }
-.anchor-missed-icon{font-size:20px;flex-shrink:0}
-.anchor-missed-big{
+.action-missed-icon{font-size:20px;flex-shrink:0}
+.action-missed-big{
   font-family:var(--font-display);
   font-weight:900;
   font-size:18px;
   color:var(--orange);
   line-height:1;
 }
-.anchor-missed-label{font-size:11px;color:var(--white-80);margin-top:1px}
+.action-missed-label{font-size:11px;color:var(--white-80);margin-top:1px}
 
-.anchor-urgency{
+.action-urgency{
   font-size:12px;
   color:#fca5a5;
   background:rgba(239,68,68,0.06);
   border:1px solid rgba(239,68,68,0.14);
   border-radius:var(--radius);
   padding:8px 12px;
+  margin-bottom:10px;
   line-height:1.4;
   display:none;
 }
-.anchor-urgency.visible{display:block}
+.action-urgency.visible{display:block}
 
-/* Anchor preview + info side by side (when space allows) */
-.anchor-body{
-  display:flex;
-  gap:18px;
-  align-items:flex-start;
-}
-@media(max-width:520px){
-  .anchor-body{flex-direction:column-reverse}
-  .anchor-preview{width:100%;margin-bottom:0;margin-top:14px}
-}
-
-/* Fallback inside anchor */
-.anchor-fallback{
+.action-fallback{
   background:rgba(245,158,11,0.07);
   border:1px solid rgba(245,158,11,0.18);
   border-radius:var(--radius);
@@ -290,180 +275,27 @@ body::before{
   margin-bottom:10px;
   display:none;
 }
-.anchor-fallback.visible{display:block}
+.action-fallback.visible{display:block}
 
-/* Divider separating anchor from findings */
-.anchor-divider{
-  border:none;
-  height:1px;
-  background:linear-gradient(to right, transparent, var(--navy-border) 20%, var(--navy-border) 80%, transparent);
-  margin:24px 0;
-}
-
-/* Right/findings panel — now full width below anchor */
-.results-left{ display:none }
-.results-right{ display:block }
-
-/* Action panel (findings area) */
-.action-panel{
-  background:transparent;
-  padding:0;
-}
-
-/* Keep score row/circle for JS compatibility — hide the old ones */
-.action-score-row{ display:none!important }
-.action-missed{ display:none!important }
-.action-urgency{ display:none!important }
-.action-fallback{ display:none!important }
-.action-divider{ display:none!important }
-
-/* Screenshot panel — keep CSS for fallback but it's inside anchor now */
-.preview-panel{
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius-lg);
-  overflow:hidden;
-  box-shadow:0 4px 20px rgba(0,0,0,0.3), 0 1px 4px rgba(0,0,0,0.2);
-}
-.preview-panel-header{
-  background:var(--navy-mid);
-  padding:10px 14px;
-  display:flex;
-  align-items:center;
-  gap:9px;
-  border-bottom:1px solid var(--navy-border);
-}
-.preview-browser-dots{display:flex;gap:6px;align-items:center}
-.preview-browser-dot{width:10px;height:10px;border-radius:50%}
-.preview-url-bar{
-  flex:1;
-  background:var(--navy-light);
-  border-radius:5px;
-  padding:5px 11px;
-  font-size:10px;
-  color:var(--white-50);
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  border:1px solid var(--navy-border);
-}
-
-/* Screenshot image wrap — relative so overlay can sit on top */
-.preview-img-wrap{
-  position:relative;
-  overflow:hidden;
-}
-
-/* Bottom gradient overlay with label */
-.preview-img-overlay{
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:56px;
-  background:linear-gradient(to bottom, transparent, rgba(7,13,26,0.75) 100%);
-  display:flex;
-  align-items:flex-end;
-  padding:0 14px 11px;
-  pointer-events:none;
-}
-.preview-img-label{
-  font-size:10px;
-  letter-spacing:0.07em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.45);
-  font-family:var(--font-body);
-  font-weight:500;
-}
-
-/* Action panel card (right side) */
-.action-panel{
-  background:transparent;
-  padding:0;
-}
-
-/* Score display */
-.action-score-row{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  margin-bottom:16px;
-  background:var(--navy-card);
-  border:1px solid var(--navy-border);
-  border-radius:var(--radius-lg);
-  padding:20px;
-}
-.action-score-circle{
-  width:90px;height:90px;
-  position:relative;
-  flex-shrink:0;
-}
-.action-score-circle svg{transform:rotate(-90deg)}
-.action-score-text-block{flex:1}
-.action-headline{
-  font-family:var(--font-display);
-  font-weight:900;
-  font-size:clamp(18px,2.5vw,22px);
-  line-height:1.1;
-  margin-bottom:4px;
-}
-.action-sub{
-  font-size:13px;
-  color:var(--white-50);
-  line-height:1.45;
-}
-
-/* Missed + urgency */
-.action-missed{
-  background:rgba(249,115,22,0.08);
-  border:1px solid rgba(249,115,22,0.2);
-  border-radius:var(--radius);
-  padding:12px 14px;
-  margin-bottom:12px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.action-missed-icon{font-size:22px;flex-shrink:0}
-.action-missed-big{
-  font-family:var(--font-display);
-  font-weight:900;
-  font-size:20px;
-  color:var(--orange);
-  line-height:1;
-}
-.action-missed-label{font-size:11px;color:var(--white-80);margin-top:2px}
-
-.action-urgency{
-  font-size:13px;
-  color:#fca5a5;
-  background:rgba(239,68,68,0.07);
-  border:1px solid rgba(239,68,68,0.15);
-  border-radius:var(--radius);
-  padding:9px 13px;
-  margin-bottom:12px;
-  line-height:1.45;
-  display:none;
-}
-.action-urgency.visible{display:block}
-
-/* Divider */
+/* Divider inside action panel */
 .action-divider{
   border:none;
   border-top:1px solid var(--navy-border);
-  margin:16px 0;
+  margin:14px 0;
 }
 
-/* Unlock section */
+/* CTA section inside action panel */
 .action-unlock-headline{
   font-family:var(--font-display);
   font-weight:800;
-  font-size:17px;
-  margin-bottom:5px;
+  font-size:16px;
+  margin-bottom:4px;
 }
 .action-unlock-body{
-  font-size:13px;
+  font-size:12px;
   color:var(--white-50);
-  margin-bottom:14px;
-  line-height:1.5;
+  margin-bottom:12px;
+  line-height:1.45;
 }
 .action-btn-primary{
   width:100%;
@@ -473,21 +305,21 @@ body::before{
   border-radius:var(--radius);
   font-family:var(--font-display);
   font-weight:700;
-  font-size:16px;
+  font-size:15px;
   letter-spacing:0.02em;
-  padding:14px 20px;
+  padding:13px 18px;
   cursor:pointer;
   text-transform:uppercase;
   transition:background .2s,transform .1s;
   display:block;
   text-align:center;
   text-decoration:none;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 .action-btn-primary:hover{background:var(--orange-dark)}
 .action-btn-primary:active{transform:scale(0.98)}
 
-/* Post-unlock booking CTA — subtle pulse */
+/* Post-unlock booking CTA */
 .action-btn-book{
   width:100%;
   background:var(--orange);
@@ -496,29 +328,29 @@ body::before{
   border-radius:var(--radius);
   font-family:var(--font-display);
   font-weight:700;
-  font-size:16px;
+  font-size:15px;
   letter-spacing:0.02em;
-  padding:15px 20px;
+  padding:14px 18px;
   cursor:pointer;
   text-transform:uppercase;
   display:block;
   text-align:center;
   text-decoration:none;
-  margin-bottom:8px;
-  box-shadow:0 2px 12px rgba(249,115,22,0.25), 0 1px 3px rgba(0,0,0,0.3);
+  margin-bottom:6px;
+  box-shadow:0 2px 10px rgba(249,115,22,0.22), 0 1px 3px rgba(0,0,0,0.25);
   animation:bookPulse 4s ease-in-out infinite;
   transition:background .2s,transform .1s,box-shadow .2s;
 }
 .action-btn-book:hover{
   background:var(--orange-dark);
   animation:none;
-  box-shadow:0 4px 20px rgba(249,115,22,0.35), 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow:0 4px 18px rgba(249,115,22,0.32), 0 2px 6px rgba(0,0,0,0.25);
   transform:translateY(-1px);
 }
 .action-btn-book:active{transform:scale(0.98);box-shadow:none}
 @keyframes bookPulse{
-  0%,100%{box-shadow:0 2px 12px rgba(249,115,22,0.25), 0 1px 3px rgba(0,0,0,0.3)}
-  50%{box-shadow:0 4px 22px rgba(249,115,22,0.38), 0 2px 8px rgba(0,0,0,0.25)}
+  0%,100%{box-shadow:0 2px 10px rgba(249,115,22,0.22), 0 1px 3px rgba(0,0,0,0.25)}
+  50%{box-shadow:0 4px 18px rgba(249,115,22,0.34), 0 2px 8px rgba(0,0,0,0.2)}
 }
 
 .action-btn-secondary{
@@ -529,9 +361,9 @@ body::before{
   border-radius:var(--radius);
   font-family:var(--font-display);
   font-weight:600;
-  font-size:14px;
+  font-size:13px;
   letter-spacing:0.02em;
-  padding:12px 20px;
+  padding:11px 18px;
   cursor:pointer;
   text-transform:uppercase;
   transition:border-color .2s,color .2s;
@@ -544,14 +376,282 @@ body::before{
   font-size:11px;
   color:var(--white-50);
   text-align:center;
-  margin-top:10px;
+  margin-top:8px;
 }
 
-/* Post-unlock action panel state */
+/* Post-unlock panel state */
 .action-post-unlock{display:none}
 .action-post-unlock.visible{display:block}
 .action-pre-unlock{display:block}
 .action-pre-unlock.hidden{display:none}
+
+/* ── LEFT PANEL — evidence column ──────────────────────────────────────── */
+
+/* Preview panel (full width in left col on desktop) */
+.preview-panel{
+  background:var(--navy-card);
+  border:1px solid var(--navy-border);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3), 0 1px 4px rgba(0,0,0,0.2);
+  margin-bottom:20px;
+}
+.preview-panel-header{
+  background:var(--navy-mid);
+  padding:9px 13px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border-bottom:1px solid var(--navy-border);
+}
+.preview-browser-dots{display:flex;gap:5px;align-items:center}
+.preview-browser-dot{width:9px;height:9px;border-radius:50%}
+.preview-url-bar{
+  flex:1;
+  background:var(--navy-light);
+  border-radius:4px;
+  padding:4px 10px;
+  font-size:10px;
+  color:var(--white-50);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  border:1px solid var(--navy-border);
+}
+
+.preview-img-wrap{
+  position:relative;
+  overflow:hidden;
+}
+.preview-img-overlay{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:50px;
+  background:linear-gradient(to bottom, transparent, rgba(7,13,26,0.72) 100%);
+  display:flex;
+  align-items:flex-end;
+  padding:0 13px 10px;
+  pointer-events:none;
+}
+.preview-img-label{
+  font-size:10px;
+  letter-spacing:0.07em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.4);
+  font-family:var(--font-body);
+  font-weight:500;
+}
+
+/* Findings panel in left col */
+.findings-panel{padding:0}
+.findings-section-title{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--white-50);
+  margin-bottom:10px;
+  margin-top:20px;
+}
+.findings-section-title:first-child{margin-top:0}
+
+/* Frosted blur overlay */
+.findings-locked{position:relative}
+.findings-blur-overlay{
+  position:absolute;
+  inset:0;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  background:rgba(11,18,32,0.45);
+  border-radius:var(--radius);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  text-align:center;
+  padding:24px;
+  transition:opacity .4s;
+  z-index:2;
+}
+.findings-blur-overlay.hidden{opacity:0;pointer-events:none}
+.findings-blur-hint{font-size:12px;color:var(--white-50);letter-spacing:0.04em}
+.btn-unlock-inline{
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  border-radius:var(--radius);
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:0.02em;
+  padding:11px 20px;
+  cursor:pointer;
+  text-transform:uppercase;
+  transition:background .2s,transform .1s;
+  white-space:nowrap;
+}
+.btn-unlock-inline:hover{background:var(--orange-dark)}
+.btn-unlock-inline:active{transform:scale(0.98)}
+
+/* Full findings reveal */
+.findings-full{
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  transition:max-height .7s ease, opacity .5s ease;
+}
+.findings-full.revealed{max-height:2400px;opacity:1}
+
+/* Unlock strip */
+.findings-unlock-strip{
+  display:none;
+  align-items:center;
+  gap:10px;
+  background:rgba(34,197,94,0.08);
+  border:1px solid rgba(34,197,94,0.2);
+  border-radius:var(--radius);
+  padding:10px 14px;
+  margin-bottom:16px;
+  font-size:13px;
+  color:var(--green);
+  font-weight:500;
+  animation:fadeInUp .4s ease;
+}
+.findings-unlock-strip.visible{display:flex}
+
+/* Anchor card + divider — mobile-only summary block */
+.result-anchor-card{display:none}
+.anchor-divider{display:none}
+
+/* On mobile show anchor card, hide left panel preview */
+@media(max-width:860px){
+  .result-anchor-card{
+    display:block;
+    background:var(--navy-card);
+    border:1px solid var(--navy-border);
+    border-radius:var(--radius-lg);
+    padding:20px;
+    margin-bottom:16px;
+  }
+  .anchor-score-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:14px;
+  }
+  .anchor-score-circle{
+    width:72px;height:72px;
+    position:relative;flex-shrink:0;
+  }
+  .anchor-score-circle svg{transform:rotate(-90deg)}
+  .anchor-score-text{flex:1}
+  .anchor-headline{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:clamp(16px,5vw,20px);
+    line-height:1.1;
+    margin-bottom:3px;
+  }
+  .anchor-sub{font-size:12px;color:var(--white-50);line-height:1.4}
+  .anchor-body{display:flex;gap:14px;align-items:flex-start}
+  .anchor-body-info{flex:1;min-width:0}
+  .anchor-preview-mobile{
+    flex-shrink:0;
+    width:130px;
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--navy-border);
+  }
+  .anchor-preview-header-m{
+    background:var(--navy-mid);
+    padding:5px 8px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    border-bottom:1px solid var(--navy-border);
+  }
+  .anchor-dots-m{display:flex;gap:4px}
+  .anchor-dot-m{width:6px;height:6px;border-radius:50%}
+  .anchor-missed{
+    background:rgba(249,115,22,0.08);
+    border:1px solid rgba(249,115,22,0.2);
+    border-radius:var(--radius);
+    padding:9px 12px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+  }
+  .anchor-missed-icon{font-size:18px;flex-shrink:0}
+  .anchor-missed-big{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:16px;
+    color:var(--orange);
+    line-height:1;
+  }
+  .anchor-missed-label{font-size:10px;color:var(--white-80);margin-top:1px}
+  .anchor-urgency{
+    font-size:12px;color:#fca5a5;
+    background:rgba(239,68,68,0.06);
+    border:1px solid rgba(239,68,68,0.14);
+    border-radius:var(--radius);
+    padding:7px 11px;line-height:1.4;display:none;
+  }
+  .anchor-urgency.visible{display:block}
+  .anchor-fallback{display:none}
+  .anchor-fallback.visible{display:block}
+  .anchor-divider{
+    display:block;
+    border:none;height:1px;
+    background:linear-gradient(to right, transparent, var(--navy-border) 20%, var(--navy-border) 80%, transparent);
+    margin:16px 0;
+  }
+  /* On mobile, hide the desktop action panel (right col) score row, missed etc — shown in anchor card instead */
+  .action-score-row{display:none!important}
+  .action-missed{display:none!important}
+  .action-urgency{display:none!important}
+  .action-fallback{display:none!important}
+  /* Hide desktop preview in left col on mobile */
+  .preview-panel{display:none}
+  /* Tighten action panel on mobile */
+  .action-panel{
+    background:transparent;
+    border:none;
+    padding:0;
+  }
+}
+
+/* Screenshot image */
+.screenshot-img{
+  width:100%;
+  display:block;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  object-position:top;
+  background:var(--navy-mid);
+}
+.screenshot-placeholder{
+  width:100%;
+  aspect-ratio:4/3;
+  min-height:200px;
+  background:var(--navy-mid);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  color:var(--white-50);
+  font-size:13px;
+}
+
+/* Anchor card score/data IDs — hidden on desktop (JS reads from action panel) */
+@media(min-width:861px){
+  .result-anchor-card{display:none}
+  .anchor-divider{display:none}
+}
 
 /* Findings panel (right side, below score) */
 .findings-panel{padding:0;margin-top:16px}
@@ -1811,17 +1911,171 @@ body::before{
   <section id="state-results" class="state">
     <div class="results-split">
 
-      <!-- Hidden left (kept for JS reset compat) -->
-      <div class="results-left" style="display:none"></div>
+      <!-- ══ LEFT COLUMN — evidence (desktop) ═══════════════════════════ -->
+      <div class="results-left">
 
+        <!-- Website preview card -->
+        <div class="preview-panel">
+          <div class="preview-panel-header">
+            <div class="preview-browser-dots">
+              <div class="preview-browser-dot" style="background:#ef4444"></div>
+              <div class="preview-browser-dot" style="background:#f59e0b"></div>
+              <div class="preview-browser-dot" style="background:#22c55e"></div>
+            </div>
+            <div class="preview-url-bar" id="screenshot-url-bar">—</div>
+          </div>
+          <div class="preview-img-wrap">
+            <div id="screenshot-slot">
+              <div class="screenshot-placeholder">
+                <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                  <rect x="3" y="5" width="26" height="22" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                  <circle cx="10" cy="13" r="3" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                  <path d="M3 22l6-5 5 4 5-6 10 8" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+                </svg>
+                Fetching screenshot…
+              </div>
+            </div>
+            <div class="preview-img-overlay">
+              <span class="preview-img-label">Homepage snapshot</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Findings panel: teaser + blur + full -->
+        <div class="findings-panel">
+
+          <div class="findings-preview" id="findings-preview">
+            <div class="findings-section-title">Score Breakdown</div>
+            <div class="breakdown-bars" id="breakdown-bars-teaser"></div>
+            <div id="teaser-issue-wrap" style="display:none">
+              <div class="findings-section-title" style="margin-top:16px">Key Issue</div>
+              <ul class="issues-list" id="teaser-issue"></ul>
+            </div>
+            <div id="teaser-fix-wrap" style="display:none">
+              <div class="findings-section-title" style="margin-top:16px">Fastest Fix</div>
+              <ul class="fixes-list" id="teaser-fix"></ul>
+            </div>
+          </div>
+
+          <!-- Locked / blur -->
+          <div class="findings-locked" id="findings-locked">
+            <div class="findings-locked-content" id="findings-locked-ghost">
+              <div class="findings-section-title" style="margin-top:16px;opacity:0.5">Full Breakdown</div>
+              <div class="breakdown-bars" style="opacity:0.5">
+                <div class="bar-row"><div class="bar-label" style="color:var(--white-50)">CTA Strength</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:#ef4444"></div></div><div class="bar-score" style="color:#ef4444">7/20</div></div>
+                <div class="bar-row"><div class="bar-label" style="color:var(--white-50)">Trust Signals</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#f59e0b"></div></div><div class="bar-score" style="color:#f59e0b">11/20</div></div>
+                <div class="bar-row"><div class="bar-label" style="color:var(--white-50)">Local Relevance</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:#ef4444"></div></div><div class="bar-score" style="color:#ef4444">5/20</div></div>
+              </div>
+              <div class="findings-section-title" style="margin-top:16px;opacity:0.5">Issues Found</div>
+              <div style="opacity:0.5">
+                <div class="issue-item" style="margin-bottom:8px"><span class="issue-icon">⚠</span><span>No visible phone number on mobile homepage</span></div>
+                <div class="issue-item" style="margin-bottom:8px"><span class="issue-icon">⚠</span><span>Missing local area keywords in page headings</span></div>
+              </div>
+            </div>
+            <div class="findings-blur-overlay" id="findings-blur-overlay">
+              <div class="findings-blur-hint">More analysis hidden</div>
+              <button class="btn-unlock-inline" onclick="openModal()">Get My Full Breakdown →</button>
+            </div>
+          </div>
+
+          <!-- Unlock strip -->
+          <div class="findings-unlock-strip" id="unlock-strip">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12 13 5" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Unlocked — here's your full breakdown.
+          </div>
+
+          <!-- Full findings -->
+          <div class="findings-full" id="findings-full">
+            <div class="findings-section-title">Full Score Breakdown</div>
+            <div class="breakdown-bars" id="breakdown-bars"></div>
+            <div id="issues-title" style="display:none">
+              <div class="findings-section-title" style="margin-top:16px">What's Costing You Work</div>
+            </div>
+            <ul class="issues-list" id="issues-list"></ul>
+            <div id="fixes-title" style="display:none">
+              <div class="findings-section-title" style="margin-top:16px">Fastest Fixes</div>
+            </div>
+            <ul class="fixes-list" id="fixes-list"></ul>
+          </div>
+
+        </div><!-- /.findings-panel -->
+
+      </div><!-- /.results-left -->
+
+      <!-- ══ RIGHT COLUMN — action / summary (sticky on desktop) ════════ -->
       <div class="results-right">
 
-        <!-- ══ UNIFIED ANCHOR RESULT CARD ══════════════════════════════ -->
+        <!-- Mobile-only: anchor summary card shown above findings on mobile -->
         <div class="result-anchor-card">
-
-          <!-- Score row: circle + headline/sub -->
           <div class="anchor-score-row">
             <div class="anchor-score-circle">
+              <svg viewBox="0 0 100 100" width="72" height="72">
+                <circle class="score-circle-bg" cx="50" cy="50" r="42"/>
+                <circle class="score-circle-fill" id="score-ring-mobile" cx="50" cy="50" r="42"
+                  stroke-dasharray="264" stroke-dashoffset="264"/>
+              </svg>
+              <div class="score-circle-text">
+                <span class="score-number" id="score-number-mobile">0</span>
+                <span class="score-denom">/100</span>
+              </div>
+            </div>
+            <div class="anchor-score-text">
+              <div class="eyebrow" id="results-eyebrow-mobile" style="font-size:11px;margin-bottom:2px"></div>
+              <div class="anchor-headline" id="results-headline-mobile"></div>
+              <div class="anchor-sub" id="results-sub-mobile"></div>
+            </div>
+          </div>
+          <div class="anchor-body">
+            <div class="anchor-body-info">
+              <div class="anchor-missed" id="missed-card-mobile" style="display:none">
+                <div class="anchor-missed-icon">📉</div>
+                <div>
+                  <div class="anchor-missed-big" id="missed-number-mobile">—</div>
+                  <div class="anchor-missed-label" id="missed-label-mobile">of potential enquiries may not be converting</div>
+                </div>
+              </div>
+              <div class="anchor-urgency" id="urgency-callout-mobile"><span id="urgency-text-mobile"></span></div>
+              <div class="anchor-fallback" id="fallback-notice-mobile"><span id="fallback-text-mobile"></span></div>
+            </div>
+            <div class="anchor-preview-mobile">
+              <div class="anchor-preview-header-m">
+                <div class="anchor-dots-m">
+                  <div class="anchor-dot-m" style="background:#ef4444"></div>
+                  <div class="anchor-dot-m" style="background:#f59e0b"></div>
+                  <div class="anchor-dot-m" style="background:#22c55e"></div>
+                </div>
+              </div>
+              <div class="preview-img-wrap">
+                <div id="screenshot-slot-mobile">
+                  <div class="screenshot-placeholder" style="aspect-ratio:3/4;min-height:110px;font-size:11px">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none">
+                      <rect x="3" y="5" width="26" height="22" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                      <path d="M3 22l6-5 5 4 5-6 10 8" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="anchor-divider"></div>
+          <!-- Mobile CTA pre-unlock -->
+          <div class="action-pre-unlock" id="action-pre-unlock-mobile">
+            <button class="action-btn-primary" onclick="openModal()">Get My Full Breakdown →</button>
+            <div class="action-support">No obligation. Free to request.</div>
+          </div>
+          <!-- Mobile CTA post-unlock -->
+          <div class="action-post-unlock" id="action-post-unlock-mobile">
+            <a class="action-btn-book" href="#" onclick="openBooking(event)">Book My Free Review →</a>
+            <div class="action-support">No obligation. No hard sell.</div>
+          </div>
+        </div>
+
+        <!-- Desktop: action panel (sticky) -->
+        <div class="action-panel">
+
+          <!-- Score + headline (desktop only) -->
+          <div class="action-score-row">
+            <div class="action-score-circle">
               <svg viewBox="0 0 100 100" width="80" height="80">
                 <circle class="score-circle-bg" cx="50" cy="50" r="42"/>
                 <circle class="score-circle-fill" id="score-ring" cx="50" cy="50" r="42"
@@ -1832,149 +2086,42 @@ body::before{
                 <span class="score-denom">/100</span>
               </div>
             </div>
-            <div class="anchor-score-text">
-              <div class="eyebrow" id="results-eyebrow" style="font-size:11px;margin-bottom:3px"></div>
-              <div class="anchor-headline" id="results-headline"></div>
-              <div class="anchor-sub" id="results-sub"></div>
-            </div>
-          </div>
-
-          <!-- Body: missed + urgency + preview side by side -->
-          <div class="anchor-body">
-
-            <!-- Left side: missed + urgency + fallback -->
-            <div style="flex:1;min-width:0">
-              <div class="anchor-missed" id="missed-card" style="display:none">
-                <div class="anchor-missed-icon">📉</div>
-                <div>
-                  <div class="anchor-missed-big" id="missed-number">—</div>
-                  <div class="anchor-missed-label" id="missed-label">of potential enquiries may not be converting</div>
-                </div>
-              </div>
-              <div class="anchor-urgency" id="urgency-callout"><span id="urgency-text"></span></div>
-              <div class="anchor-fallback" id="fallback-notice"><span id="fallback-text"></span></div>
-            </div>
-
-            <!-- Right side: website preview -->
-            <div class="anchor-preview">
-              <div class="anchor-preview-header">
-                <div class="anchor-browser-dots">
-                  <div class="anchor-browser-dot" style="background:#ef4444"></div>
-                  <div class="anchor-browser-dot" style="background:#f59e0b"></div>
-                  <div class="anchor-browser-dot" style="background:#22c55e"></div>
-                </div>
-                <span class="anchor-url-text" id="screenshot-url-bar">—</span>
-              </div>
-              <div class="preview-img-wrap">
-                <div id="screenshot-slot">
-                  <div class="screenshot-placeholder" style="aspect-ratio:3/4;min-height:140px">
-                    <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-                      <rect x="3" y="5" width="26" height="22" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                      <circle cx="10" cy="13" r="3" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                      <path d="M3 22l6-5 5 4 5-6 10 8" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
-                    </svg>
-                    <span style="font-size:11px">Fetching…</span>
-                  </div>
-                </div>
-                <div class="preview-img-overlay">
-                  <span class="preview-img-label">Homepage snapshot</span>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /.anchor-body -->
-        </div><!-- /.result-anchor-card -->
-
-        <!-- Divider separating anchor from findings -->
-        <div class="anchor-divider"></div>
-
-        <!-- ══ FINDINGS + UNLOCK SECTION ═══════════════════════════════ -->
-        <div class="action-panel">
-
-          <!-- Hidden score row (kept so JS renderResults targets exist) -->
-          <div class="action-score-row" id="action-score-row-hidden" style="display:none">
-            <div class="action-score-circle" style="display:none"></div>
             <div class="action-score-text-block">
-              <div id="results-eyebrow-hidden"></div>
-              <div id="results-headline-hidden"></div>
-              <div id="results-sub-hidden"></div>
+              <div class="eyebrow" id="results-eyebrow" style="font-size:11px;margin-bottom:3px"></div>
+              <div class="action-headline" id="results-headline"></div>
+              <div class="action-sub" id="results-sub"></div>
             </div>
           </div>
-          <!-- Hidden compat elements for JS -->
-          <div id="action-score-row" style="display:none"></div>
-          <div class="action-missed" id="missed-card-compat" style="display:none"></div>
-          <div class="action-urgency" id="urgency-callout-compat" style="display:none"></div>
-          <div class="action-fallback" id="fallback-notice-compat" style="display:none"></div>
 
-          <!-- Findings panel -->
-          <div class="findings-panel">
-
-            <!-- Teaser -->
-            <div class="findings-preview" id="findings-preview">
-              <div class="findings-section-title">Score Breakdown</div>
-              <div class="breakdown-bars" id="breakdown-bars-teaser"></div>
-              <div id="teaser-issue-wrap" style="display:none">
-                <div class="findings-section-title" style="margin-top:16px">Key Issue</div>
-                <ul class="issues-list" id="teaser-issue"></ul>
-              </div>
-              <div id="teaser-fix-wrap" style="display:none">
-                <div class="findings-section-title" style="margin-top:16px">Fastest Fix</div>
-                <ul class="fixes-list" id="teaser-fix"></ul>
-              </div>
+          <!-- Missed enquiries -->
+          <div class="action-missed" id="missed-card" style="display:none">
+            <div class="action-missed-icon">📉</div>
+            <div>
+              <div class="action-missed-big" id="missed-number">—</div>
+              <div class="action-missed-label" id="missed-label">of potential enquiries may not be converting</div>
             </div>
+          </div>
 
-            <!-- Locked section with frosted glass blur -->
-            <div class="findings-locked" id="findings-locked">
-              <div class="findings-locked-content" id="findings-locked-ghost">
-                <div class="findings-section-title" style="margin-top:16px;opacity:0.5">Full Breakdown</div>
-                <div class="breakdown-bars" style="opacity:0.5">
-                  <div class="bar-row"><div class="bar-label" style="color:var(--white-50)">CTA Strength</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:#ef4444"></div></div><div class="bar-score" style="color:#ef4444">7/20</div></div>
-                  <div class="bar-row"><div class="bar-label" style="color:var(--white-50)">Trust Signals</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#f59e0b"></div></div><div class="bar-score" style="color:#f59e0b">11/20</div></div>
-                  <div class="bar-row"><div class="bar-label" style="color:var(--white-50)">Local Relevance</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:#ef4444"></div></div><div class="bar-score" style="color:#ef4444">5/20</div></div>
-                </div>
-                <div class="findings-section-title" style="margin-top:16px;opacity:0.5">Issues Found</div>
-                <div style="opacity:0.5">
-                  <div class="issue-item" style="margin-bottom:8px"><span class="issue-icon">⚠</span><span>No visible phone number on mobile homepage</span></div>
-                  <div class="issue-item" style="margin-bottom:8px"><span class="issue-icon">⚠</span><span>Missing local area keywords in page headings</span></div>
-                </div>
-              </div>
-              <div class="findings-blur-overlay" id="findings-blur-overlay">
-                <div class="findings-blur-hint">More analysis hidden</div>
-                <button class="btn-unlock-inline" onclick="openModal()">Get My Full Breakdown →</button>
-              </div>
-            </div>
+          <!-- Urgency -->
+          <div class="action-urgency" id="urgency-callout"><span id="urgency-text"></span></div>
 
-            <!-- Unlock strip -->
-            <div class="findings-unlock-strip" id="unlock-strip">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12 13 5" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Unlocked — here's your full breakdown.
-            </div>
+          <!-- Fallback -->
+          <div class="action-fallback" id="fallback-notice"><span id="fallback-text"></span></div>
 
-            <!-- Full findings after unlock -->
-            <div class="findings-full" id="findings-full">
-              <div class="findings-section-title">Full Score Breakdown</div>
-              <div class="breakdown-bars" id="breakdown-bars"></div>
-              <div id="issues-title" style="display:none">
-                <div class="findings-section-title" style="margin-top:16px">What's Costing You Work</div>
-              </div>
-              <ul class="issues-list" id="issues-list"></ul>
-              <div id="fixes-title" style="display:none">
-                <div class="findings-section-title" style="margin-top:16px">Fastest Fixes</div>
-              </div>
-              <ul class="fixes-list" id="fixes-list"></ul>
-            </div>
+          <hr class="action-divider">
 
-          </div><!-- /.findings-panel -->
-
-          <hr class="action-divider" style="display:block!important;margin:20px 0">
-
-          <!-- PRE-UNLOCK placeholder -->
-          <div class="action-pre-unlock" id="action-pre-unlock" style="display:none"></div>
+          <!-- PRE-UNLOCK CTA -->
+          <div class="action-pre-unlock" id="action-pre-unlock">
+            <div class="action-unlock-headline">See Exactly What's Costing You Jobs</div>
+            <div class="action-unlock-body">Your full breakdown, exact issues and fastest fixes are waiting.</div>
+            <button class="action-btn-primary" onclick="openModal()">Get My Full Breakdown →</button>
+            <div class="action-support">No obligation. Free to request.</div>
+          </div>
 
           <!-- POST-UNLOCK: book CTA -->
           <div class="action-post-unlock" id="action-post-unlock">
             <div class="action-unlock-headline">Want Us To Walk You Through It?</div>
-            <div class="action-unlock-body">Book a free 10-minute review — we'll cover the biggest wins specific to your trade and area.</div>
+            <div class="action-unlock-body">Book a free 10-minute review — biggest wins specific to your trade and area.</div>
             <a class="action-btn-book" href="#" onclick="openBooking(event)">Book My Free Review →</a>
             <div class="action-support">No obligation. No hard sell.</div>
           </div>
@@ -1982,6 +2129,7 @@ body::before{
         </div><!-- /.action-panel -->
 
       </div><!-- /.results-right -->
+
     </div><!-- /.results-split -->
   </section>
 
@@ -2309,12 +2457,16 @@ function renderResults(data) {
     const full   = document.getElementById('findings-full');
     const pre    = document.getElementById('action-pre-unlock');
     const post   = document.getElementById('action-post-unlock');
+    const preM   = document.getElementById('action-pre-unlock-mobile');
+    const postM  = document.getElementById('action-post-unlock-mobile');
     if (blurOverlay) blurOverlay.classList.remove('hidden');
     if (locked)      locked.style.display = '';
     if (strip)       strip.classList.remove('visible');
     if (full)        full.classList.remove('revealed');
     if (pre)         pre.classList.remove('hidden');
     if (post)        post.classList.remove('visible');
+    if (preM)        preM.classList.remove('hidden');
+    if (postM)       postM.classList.remove('visible');
   }
 
   // Support both new shape (totalScore/categoryScores) and old shape (score.total)
@@ -2399,10 +2551,41 @@ function renderResults(data) {
   // ── Screenshot ─────────────────────────────────────────────────────────────
   document.getElementById('screenshot-url-bar').textContent = data.websiteUrl || data.url || '';
   const slot = document.getElementById('screenshot-slot');
-  if (data.screenshotUrl) {
-    slot.innerHTML = `<img class="screenshot-img" src="${escapeHtml(data.screenshotUrl)}" alt="Homepage preview of ${escapeHtml(data.domain)}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=screenshot-placeholder><span>Preview unavailable</span></div>'">`;
-  } else {
-    slot.innerHTML = `<div class="screenshot-placeholder"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="5" width="26" height="22" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/><path d="M3 22l6-5 5 4 5-6 10 8" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/></svg><span>Screenshot unavailable</span></div>`;
+  const slotM = document.getElementById('screenshot-slot-mobile');
+  const screenshotHtml = data.screenshotUrl
+    ? `<img class="screenshot-img" src="${escapeHtml(data.screenshotUrl)}" alt="Homepage preview" loading="lazy" style="aspect-ratio:3/4" onerror="this.parentElement.innerHTML='<div class=screenshot-placeholder style=aspect-ratio:3/4><span>—</span></div>'">`
+    : `<div class="screenshot-placeholder"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="5" width="26" height="22" rx="2" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/><path d="M3 22l6-5 5 4 5-6 10 8" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/></svg><span>Screenshot unavailable</span></div>`;
+  if (slot) slot.innerHTML = screenshotHtml;
+  if (slotM) slotM.innerHTML = screenshotHtml;
+
+  // ── Mirror data to mobile anchor card ────────────────────────────────────
+  const eyebrowVal  = `Score for ${data.domain || data.websiteUrl || ''}`;
+  const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  setEl('results-eyebrow-mobile', eyebrowVal);
+  setEl('results-headline-mobile', headlines[tier]);
+  setEl('results-sub-mobile', subs[tier]);
+  // Mirror score ring for mobile
+  const ringM = document.getElementById('score-ring-mobile');
+  const numM  = document.getElementById('score-number-mobile');
+  if (ringM) { ringM.style.stroke = colourMap[tier]; setTimeout(() => { ringM.style.strokeDashoffset = offset; }, 200); }
+  if (numM) { numM.className = `score-number ${tier}`; let cm = 0; const stepM = () => { cm = Math.min(cm + 2, score); numM.textContent = cm; if (cm < score) requestAnimationFrame(stepM); }; requestAnimationFrame(stepM); }
+  // Mirror missed
+  if (mi?.label) {
+    setEl('missed-number-mobile', mi.label);
+    setEl('missed-label-mobile', mi.basis === 'goal' ? 'estimated monthly jobs potentially being missed' : 'of potential enquiries may not be converting');
+    const mc = document.getElementById('missed-card-mobile');
+    if (mc) mc.style.display = 'flex';
+  }
+  // Mirror urgency
+  if (score < 75) {
+    const msgs2 = {
+      poor: 'Based on this score, your site is likely turning away jobs every single week.',
+      fair: 'At this score, your site may be costing you work every single month.',
+      good: 'A few targeted fixes could meaningfully increase the jobs your site wins.'
+    };
+    setEl('urgency-text-mobile', msgs2[tier]);
+    const uc = document.getElementById('urgency-callout-mobile');
+    if (uc) uc.classList.add('visible');
   }
 
   // ── Bar renderer helper ───────────────────────────────────────────────────
@@ -2509,12 +2692,10 @@ function unlockDetails() {
 
   closeModal();
 
-  // Hide blur overlay
+  // Hide blur overlay + locked ghost
   const blurOverlay = document.getElementById('findings-blur-overlay');
-  if (blurOverlay) blurOverlay.classList.add('hidden');
-
-  // Hide the locked ghost content section
   const locked = document.getElementById('findings-locked');
+  if (blurOverlay) blurOverlay.classList.add('hidden');
   if (locked) locked.style.display = 'none';
 
   // Show unlock strip + reveal full findings
@@ -2523,13 +2704,19 @@ function unlockDetails() {
   if (strip) strip.classList.add('visible');
   if (full)  full.classList.add('revealed');
 
-  // Right panel: swap pre/post unlock
+  // Desktop right panel: swap pre/post unlock
   const pre  = document.getElementById('action-pre-unlock');
   const post = document.getElementById('action-post-unlock');
   if (pre)  pre.classList.add('hidden');
   if (post) post.classList.add('visible');
 
-  // Scroll to top of right panel findings
+  // Mobile anchor card: swap CTAs
+  const preM  = document.getElementById('action-pre-unlock-mobile');
+  const postM = document.getElementById('action-post-unlock-mobile');
+  if (preM)  { preM.classList.add('hidden'); }
+  if (postM) { postM.classList.add('visible'); }
+
+  // Scroll to findings
   setTimeout(() => {
     const preview = document.getElementById('findings-preview');
     if (preview) preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
