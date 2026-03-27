@@ -1960,6 +1960,11 @@ body::before{
   transition:background .15s;
 }
 .cal-modal-close:hover{background:rgba(255,255,255,0.18)}
+
+/* ─── Suppress scrollbar in Calendly native popup ───────────────────────── */
+.calendly-popup-content{overflow:hidden !important}
+.calendly-popup-content iframe{overflow:hidden !important}
+.calendly-overlay .calendly-popup{overflow:hidden !important}
 </style>
 </head>
 <body>
@@ -2942,8 +2947,33 @@ function gateBook() {
 /* ─── BOOKING + SCROLL HELPERS ───────────────────────────────────────────── */
 function openBooking(e) {
   if (e) e.preventDefault();
-  const url = BOOKING_URL && BOOKING_URL !== 'https://calendly.com/your-link' ? BOOKING_URL : null;
-  if (!url) { openModal(); return; }
+  const baseUrl = BOOKING_URL && BOOKING_URL !== 'https://calendly.com/your-link' ? BOOKING_URL : null;
+  if (!baseUrl) { openModal(); return; }
+
+  // Gather all available prefill values
+  const name      = (document.getElementById('inp-name')?.value  || '').trim();
+  const email     = (document.getElementById('inp-email')?.value || '').trim();
+  const websiteRaw= (document.getElementById('inp-url')?.value   || '').trim();
+  const website   = websiteRaw || (scanResult?.websiteUrl) || (scanResult?.url) || '';
+
+  // Qualifier → human-readable label for Calendly
+  const qualifierLabels = {
+    enquiries:   'Not enough enquiries',
+    calls:       'Visits but no calls',
+    consistency: 'Want more consistent jobs'
+  };
+  const issue = qualifierValue ? (qualifierLabels[qualifierValue] || qualifierValue) : '';
+
+  // Build prefilled URL
+  const params = new URLSearchParams();
+  if (name)    params.set('name',  name);
+  if (email)   params.set('email', email);
+  // Calendly custom question slots (a1, a2, a3…) — adjust if your questions differ
+  if (website) params.set('a1', website);
+  if (issue)   params.set('a2', issue);
+
+  const qs  = params.toString();
+  const url = qs ? `${baseUrl}?${qs}` : baseUrl;
 
   // Try Calendly popup widget first
   if (typeof Calendly !== 'undefined' && Calendly.initPopupWidget) {
