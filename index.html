@@ -188,7 +188,7 @@ body::before{
   border:1px solid var(--navy-border);
   border-radius:var(--radius-lg);
   overflow:hidden;
-  box-shadow:0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow:0 4px 20px rgba(0,0,0,0.3), 0 1px 4px rgba(0,0,0,0.2);
 }
 .preview-panel-header{
   background:var(--navy-mid);
@@ -532,15 +532,15 @@ body::before{
 .modal-overlay{
   position:fixed;
   inset:0;
-  background:rgba(5,10,20,0.82);
+  background:rgba(5,10,20,0.85);
   z-index:100;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:16px;
   opacity:0;
   pointer-events:none;
-  transition:opacity .25s;
+  transition:opacity .22s;
 }
 .modal-overlay.open{
   opacity:1;
@@ -550,41 +550,42 @@ body::before{
   background:var(--navy-card);
   border:1px solid var(--navy-border);
   border-radius:var(--radius-lg);
-  padding:32px 28px 28px;
+  padding:22px 22px 20px;
   width:100%;
-  max-width:460px;
+  max-width:420px;
   position:relative;
-  transform:translateY(12px);
-  transition:transform .25s;
-  max-height:90vh;
-  overflow-y:auto;
+  transform:translateY(10px);
+  transition:transform .22s;
+  box-shadow:0 12px 48px rgba(0,0,0,0.55);
 }
 .modal-overlay.open .modal-box{transform:translateY(0)}
 .modal-close{
   position:absolute;
-  top:14px;right:16px;
+  top:12px;right:14px;
   background:transparent;
   border:none;
   color:var(--white-50);
-  font-size:22px;
+  font-size:18px;
   cursor:pointer;
   line-height:1;
-  padding:4px;
-  transition:color .15s;
+  padding:3px 5px;
+  border-radius:4px;
+  transition:color .15s,background .15s;
 }
-.modal-close:hover{color:var(--white)}
+.modal-close:hover{color:var(--white);background:var(--white-20)}
 .modal-title{
   font-family:var(--font-display);
-  font-weight:900;
-  font-size:24px;
-  margin-bottom:6px;
-  padding-right:28px;
+  font-weight:800;
+  font-size:20px;
+  margin-bottom:4px;
+  padding-right:26px;
+  line-height:1.1;
 }
 .modal-body{
-  font-size:13px;
+  font-size:12px;
   color:var(--white-50);
-  margin-bottom:22px;
-  line-height:1.55;
+  margin-bottom:14px;
+  line-height:1.5;
 }
 
 /* ─── SCAN WAITING STATE ─────────────────────────────────────────────────── */
@@ -614,7 +615,7 @@ body::before{
   border-radius:var(--radius-lg);
   padding:28px;
 }
-.form-row{margin-bottom:18px}
+.form-row{margin-bottom:10px}
 .form-label{
   display:block;
   font-size:12px;
@@ -630,8 +631,8 @@ body::before{
   border:1.5px solid var(--navy-border);
   border-radius:var(--radius);
   color:var(--white);
-  font-size:15px;
-  padding:12px 14px;
+  font-size:14px;
+  padding:10px 13px;
   outline:none;
   transition:border-color .2s,box-shadow .2s;
 }
@@ -916,15 +917,15 @@ body::before{
 .screenshot-img{
   width:100%;
   display:block;
-  aspect-ratio:1/1;
+  aspect-ratio:4/3;
   object-fit:cover;
   object-position:top;
   background:var(--navy-mid);
 }
 .screenshot-placeholder{
   width:100%;
-  aspect-ratio:1/1;
-  min-height:280px;
+  aspect-ratio:4/3;
+  min-height:240px;
   background:var(--navy-mid);
   display:flex;
   flex-direction:column;
@@ -1326,39 +1327,39 @@ body::before{
 
 /* ─── QUALIFIER CARDS ────────────────────────────────────────────────────── */
 .qualifier-block{
-  margin-bottom:22px;
+  margin-bottom:12px;
 }
 .qualifier-headline{
   font-family:var(--font-display);
-  font-weight:800;
-  font-size:17px;
-  margin-bottom:5px;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  color:var(--white-50);
+  margin-bottom:8px;
 }
 .qualifier-sub{
-  font-size:13px;
-  color:var(--white-50);
-  margin-bottom:14px;
-  line-height:1.45;
+  display:none;
 }
 .qualifier-options{
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:5px;
 }
 .qualifier-option{
   background:var(--navy-light);
   border:1.5px solid var(--navy-border);
-  border-radius:var(--radius);
-  padding:13px 16px;
-  font-size:14px;
+  border-radius:8px;
+  padding:9px 12px;
+  font-size:13px;
   font-weight:500;
   color:var(--white-80);
   cursor:pointer;
   text-align:left;
-  transition:border-color .18s, background .18s, color .18s;
+  transition:border-color .15s, background .15s, color .15s;
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
   width:100%;
 }
 .qualifier-option:hover{
@@ -1372,23 +1373,18 @@ body::before{
   color:#fff;
 }
 .qualifier-option-dot{
-  width:16px;height:16px;
+  width:14px;height:14px;
   border-radius:50%;
   border:2px solid var(--navy-border);
   flex-shrink:0;
-  transition:border-color .18s, background .18s;
+  transition:border-color .15s, background .15s;
 }
 .qualifier-option.selected .qualifier-option-dot{
   border-color:var(--orange);
   background:var(--orange);
 }
 .qualifier-hint{
-  font-size:12px;
-  color:rgba(249,115,22,0.8);
-  margin-top:10px;
-  min-height:18px;
-  line-height:1.45;
-  transition:opacity .2s;
+  display:none;
 }
 
 /* ─── SOFT GATE ──────────────────────────────────────────────────────────── */
@@ -1852,24 +1848,23 @@ body::before{
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
     <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
     <div class="modal-title" id="modal-title-el">Get Your Full Breakdown</div>
-    <div class="modal-body">Enter your details and we'll reveal the exact issues and fastest fixes for your site.</div>
+    <div class="modal-body">Enter your details to reveal the full issues and fastest fixes.</div>
 
     <!-- Qualifier -->
     <div class="qualifier-block">
-      <div class="qualifier-headline" style="font-size:15px;margin-bottom:4px">What's holding your website back?</div>
-      <div class="qualifier-sub">Pick the closest one.</div>
+      <div class="qualifier-headline">What's holding your site back?</div>
       <div class="qualifier-options">
         <button class="qualifier-option" onclick="selectQualifier(this,'enquiries')" type="button">
           <span class="qualifier-option-dot"></span>
-          Not getting enough enquiries
+          Not enough enquiries
         </button>
         <button class="qualifier-option" onclick="selectQualifier(this,'calls')" type="button">
           <span class="qualifier-option-dot"></span>
-          Visits but no calls
+          Visits, no calls
         </button>
         <button class="qualifier-option" onclick="selectQualifier(this,'consistency')" type="button">
           <span class="qualifier-option-dot"></span>
-          Want more consistent jobs
+          Want more jobs
         </button>
       </div>
       <div class="qualifier-hint" id="qualifier-hint"></div>
@@ -1878,22 +1873,22 @@ body::before{
     <div id="lead-error" class="error-banner"></div>
 
     <div class="form-row">
-      <label class="form-label" for="inp-name">Your Name</label>
+      <label class="form-label" for="inp-name">Name</label>
       <input id="inp-name" class="form-input" type="text" placeholder="John Smith" autocomplete="name">
     </div>
     <div class="form-row">
-      <label class="form-label" for="inp-email">Email Address</label>
+      <label class="form-label" for="inp-email">Email</label>
       <input id="inp-email" class="form-input" type="email" placeholder="john@yoursite.co.uk" autocomplete="email">
     </div>
-    <div class="form-row" style="margin-bottom:20px">
-      <label class="form-label" for="inp-phone">Phone (optional)</label>
-      <input id="inp-phone" class="form-input" type="tel" placeholder="07700 900000" autocomplete="tel">
+    <div class="form-row" style="margin-bottom:16px">
+      <label class="form-label" style="opacity:0.6" for="inp-phone">Phone <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:var(--white-50)">(optional)</span></label>
+      <input id="inp-phone" class="form-input" style="opacity:0.7" type="tel" placeholder="07700 900000" autocomplete="tel">
     </div>
 
     <button class="action-btn-primary" id="btn-lead-submit" onclick="submitLead('unlock')">Reveal My Full Breakdown →</button>
 
-    <div class="disclaimer" style="margin-top:12px;text-align:center;font-size:11px;color:var(--white-50);line-height:1.5">
-      No spam. No obligation. Automated scan — free review by a real human on request.
+    <div style="margin-top:10px;text-align:center;font-size:11px;color:var(--white-50)">
+      No spam. No obligation.
     </div>
   </div>
 </div>
