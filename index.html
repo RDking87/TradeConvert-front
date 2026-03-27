@@ -33,6 +33,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--white);color:var(--text);font-family:'Barlow',sans-serif;font-size:16px;line-height:1.5;overflow-x:hidden;}
+button,input,select,textarea{font:inherit;}
 
 /* ══ NAV ════════════════════════════════════════════════════════════════════ */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--navy);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
@@ -86,6 +87,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--navy);paddi
 .btn-ghost{display:inline-block;border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75);padding:.85rem 1.6rem;border-radius:3px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .2s;}
 .btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff;}
 .btn-dark{display:inline-block;background:var(--navy);color:var(--white);padding:1rem 2.2rem;border-radius:3px;font-weight:800;font-size:1rem;text-decoration:none;transition:all .2s;}
+.btn-urgency{display:inline-block;background:var(--white);color:var(--navy);padding:1rem 2.2rem;border-radius:3px;font-weight:800;font-size:1rem;text-decoration:none;border:none;transition:all .2s;}
+.btn-urgency:hover{background:var(--off-white);transform:translateY(-1px);}
 .btn-call{display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:2px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:.9rem 1.8rem;border-radius:3px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .2s;}
 .btn-call:hover{border-color:rgba(255,255,255,.6);color:#fff;}
 .btn-call svg{width:16px;height:16px;}
@@ -165,9 +168,9 @@ h2 .em{color:var(--orange);} h2.light{color:var(--white);}
   width:100%;
 }
 .sc-mcta-primary{
-  background:var(--sc-orange);color:#fff;padding:.9rem 2rem;border-radius:6px;
-  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;
-  letter-spacing:.03em;text-transform:uppercase;text-decoration:none;
+  background:var(--sc-orange);color:#fff;padding:.9rem 2.2rem;border-radius:3px;
+  font-weight:800;font-size:1rem;
+  text-decoration:none;
   border:none;cursor:pointer;transition:background .2s,transform .15s;
   display:inline-flex;align-items:center;gap:.5rem;
   box-shadow:0 4px 18px rgba(249,115,22,.3);
@@ -175,12 +178,11 @@ h2 .em{color:var(--orange);} h2.light{color:var(--white);}
 .sc-mcta-primary:hover{background:var(--sc-orange-dark);transform:translateY(-2px);}
 .sc-mcta-secondary{
   background:transparent;color:rgba(255,255,255,.85);
-  border:1.5px solid rgba(255,255,255,.2);padding:.85rem 1.5rem;border-radius:6px;
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;
-  letter-spacing:.02em;text-transform:uppercase;text-decoration:none;
+  border:1.5px solid rgba(255,255,255,.2);padding:.85rem 1.5rem;border-radius:3px;
+  font-weight:700;font-size:.95rem;
+  text-decoration:none;
   cursor:pointer;transition:border-color .2s,color .2s;
   display:inline-flex;align-items:center;gap:.45rem;
-  font-family:'Barlow',sans-serif;
 }
 .sc-mcta-secondary:hover{border-color:rgba(255,255,255,.5);color:#fff;}
 .sc-mcta-secondary svg,.sc-mcta-primary svg{width:16px;height:16px;flex-shrink:0;}
@@ -451,10 +453,9 @@ h2 .em{color:var(--orange);} h2.light{color:var(--white);}
 .sc-booked-btns{display:flex;flex-direction:column;gap:10px;max-width:320px;margin:0 auto;}
 .sc-booked-btn-close{
   background:transparent;border:1.5px solid rgba(255,255,255,.2);color:var(--sc-w80);
-  border-radius:var(--sc-r);font-family:'Barlow Condensed',sans-serif;font-weight:600;
-  font-size:14px;letter-spacing:.02em;padding:12px 20px;cursor:pointer;
-  text-transform:uppercase;transition:border-color .2s,color .2s;
-  font-size:13px;
+  border-radius:3px;font-family:'Barlow',sans-serif;font-weight:600;
+  font-size:.88rem;padding:12px 20px;cursor:pointer;
+  transition:border-color .2s,color .2s;
 }
 .sc-booked-btn-close:hover{border-color:rgba(255,255,255,.5);color:#fff;}
 
@@ -514,17 +515,16 @@ h2 .em{color:var(--orange);} h2.light{color:var(--white);}
 .buy-form-file-name{font-size:11px;color:var(--sc-green);margin-top:5px;display:none;}
 .buy-error-banner{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:var(--sc-r);padding:10px 14px;font-size:13px;color:#fca5a5;margin-bottom:14px;display:none;}
 .btn-buy{
-  width:100%;background:var(--orange);color:#fff;border:none;
-  border-radius:var(--sc-r);font-family:'Barlow Condensed',sans-serif;
-  font-weight:800;font-size:18px;letter-spacing:.03em;padding:15px 20px;
-  cursor:pointer;text-transform:uppercase;transition:background .2s,transform .1s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  box-shadow:0 4px 18px rgba(244,96,12,.3);
+  width:100%;background:var(--orange);color:var(--white);border:none;
+  border-radius:3px;font-weight:800;font-size:1rem;
+  padding:1rem 2.2rem;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  box-shadow:0 4px 18px rgba(244,96,12,.25);
 }
 .btn-buy:hover{background:var(--orange-light);transform:translateY(-1px);}
 .btn-buy:active{transform:scale(.98);}
 .btn-buy:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-.btn-buy svg{width:18px;height:18px;flex-shrink:0;}
+.btn-buy svg{width:16px;height:16px;flex-shrink:0;}
 .buy-microcopy{font-size:11px;color:var(--sc-w50);text-align:center;margin-top:10px;line-height:1.5;}
 /* Buy modal success state */
 .buy-success{display:none;text-align:center;padding:20px 0 10px;}
@@ -541,29 +541,32 @@ h2 .em{color:var(--orange);} h2.light{color:var(--white);}
 }
 .buy-success-close{
   background:transparent;border:1.5px solid rgba(255,255,255,.2);color:var(--sc-w80);
-  border-radius:var(--sc-r);font-family:'Barlow Condensed',sans-serif;font-weight:600;
-  font-size:13px;letter-spacing:.02em;padding:11px 20px;cursor:pointer;
-  text-transform:uppercase;transition:border-color .2s,color .2s;
+  border-radius:3px;font-family:'Barlow',sans-serif;font-weight:600;
+  font-size:.88rem;padding:11px 20px;cursor:pointer;
+  transition:border-color .2s,color .2s;
 }
 .buy-success-close:hover{border-color:rgba(255,255,255,.5);color:#fff;}
-/* Get Started / Buy primary button style (on white background) */
+/* Get Started — identical to btn-orange, full-width block for pricing cards */
 .btn-getstarted{
-  display:block;text-align:center;padding:.95rem 1rem;border-radius:5px;
-  font-weight:800;font-size:.95rem;text-decoration:none;transition:all .2s;
-  cursor:pointer;border:none;font-family:'Barlow',sans-serif;
+  display:block;width:100%;text-align:center;
   background:var(--orange);color:var(--white);
+  padding:1rem 2.2rem;border-radius:3px;
+  font-weight:800;font-size:1rem;
+  text-decoration:none;border:none;cursor:pointer;transition:all .2s;
 }
-.btn-getstarted:hover{background:var(--orange-light);}
-.price-card.featured .btn-getstarted{background:var(--orange);color:#fff;}
+.btn-getstarted:hover{background:var(--orange-light);transform:translateY(-1px);}
+/* Ask a Question — ghost secondary, full-width */
 .btn-askq{
-  display:block;text-align:center;padding:.65rem .8rem;border-radius:5px;
-  font-weight:600;font-size:.82rem;text-decoration:none;transition:all .2s;
-  cursor:pointer;border:1.5px solid var(--rule);font-family:'Barlow',sans-serif;
-  background:transparent;color:var(--mid);margin-top:8px;
+  display:block;width:100%;text-align:center;
+  background:transparent;color:var(--mid);
+  padding:.75rem 1rem;border-radius:3px;
+  font-weight:600;font-size:.88rem;
+  text-decoration:none;border:1.5px solid var(--rule);
+  cursor:pointer;transition:all .2s;margin-top:8px;
 }
-.price-card.featured .btn-askq{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5);}
+.price-card.featured .btn-askq{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.45);}
 .btn-askq:hover{border-color:var(--orange);color:var(--orange);}
-.price-card.featured .btn-askq:hover{border-color:rgba(249,115,22,.5);color:var(--sc-orange);}
+.price-card.featured .btn-askq:hover{border-color:var(--orange);color:var(--orange-light);}
 /* Pricing no-call callout */
 .pricing-no-call{
   font-size:.85rem;color:var(--mid);margin-bottom:1.8rem;
@@ -575,6 +578,36 @@ h2 .em{color:var(--orange);} h2.light{color:var(--white);}
   display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.1em;
   text-transform:uppercase;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);
   color:#22c55e;padding:.28rem .8rem;border-radius:100px;margin-bottom:.7rem;
+}
+
+/* Package selector in buy modal */
+.buy-pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+@media(max-width:460px){.buy-pkg-grid{grid-template-columns:1fr;}}
+.buy-pkg-option{
+  display:flex;flex-direction:column;gap:4px;
+  padding:14px 14px 12px;border-radius:var(--sc-r);cursor:pointer;
+  border:1.5px solid var(--sc-navy-border);background:var(--sc-navy-light);
+  transition:border-color .15s,background .15s;position:relative;
+}
+.buy-pkg-option:hover{border-color:rgba(249,115,22,.4);background:rgba(249,115,22,.04);}
+.buy-pkg-option.selected{border-color:var(--sc-orange);background:rgba(249,115,22,.08);}
+.buy-pkg-option input[type="radio"]{
+  position:absolute;opacity:0;pointer-events:none;
+}
+.buy-pkg-radio{
+  width:16px;height:16px;border-radius:50%;border:2px solid var(--sc-navy-border);
+  flex-shrink:0;transition:border-color .15s,background .15s;
+  display:inline-block;position:absolute;top:14px;right:12px;
+}
+.buy-pkg-option.selected .buy-pkg-radio{border-color:var(--sc-orange);background:var(--sc-orange);}
+.buy-pkg-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:#fff;line-height:1.1;padding-right:24px;}
+.buy-pkg-price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--sc-orange);line-height:1;}
+.buy-pkg-deposit{font-size:10px;color:var(--sc-w50);margin-top:2px;}
+.buy-deposit-note{
+  font-size:11px;color:var(--sc-w50);
+  background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.12);
+  border-radius:var(--sc-r);padding:8px 12px;margin-top:6px;margin-bottom:4px;
+  line-height:1.5;
 }
 
 /* Calendly modal */
@@ -660,26 +693,225 @@ h2 .em{color:var(--orange);} h2.light{color:var(--white);}
 .hiw-bottom{text-align:center;margin-top:3rem;padding:1.8rem;background:var(--navy);border-radius:8px;}
 .hiw-bottom p{font-size:1rem;color:rgba(255,255,255,.7);margin-bottom:1.2rem;}
 .hiw-bottom p strong{color:var(--white);}
+/* ══ PRICING SECTION ═════════════════════════════════════════════════════════ */
 .pricing-section{background:var(--off-white);}
-.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;max-width:760px;margin-left:auto;margin-right:auto;}
-.price-card{background:var(--white);border:2px solid var(--rule);border-radius:10px;padding:2rem;transition:all .25s;position:relative;}
-.price-card.featured{background:var(--navy);border-color:var(--orange);box-shadow:0 20px 50px rgba(11,21,37,.2);transform:scale(1.02);}
-.pc-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--orange);color:var(--white);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .9rem;border-radius:100px;white-space:nowrap;}
-.pc-name{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem;}
-.price-card .pc-name{color:var(--navy);} .price-card.featured .pc-name{color:rgba(255,255,255,.6);}
-.pc-price{font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:.2rem;}
-.price-card .pc-price{color:var(--navy);} .price-card.featured .pc-price{color:var(--white);}
-.pc-note{font-size:.78rem;color:var(--mid);margin-bottom:1.5rem;}
+.pricing-no-call{
+  font-size:.88rem;color:var(--mid);margin-bottom:2.5rem;
+  display:flex;align-items:center;gap:.45rem;justify-content:center;
+  text-align:center;
+}
+.pricing-no-call svg{color:var(--orange);flex-shrink:0;width:15px;height:15px;}
+
+/* 3-column grid — collapses cleanly on mobile */
+.price-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:1.25rem;
+  margin-top:0;
+  align-items:stretch;
+}
+@media(max-width:900px){
+  .price-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .price-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto;}
+}
+
+/* Base card */
+.price-card{
+  background:var(--white);
+  border:2px solid var(--rule);
+  border-radius:12px;
+  padding:2rem 1.75rem;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  transition:box-shadow .2s, transform .2s;
+}
+.price-card:hover{
+  box-shadow:0 8px 32px rgba(11,21,37,.1);
+  transform:translateY(-2px);
+}
+
+/* Featured (Most Popular) */
+.price-card.featured{
+  background:var(--navy);
+  border-color:var(--orange);
+  box-shadow:0 12px 40px rgba(11,21,37,.18);
+}
+.price-card.featured:hover{
+  box-shadow:0 18px 50px rgba(11,21,37,.28);
+  transform:translateY(-3px);
+}
+
+/* Premium (Growth System) */
+.price-card.premium{
+  background:var(--navy);
+  border-color:rgba(244,96,12,.35);
+  border-width:2px;
+  box-shadow:0 4px 20px rgba(11,21,37,.1);
+}
+.price-card.premium:hover{
+  box-shadow:0 12px 36px rgba(11,21,37,.2);
+  transform:translateY(-2px);
+}
+
+/* Badge — sits inside card flow, not absolutely positioned */
+.pc-badge-wrap{min-height:1.6rem;margin-bottom:.6rem;}
+.pc-badge{
+  display:inline-flex;align-items:center;gap:.35rem;
+  background:var(--orange);color:var(--white);
+  font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:.3rem .85rem;border-radius:100px;white-space:nowrap;
+}
+.pc-badge.premium-badge{
+  background:rgba(244,96,12,.12);
+  border:1px solid rgba(244,96,12,.3);
+  color:var(--orange);
+}
+.price-card.premium .pc-badge.premium-badge{
+  background:rgba(244,96,12,.15);
+  border-color:rgba(244,96,12,.35);
+  color:var(--orange-light);
+}
+
+/* Card header */
+.pc-header{margin-bottom:1.4rem;}
+.pc-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.15rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;
+  line-height:1.1;margin-bottom:.7rem;color:var(--navy);
+}
+.price-card.featured .pc-name,
+.price-card.premium .pc-name{color:rgba(255,255,255,.7);}
+
+.pc-price{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:3rem;font-weight:900;line-height:1;
+  color:var(--navy);margin-bottom:.3rem;
+}
+.price-card.featured .pc-price{color:var(--white);}
+.price-card.premium .pc-price{color:var(--white);}
+
+.pc-note{font-size:.78rem;color:var(--mid);line-height:1.45;}
 .price-card.featured .pc-note{color:rgba(255,255,255,.4);}
-.pc-feats{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.8rem;}
-.pc-feats li{font-size:.87rem;display:flex;gap:.6rem;align-items:flex-start;}
-.price-card .pc-feats li{color:var(--text);} .price-card.featured .pc-feats li{color:rgba(255,255,255,.8);}
-.pc-feats li svg{width:15px;height:15px;flex-shrink:0;margin-top:1px;color:var(--orange);}
-.pc-cta{display:block;text-align:center;padding:.9rem;border-radius:5px;font-weight:800;font-size:.93rem;text-decoration:none;transition:all .2s;}
-.price-card .pc-cta{background:var(--off-white);color:var(--navy);border:2px solid var(--rule);}
-.price-card.featured .pc-cta{background:var(--orange);color:var(--white);border:2px solid var(--orange);}
-.price-note-bottom{max-width:760px;margin:1.5rem auto 0;text-align:center;font-size:.85rem;color:var(--mid);}
-.urgency-band{background:var(--orange);padding:2.5rem 2rem;text-align:center;}
+.price-card.premium .pc-note{color:rgba(255,255,255,.35);}
+
+/* Feature list */
+.pc-feats{
+  list-style:none;
+  display:flex;flex-direction:column;gap:.65rem;
+  margin-bottom:1.8rem;
+  flex:1; /* pushes buttons to bottom */
+}
+.pc-feats li{
+  font-size:.875rem;display:flex;gap:.55rem;align-items:flex-start;line-height:1.4;
+}
+.price-card .pc-feats li{color:var(--text);}
+.price-card.featured .pc-feats li,
+.price-card.premium .pc-feats li{color:rgba(255,255,255,.8);}
+.pc-feats li svg{
+  width:15px;height:15px;flex-shrink:0;margin-top:2px;
+  color:var(--orange);
+}
+.price-card.premium .pc-feats li svg{color:var(--orange-light);}
+
+/* Bottom CTA area */
+.pc-ctas{margin-top:auto;}
+.pc-divider{
+  border:none;border-top:1px solid var(--rule);margin-bottom:1.4rem;
+}
+.price-card.featured .pc-divider,
+.price-card.premium .pc-divider{border-color:rgba(255,255,255,.08);}
+
+/* Primary CTA — orange on light, white on dark */
+.pc-btn-primary{
+  display:block;width:100%;text-align:center;
+  padding:.95rem 1rem;border-radius:3px;
+  font-weight:800;font-size:.95rem;
+  border:none;cursor:pointer;transition:all .2s;
+  background:var(--orange);color:var(--white);
+  margin-bottom:.65rem;
+}
+.pc-btn-primary:hover{background:var(--orange-light);transform:translateY(-1px);}
+.price-card.premium .pc-btn-primary{
+  background:transparent;color:var(--orange-light);
+  border:2px solid rgba(244,96,12,.45);
+}
+.price-card.premium .pc-btn-primary:hover{
+  background:rgba(244,96,12,.1);border-color:var(--orange-light);
+}
+
+/* Secondary CTA */
+.pc-btn-secondary{
+  display:block;width:100%;text-align:center;
+  padding:.65rem 1rem;border-radius:3px;
+  font-weight:600;font-size:.83rem;
+  border:1.5px solid var(--rule);cursor:pointer;transition:all .2s;
+  background:transparent;color:var(--mid);
+}
+.pc-btn-secondary:hover{border-color:var(--orange);color:var(--orange);}
+.price-card.featured .pc-btn-secondary{
+  border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.45);
+}
+.price-card.featured .pc-btn-secondary:hover{
+  border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.8);
+}
+.price-card.premium .pc-btn-secondary{
+  border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.4);
+}
+.price-card.premium .pc-btn-secondary:hover{
+  border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.75);
+}
+
+/* No-call microcopy under buttons */
+.pc-microcopy{
+  text-align:center;font-size:.72rem;color:var(--mid);
+  margin-top:.6rem;line-height:1.4;
+}
+.price-card.featured .pc-microcopy{color:rgba(255,255,255,.3);}
+.price-card.premium .pc-microcopy{color:rgba(255,255,255,.28);}
+
+.price-note-bottom{
+  margin:2rem auto 0;text-align:center;font-size:.85rem;color:var(--mid);
+  max-width:600px;
+}
+.urgency-band{background:var(--orange);padding:2.2rem 2rem;text-align:center;}
+
+/* Keep old classes so urgency band + other refs still work */
+.btn-getstarted{
+  display:block;width:100%;text-align:center;
+  background:var(--orange);color:var(--white);
+  padding:1rem 2.2rem;border-radius:3px;
+  font-weight:800;font-size:1rem;
+  text-decoration:none;border:none;cursor:pointer;transition:all .2s;
+}
+.btn-getstarted:hover{background:var(--orange-light);transform:translateY(-1px);}
+.btn-askq{
+  display:block;width:100%;text-align:center;
+  background:transparent;color:var(--mid);
+  padding:.75rem 1rem;border-radius:3px;
+  font-weight:600;font-size:.88rem;
+  text-decoration:none;border:1.5px solid var(--rule);
+  cursor:pointer;transition:all .2s;margin-top:8px;
+}
+.price-card.featured .btn-askq{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.45);}
+.btn-askq:hover{border-color:var(--orange);color:var(--orange);}
+.price-card.featured .btn-askq:hover{border-color:var(--orange);color:var(--orange-light);}
+/* Fastest start label */
+.pc-start-label{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);
+  color:#22c55e;padding:.28rem .8rem;border-radius:100px;margin-bottom:.5rem;
+}
+/* Pricing no-call */
+.pricing-no-call{
+  font-size:.88rem;color:var(--mid);margin-bottom:2.5rem;
+  display:flex;align-items:center;gap:.45rem;justify-content:center;
+  text-align:center;
+}
+.pricing-no-call svg{color:var(--orange);flex-shrink:0;width:15px;height:15px;}
 .urgency-band h3{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.5rem,4vw,2.5rem);font-weight:900;text-transform:uppercase;color:var(--white);letter-spacing:-.01em;margin-bottom:.5rem;}
 .urgency-band p{color:rgba(255,255,255,.8);font-size:.95rem;margin-bottom:1.5rem;}
 .urgency-spots{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.15);border-radius:100px;padding:.5rem 1.2rem;font-size:.82rem;font-weight:700;color:var(--white);margin-bottom:1.5rem;}
@@ -703,7 +935,6 @@ footer .logo{color:var(--white);}
   .ba-grid{grid-template-columns:1fr;gap:.8rem;} .ba-arrow-col{transform:rotate(90deg);margin:-.5rem 0;}
   .video-inner{grid-template-columns:1fr;}
   .hiw-steps{grid-template-columns:1fr;gap:2rem;} .hiw-steps::before{display:none;}
-  .price-grid{grid-template-columns:1fr;max-width:400px;} .price-card.featured{transform:none;}
   .final-actions{flex-direction:column;align-items:center;}
   footer{padding:1.2rem;} .footer-links{display:none;}
 }
@@ -1147,13 +1378,35 @@ footer .logo{color:var(--white);}
   <div class="buy-modal-box" role="dialog" aria-modal="true" aria-labelledby="buy-modal-title">
     <button class="buy-modal-close" onclick="closeBuyModal()" aria-label="Close">×</button>
 
-    <!-- Form view -->
+    <!-- ── Form view ── -->
     <div class="buy-form-wrap" id="buy-form-wrap">
       <div class="buy-modal-eyebrow"><span class="buy-modal-eyebrow-dot"></span>No Call Required</div>
       <div class="buy-modal-title" id="buy-modal-title">Start Your Website Rebuild</div>
-      <div class="buy-modal-subtitle">Tell us what you need. We'll review your site and send your first draft within 48–72 hours.</div>
+      <div class="buy-modal-subtitle">Tell us a little about your site and we'll get your slot secured.</div>
 
       <div id="buy-error-banner" class="buy-error-banner"></div>
+
+      <!-- Package selection (required) -->
+      <div class="buy-form-row">
+        <label class="buy-form-label">Choose Your Package <span style="color:var(--sc-red)">*</span></label>
+        <div class="buy-pkg-grid">
+          <label class="buy-pkg-option" id="buy-pkg-rebuild" onclick="buySelectPackage('rebuild')">
+            <input type="radio" name="buy-package" value="rebuild">
+            <div class="buy-pkg-radio"></div>
+            <span class="buy-pkg-name">Website Rebuild</span>
+            <span class="buy-pkg-price">£1,500</span>
+            <span class="buy-pkg-deposit">£150 deposit today</span>
+          </label>
+          <label class="buy-pkg-option" id="buy-pkg-system" onclick="buySelectPackage('system')">
+            <input type="radio" name="buy-package" value="system">
+            <div class="buy-pkg-radio"></div>
+            <span class="buy-pkg-name">Website + Conversion System</span>
+            <span class="buy-pkg-price">£3,000</span>
+            <span class="buy-pkg-deposit">£300 deposit today</span>
+          </label>
+        </div>
+        <div class="buy-deposit-note">The remaining balance is confirmed after review. Your deposit secures your slot.</div>
+      </div>
 
       <div class="buy-form-row">
         <label class="buy-form-label" for="buy-inp-name">Your Name <span style="color:var(--sc-red)">*</span></label>
@@ -1169,12 +1422,12 @@ footer .logo{color:var(--white);}
       </div>
       <div class="buy-form-row">
         <label class="buy-form-label" for="buy-inp-notes">What do you want fixing? <span style="color:rgba(255,255,255,.3);font-weight:400;text-transform:none;font-size:10px;letter-spacing:0"> — the more detail the better</span></label>
-        <textarea id="buy-inp-notes" class="buy-form-input buy-form-textarea" placeholder="e.g. Mobile layout is broken, no clear contact button, loads slowly, doesn't show my reviews…"></textarea>
+        <textarea id="buy-inp-notes" class="buy-form-input buy-form-textarea" placeholder="e.g. Mobile layout is broken, no clear contact button, loads slowly…"></textarea>
       </div>
       <div class="buy-form-row">
-        <label class="buy-form-label" style="opacity:.7">Supporting files <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">(optional — brand assets, logos, inspiration)</span></label>
+        <label class="buy-form-label" style="opacity:.7">Supporting files <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">(optional — logos, brand assets)</span></label>
         <label class="buy-form-file-label" for="buy-inp-file">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           <span id="buy-file-label-text">Click to upload a file</span>
         </label>
         <input id="buy-inp-file" class="buy-form-file-input" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip" onchange="buyFileSelected(this)">
@@ -1182,22 +1435,92 @@ footer .logo{color:var(--white);}
       </div>
 
       <button class="btn-buy" id="buy-submit-btn" onclick="submitBuyForm()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Start My Website Rebuild →
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        <span id="buy-submit-label">Secure My Slot — £150 deposit →</span>
       </button>
-      <p class="buy-microcopy">We'll deliver your first draft in 48–72 hours. No call needed — we refine it with you after.</p>
+      <p class="buy-microcopy">No call needed. First draft delivered in 48–72 hours. We refine it with you after.</p>
     </div>
 
-    <!-- Success view -->
+    <!-- ── Success view ── -->
     <div class="buy-success" id="buy-success">
       <span class="buy-success-icon">✅</span>
       <div class="buy-success-title">You're all set</div>
-      <p class="buy-success-sub">We've received your request. We'll review your site and begin your first draft shortly.</p>
+      <p class="buy-success-sub">We've received your request and secured your slot. We'll review your site and begin the first draft shortly.</p>
       <div class="buy-success-confirm">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Check your email for next steps
+        Check your email for confirmation and next steps
       </div>
-      <button class="buy-success-close" onclick="closeBuyModal()">Close</button>
+      <button class="buy-success-close" onclick="closeBuyModal()">Close &amp; continue browsing</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GROWTH SYSTEM APPLICATION MODAL ════════════════════════════════════════ -->
+<div class="buy-modal-overlay" id="growth-modal-overlay" onclick="closeGrowthModalIfOverlay(event)" style="z-index:820;">
+  <div class="buy-modal-box" role="dialog" aria-modal="true" aria-labelledby="growth-modal-title" style="max-width:540px;">
+    <button class="buy-modal-close" onclick="closeGrowthModal()" aria-label="Close">×</button>
+
+    <!-- ── Form view ── -->
+    <div id="growth-form-wrap">
+      <div class="buy-modal-eyebrow">
+        <span class="buy-modal-eyebrow-dot"></span>
+        Custom &amp; Selective
+      </div>
+      <div class="buy-modal-title" id="growth-modal-title">Apply for the Growth System</div>
+      <div class="buy-modal-subtitle">Tell us a bit about your business and what you want the system to do. We'll review it and confirm whether this setup is the right fit.</div>
+
+      <div id="growth-error-banner" class="buy-error-banner"></div>
+
+      <div class="buy-form-row">
+        <label class="buy-form-label" for="growth-inp-name">Your Name <span style="color:var(--sc-red)">*</span></label>
+        <input id="growth-inp-name" class="buy-form-input" type="text" placeholder="John Smith" autocomplete="name">
+      </div>
+      <div class="buy-form-row">
+        <label class="buy-form-label" for="growth-inp-email">Email Address <span style="color:var(--sc-red)">*</span></label>
+        <input id="growth-inp-email" class="buy-form-input" type="email" placeholder="john@yoursite.co.uk" autocomplete="email">
+      </div>
+      <div class="buy-form-row">
+        <label class="buy-form-label" for="growth-inp-url">Your Website URL <span style="color:var(--sc-red)">*</span></label>
+        <input id="growth-inp-url" class="buy-form-input" type="url" placeholder="https://yoursite.co.uk" autocomplete="url" inputmode="url">
+      </div>
+      <div class="buy-form-row">
+        <label class="buy-form-label" for="growth-inp-goal">What do you want the custom system to help with? <span style="color:var(--sc-red)">*</span></label>
+        <textarea id="growth-inp-goal" class="buy-form-input buy-form-textarea" placeholder="e.g. Instantly quote jobs on the website, qualify leads before they call, automate follow-up messages, generate more Google reviews…"></textarea>
+      </div>
+      <div class="buy-form-row">
+        <label class="buy-form-label" style="opacity:.75">Estimated monthly lead or job volume <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--sc-w50)">(optional)</span></label>
+        <input id="growth-inp-volume" class="buy-form-input" type="text" placeholder="e.g. 30–50 enquiries per month">
+      </div>
+      <div class="buy-form-row">
+        <label class="buy-form-label" style="opacity:.75">What kind of tool or automation interests you most? <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--sc-w50)">(optional)</span></label>
+        <select id="growth-inp-type" class="buy-form-input sc-form-select">
+          <option value="">Select an option…</option>
+          <option value="quote-calculator">Instant job quote calculator</option>
+          <option value="lead-qualification">Lead qualification flow</option>
+          <option value="follow-up">Follow-up automation (email/SMS)</option>
+          <option value="reviews">Review generation flow</option>
+          <option value="booking-routing">Booking / enquiry routing</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+
+      <button class="btn-buy" id="growth-submit-btn" onclick="submitGrowthForm()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span>Apply for Custom Build →</span>
+      </button>
+      <p class="buy-microcopy">Selective setup. We review each application before confirming scope.</p>
+    </div>
+
+    <!-- ── Success view ── -->
+    <div class="buy-success" id="growth-success">
+      <span class="buy-success-icon">✅</span>
+      <div class="buy-success-title">Application received</div>
+      <p class="buy-success-sub">We've received your request and will review it shortly. If it looks like the right fit, we'll be in touch with next steps.</p>
+      <div class="buy-success-confirm">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Check your email for confirmation
+      </div>
+      <button class="buy-success-close" onclick="closeGrowthModal()">Close</button>
     </div>
   </div>
 </div>
@@ -1328,19 +1651,27 @@ footer .logo{color:var(--white);}
 </section>
 
 <section class="section pricing-section" id="pricing">
-  <div class="container-sm">
-    <div class="section-chip">Pricing</div>
-    <h2>Clear, simple <span class="em">pricing</span></h2>
-    <p class="lead">No hidden fees. No hourly rates. You know exactly what you're getting.</p>
-    <p class="pricing-no-call">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-      Prefer to skip the call? We can start immediately and refine after your first draft.
-    </p>
+  <div class="container" style="max-width:1060px">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <div class="section-chip" style="justify-content:center">Pricing</div>
+      <h2>Clear, simple <span class="em">pricing</span></h2>
+      <p class="lead" style="max-width:560px;margin:0 auto .8rem;">No hidden fees. No hourly rates. You know exactly what you're getting.</p>
+      <p class="pricing-no-call" style="justify-content:center">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Prefer to skip the call? Start now and we'll handle your first draft.
+      </p>
+    </div>
+
     <div class="price-grid reveal">
+
+      <!-- ── CARD 1: WEBSITE REBUILD ── -->
       <div class="price-card">
-        <div class="pc-name">Website Rebuild</div>
-        <div class="pc-price">£1,500<span style="font-size:1.5rem;font-weight:600;color:var(--mid)">–3k</span></div>
-        <div class="pc-note">One-off investment</div>
+        <div class="pc-badge-wrap"></div>
+        <div class="pc-header">
+          <div class="pc-name">Website Rebuild</div>
+          <div class="pc-price">£1,500</div>
+          <div class="pc-note">One-off investment · £150 to secure your slot</div>
+        </div>
         <ul class="pc-feats">
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Full website rebuild (up to 5 pages)</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Clear call-to-action on every page</li>
@@ -1348,15 +1679,25 @@ footer .logo{color:var(--white);}
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Contact form + phone number</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Delivered in 5–7 days</li>
         </ul>
-        <button onclick="openBuyModal()" class="btn-getstarted">Get Started Now →</button>
-        <button onclick="scOpenBooking(null)" class="btn-askq">Ask a Question First</button>
+        <div class="pc-ctas">
+          <hr class="pc-divider">
+          <button onclick="openBuyModal('rebuild')" class="pc-btn-primary">Get Started — £150 deposit →</button>
+          <button onclick="scOpenBooking(null)" class="pc-btn-secondary">Ask a Question First</button>
+          <p class="pc-microcopy">No call needed. First draft in 48–72 hours.</p>
+        </div>
       </div>
+
+      <!-- ── CARD 2: WEBSITE + CONVERSION SYSTEM (FEATURED) ── -->
       <div class="price-card featured">
-        <div class="pc-badge">⭐ Most Popular</div>
-        <div class="pc-name">Website + Conversion System</div>
-        <div class="pc-start-label">✦ Fastest way to get started</div>
-        <div class="pc-price">£3,000<span style="font-size:1.5rem;font-weight:600;color:rgba(255,255,255,.4)">–5k</span></div>
-        <div class="pc-note">One-off investment</div>
+        <div class="pc-badge-wrap">
+          <span class="pc-badge">⭐ Most Popular</span>
+        </div>
+        <div class="pc-header">
+          <div class="pc-start-label">✦ Fastest way to get started</div>
+          <div class="pc-name">Website + Conversion System</div>
+          <div class="pc-price">£3,000</div>
+          <div class="pc-note">One-off investment · £300 to secure your slot</div>
+        </div>
         <ul class="pc-feats">
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Everything in Website Rebuild</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><strong>AI video hero section</strong></li>
@@ -1364,37 +1705,68 @@ footer .logo{color:var(--white);}
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Google review integration</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><strong>Delivered in 48–72 hours</strong></li>
         </ul>
-        <button onclick="openBuyModal()" class="btn-getstarted">Get Started Now →</button>
-        <button onclick="scOpenBooking(null)" class="btn-askq">Ask a Question First</button>
+        <div class="pc-ctas">
+          <hr class="pc-divider">
+          <button onclick="openBuyModal('system')" class="pc-btn-primary">Get Started — £300 deposit →</button>
+          <button onclick="scOpenBooking(null)" class="pc-btn-secondary">Ask a Question First</button>
+          <p class="pc-microcopy">No call needed. First draft in 48–72 hours.</p>
+        </div>
       </div>
-    </div>
+
+      <!-- ── CARD 3: GROWTH SYSTEM (PREMIUM) ── -->
+      <div class="price-card premium">
+        <div class="pc-badge-wrap">
+          <span class="pc-badge premium-badge">⚡ Custom &amp; Selective</span>
+        </div>
+        <div class="pc-header">
+          <div class="pc-name">Growth System ⚡</div>
+          <div class="pc-price" style="font-size:2.2rem">From £5,000</div>
+          <div class="pc-note">Custom build · tailored to your business</div>
+        </div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.55;margin-bottom:1.2rem;">Best for businesses wanting custom tools, automation, and higher-value conversion systems.</p>
+        <ul class="pc-feats">
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Everything in Conversion System</li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Custom job estimator / quoting tool</li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Lead qualification system</li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Advanced automation (email/SMS)</li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Conversion tracking setup</li>
+        </ul>
+        <div class="pc-ctas">
+          <hr class="pc-divider">
+          <button onclick="openGrowthModal()" class="pc-btn-primary">Apply for This Setup →</button>
+          <button onclick="scOpenBooking(null)" class="pc-btn-secondary">Speak to Us First</button>
+          <p class="pc-microcopy">Selective setup. We review each application before confirming scope.</p>
+        </div>
+      </div>
+
+    </div><!-- /price-grid -->
+
     <p class="price-note-bottom reveal">Ready to start? <strong>Get your first draft in 48–72 hours</strong> — no call required, we refine it with you after.</p>
   </div>
 </section>
 
 <div class="urgency-band">
-  <h3>We only take on a limited number of builds each week</h3><br>
-  <div class="urgency-spots"><div class="spot-dot"></div>Limited slots available this week</div><br>
-  <p>We keep our workload tight so every build gets full attention. Start now to secure your slot.</p>
-  <button onclick="openBuyModal()" class="btn-dark" style="cursor:pointer;">Get Started Now →</button>
+  <h3>We only take on a limited number of builds each week</h3>
+  <div class="urgency-spots" style="margin-top:1.2rem;margin-bottom:0"><div class="spot-dot"></div>Limited slots available this week</div>
+  <p style="margin-top:1rem;margin-bottom:0">Secure your slot now — we start builds within 48–72 hours.</p>
 </div>
 
 <section class="final-cta">
   <div class="section-chip" style="color:var(--orange);display:flex;justify-content:center;margin-bottom:1rem;">Ready?</div>
-  <h2 class="light" style="margin-bottom:1rem;">Three ways to <span class="em">get started</span></h2>
-  <p>Scan to see the issues. Book a call to talk it through. Or start your rebuild now — no call required.</p>
+  <h2 class="light" style="margin-bottom:.75rem;">Three ways to <span class="em">get started</span></h2>
+  <p style="font-size:.9rem;color:rgba(255,255,255,.35);margin-bottom:2rem;max-width:360px;position:relative;">Choose how you'd like to move forward:</p>
   <div class="final-actions">
     <button onclick="openBuyModal()" class="btn-orange" style="font-size:1.05rem;padding:1.1rem 2.5rem;cursor:pointer;">Get Started Now →</button>
     <button onclick="scOpenBooking(null)" class="btn-call" style="font-size:1rem;padding:1rem 2rem;cursor:pointer;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Book Free Review
     </button>
     <a href="tel:01234567890" class="btn-call" style="font-size:1rem;padding:1rem 2rem;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
       Call Now
     </a>
   </div>
-  <p style="margin-top:1.5rem;color:rgba(255,255,255,.3);font-size:.8rem;">No obligation. No hard sell. First draft delivered in 48–72 hours.</p>
+  <p style="margin-top:1.5rem;color:rgba(255,255,255,.25);font-size:.78rem;">No obligation. No hard sell. First draft delivered in 48–72 hours.</p>
 </section>
 
 <footer>
@@ -1789,28 +2161,76 @@ window.addEventListener('message', function(e) {
 
 /* ── ESCAPE KEY ──────────────────────────────────────────────────────────── */
 document.addEventListener('keydown', e => {
-  if(e.key==='Escape'){scCloseModal();scCloseCalModal();if(isBooked)scCloseBookedOverlay();closeBuyModal();}
+  if(e.key==='Escape'){scCloseModal();scCloseCalModal();if(isBooked)scCloseBookedOverlay();closeBuyModal();closeGrowthModal();}
 });
 
 /* ── ENTER KEY ───────────────────────────────────────────────────────────── */
 document.getElementById('inp-url').addEventListener('keydown', e => { if(e.key==='Enter')scStartScan(); });
 
 /* ── BUY / START NOW MODAL ───────────────────────────────────────────────── */
-function openBuyModal() {
-  // Reset to form state each time
+
+/* Package config — edit these to match your Stripe price IDs */
+const BUY_PACKAGES = {
+  rebuild: {
+    label:       'Website Rebuild',
+    price:       1500,
+    deposit:     150,
+    depositLabel:'£150 deposit today',
+    stripePriceId: 'price_REBUILD_DEPOSIT'
+  },
+  system: {
+    label:       'Website + Conversion System',
+    price:       3000,
+    deposit:     300,
+    depositLabel:'£300 deposit today',
+    stripePriceId: 'price_SYSTEM_DEPOSIT'
+  },
+  growth: {
+    label:       'Growth System',
+    price:       5000,
+    deposit:     0,
+    depositLabel:'Custom — apply for a slot',
+    stripePriceId: null /* no direct purchase — application flow */
+  }
+};
+
+let selectedPackage = null; /* 'rebuild' | 'system' */
+
+/* Select package option in modal */
+function buySelectPackage(key) {
+  selectedPackage = key;
+  document.querySelectorAll('.buy-pkg-option').forEach(el => el.classList.remove('selected'));
+  const el = document.getElementById('buy-pkg-' + key);
+  if (el) el.classList.add('selected');
+  /* Update submit button label */
+  const pkg = BUY_PACKAGES[key];
+  const label = document.getElementById('buy-submit-label');
+  if (label) label.textContent = `Secure My Slot — £${pkg.deposit} deposit →`;
+}
+
+/* Open modal, optionally pre-select a package */
+function openBuyModal(pkg) {
+  /* Reset UI */
   document.getElementById('buy-form-wrap').classList.remove('hidden');
   document.getElementById('buy-success').classList.remove('visible');
   document.getElementById('buy-error-banner').style.display = 'none';
-  document.getElementById('buy-submit-btn').textContent = '';
-  document.getElementById('buy-submit-btn').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Start My Website Rebuild →';
-  document.getElementById('buy-submit-btn').disabled = false;
-  // Pre-fill URL if available from scanner
-  const urlVal = document.getElementById('inp-url')?.value?.trim() || (scanResult?.websiteUrl) || '';
+  const btn = document.getElementById('buy-submit-btn');
+  btn.disabled = false;
+  document.querySelectorAll('.buy-pkg-option').forEach(el => el.classList.remove('selected'));
+
+  /* Pre-select package if provided, default to rebuild */
+  const startPkg = pkg || 'rebuild';
+  buySelectPackage(startPkg);
+
+  /* Pre-fill URL from scanner if available */
+  const urlVal = (document.getElementById('inp-url')?.value || '').trim()
+              || scanResult?.websiteUrl || '';
   if (urlVal) document.getElementById('buy-inp-url').value = urlVal;
-  // Open
+
+  /* Open overlay */
   const o = document.getElementById('buy-modal-overlay');
   if (o) { o.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  setTimeout(() => { document.getElementById('buy-inp-name')?.focus(); }, 220);
+  setTimeout(() => document.getElementById('buy-inp-name')?.focus(), 220);
 }
 
 function closeBuyModal() {
@@ -1823,14 +2243,41 @@ function closeBuyModalIfOverlay(e) {
 }
 
 function buyFileSelected(input) {
-  const nameEl = document.getElementById('buy-file-name');
+  const nameEl  = document.getElementById('buy-file-name');
   const labelEl = document.getElementById('buy-file-label-text');
   if (input.files && input.files[0]) {
-    const name = input.files[0].name;
-    nameEl.textContent = '📎 ' + name;
+    nameEl.textContent  = '📎 ' + input.files[0].name;
     nameEl.style.display = 'block';
-    labelEl.textContent = 'Change file';
+    labelEl.textContent  = 'Change file';
   }
+}
+
+/* ── STRIPE CHECKOUT FLOW ────────────────────────────────────────────────── */
+
+/*
+ * createStripeCheckoutSession — backend integration point.
+ *
+ * Replace the fetch URL with your actual endpoint.
+ * Expected request body:
+ *   { packageKey, packageLabel, deposit, name, email, websiteUrl, notes, stripePriceId }
+ * Expected response:
+ *   { url: 'https://checkout.stripe.com/...' }   (redirect to Stripe Checkout)
+ *   OR { sessionId: 'cs_...' }                    (use Stripe.js redirectToCheckout)
+ *
+ * To test without a backend, set STRIPE_BACKEND_URL = null and the form
+ * will fall through to the success state directly.
+ */
+const STRIPE_BACKEND_URL = '/api/create-checkout-session'; /* ← set to null to skip */
+
+async function createStripeCheckoutSession(payload) {
+  if (!STRIPE_BACKEND_URL) return null;
+  const res = await fetch(STRIPE_BACKEND_URL, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload)
+  });
+  if (!res.ok) throw new Error(`Checkout session error ${res.status}`);
+  return await res.json(); /* { url } or { sessionId } */
 }
 
 async function submitBuyForm() {
@@ -1843,32 +2290,164 @@ async function submitBuyForm() {
 
   errEl.style.display = 'none';
 
-  if (!name)  { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; document.getElementById('buy-inp-name').focus(); return; }
-  if (!email || !email.includes('@')) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; document.getElementById('buy-inp-email').focus(); return; }
-  if (!url)   { errEl.textContent = 'Please enter your website URL.'; errEl.style.display = 'block'; document.getElementById('buy-inp-url').focus(); return; }
+  /* Validate */
+  if (!selectedPackage) {
+    errEl.textContent = 'Please choose a package to continue.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!name) {
+    errEl.textContent = 'Please enter your name.';
+    errEl.style.display = 'block';
+    document.getElementById('buy-inp-name').focus();
+    return;
+  }
+  if (!email || !email.includes('@')) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.style.display = 'block';
+    document.getElementById('buy-inp-email').focus();
+    return;
+  }
+  if (!url) {
+    errEl.textContent = 'Please enter your website URL.';
+    errEl.style.display = 'block';
+    document.getElementById('buy-inp-url').focus();
+    return;
+  }
 
-  // Loading state
-  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="animation:scSpin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Sending…';
+  /* Loading state */
+  const pkg = BUY_PACKAGES[selectedPackage];
+  document.getElementById('buy-submit-label').textContent = 'Securing your slot…';
   btn.disabled = true;
 
+  /* Send lead data to backend regardless of Stripe */
   try {
-    await fetch(LEAD_BACKEND_URL, {
-      method: 'POST',
+    fetch(LEAD_BACKEND_URL, {
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, websiteUrl: url, notes, intent: 'buy', scanPayload: scanResult || null })
+      body:    JSON.stringify({
+        name, email, websiteUrl: url, notes,
+        intent: 'start_now',
+        package: pkg.label,
+        deposit: pkg.deposit,
+        scanPayload: scanResult || null
+      })
+    }).catch(() => {});
+  } catch(_) {}
+
+  /* Stripe Checkout */
+  try {
+    const session = await createStripeCheckoutSession({
+      packageKey:   selectedPackage,
+      packageLabel: pkg.label,
+      deposit:      pkg.deposit,
+      stripePriceId: pkg.stripePriceId,
+      name, email, websiteUrl: url, notes
     });
-    // Show success regardless (graceful fail)
-    document.getElementById('buy-form-wrap').classList.add('hidden');
-    document.getElementById('buy-success').classList.add('visible');
+
+    if (session?.url) {
+      /* Redirect to Stripe Checkout page */
+      window.location.href = session.url;
+      return;
+    }
+    if (session?.sessionId && typeof Stripe !== 'undefined') {
+      /* Use Stripe.js if loaded */
+      const stripe = Stripe('pk_live_YOUR_PUBLISHABLE_KEY'); /* ← replace */
+      await stripe.redirectToCheckout({ sessionId: session.sessionId });
+      return;
+    }
   } catch(err) {
-    console.error('[Buy]', err);
-    // Still show success — don't block user on network errors
+    console.warn('[Stripe]', err.message, '— falling through to success state');
+  }
+
+  /* Fallback / no-backend: show success state directly */
+  document.getElementById('buy-form-wrap').classList.add('hidden');
+  document.getElementById('buy-success').classList.add('visible');
+}
+
+/* ── SUCCESS STATE VIA URL PARAM ─────────────────────────────────────────── */
+/* After Stripe redirects back with ?payment=success, show success modal */
+(function checkStripeReturn() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('payment') === 'success') {
+    /* Clean URL without reload */
+    history.replaceState({}, '', window.location.pathname + window.location.hash);
+    /* Open modal in success state */
+    const o = document.getElementById('buy-modal-overlay');
+    if (o) { o.classList.add('open'); document.body.style.overflow = 'hidden'; }
     document.getElementById('buy-form-wrap').classList.add('hidden');
     document.getElementById('buy-success').classList.add('visible');
   }
+})();
+
+
+/* ── GROWTH SYSTEM APPLICATION MODAL ────────────────────────────────────── */
+function openGrowthModal() {
+  /* Reset form */
+  document.getElementById('growth-form-wrap').style.display = '';
+  document.getElementById('growth-success').classList.remove('visible');
+  document.getElementById('growth-error-banner').style.display = 'none';
+  const btn = document.getElementById('growth-submit-btn');
+  btn.disabled = false;
+  btn.querySelector('span').textContent = 'Apply for Custom Build →';
+  /* Pre-fill URL from scanner if available */
+  const urlVal = (document.getElementById('inp-url')?.value || '').trim() || scanResult?.websiteUrl || '';
+  if (urlVal) document.getElementById('growth-inp-url').value = urlVal;
+  /* Open */
+  const o = document.getElementById('growth-modal-overlay');
+  if (o) { o.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  setTimeout(() => document.getElementById('growth-inp-name')?.focus(), 220);
 }
 
-/* ── UTIL ────────────────────────────────────────────────────────────────── */
+function closeGrowthModal() {
+  const o = document.getElementById('growth-modal-overlay');
+  if (o) { o.classList.remove('open'); document.body.style.overflow = ''; }
+}
+
+function closeGrowthModalIfOverlay(e) {
+  if (e.target === document.getElementById('growth-modal-overlay')) closeGrowthModal();
+}
+
+async function submitGrowthForm() {
+  const name   = document.getElementById('growth-inp-name').value.trim();
+  const email  = document.getElementById('growth-inp-email').value.trim();
+  const url    = document.getElementById('growth-inp-url').value.trim();
+  const goal   = document.getElementById('growth-inp-goal').value.trim();
+  const volume = document.getElementById('growth-inp-volume').value.trim();
+  const type   = document.getElementById('growth-inp-type').value;
+  const errEl  = document.getElementById('growth-error-banner');
+  const btn    = document.getElementById('growth-submit-btn');
+
+  errEl.style.display = 'none';
+
+  if (!name)  { errEl.textContent = 'Please enter your name.';           errEl.style.display = 'block'; document.getElementById('growth-inp-name').focus();  return; }
+  if (!email || !email.includes('@')) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; document.getElementById('growth-inp-email').focus(); return; }
+  if (!url)   { errEl.textContent = 'Please enter your website URL.';    errEl.style.display = 'block'; document.getElementById('growth-inp-url').focus();   return; }
+  if (!goal)  { errEl.textContent = 'Please tell us what you need help with.'; errEl.style.display = 'block'; document.getElementById('growth-inp-goal').focus();  return; }
+
+  btn.querySelector('span').textContent = 'Sending application…';
+  btn.disabled = true;
+
+  try {
+    fetch(LEAD_BACKEND_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({
+        name, email, websiteUrl: url, notes: goal,
+        monthlyVolume: volume, toolType: type,
+        intent: 'growth_application',
+        package: 'Growth System',
+        scanPayload: scanResult || null
+      })
+    }).catch(() => {});
+  } catch(_) {}
+
+  /* Show success — no Stripe, no redirect */
+  document.getElementById('growth-form-wrap').style.display = 'none';
+  document.getElementById('growth-success').classList.add('visible');
+}
+
+
 function scEscHtml(str) {
   if(!str)return'';
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
