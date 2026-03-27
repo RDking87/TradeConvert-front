@@ -6,6 +6,7 @@
 <title>Website Jobs Score | Instant Trade Site Scanner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -1797,6 +1798,50 @@ body::before{
   animation:fadeInUp .4s ease;
 }
 @keyframes fadeInUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── CALENDLY FALLBACK MODAL ────────────────────────────────────────────── */
+.cal-modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(5,10,20,0.88);
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s;
+}
+.cal-modal-overlay.open{opacity:1;pointer-events:all}
+.cal-modal-box{
+  background:var(--navy-card);
+  border:1px solid var(--navy-border);
+  border-radius:var(--radius-lg);
+  width:100%;
+  max-width:640px;
+  position:relative;
+  transform:translateY(10px);
+  transition:transform .25s;
+  overflow:hidden;
+  box-shadow:0 12px 48px rgba(0,0,0,0.6);
+}
+.cal-modal-overlay.open .cal-modal-box{transform:translateY(0)}
+.cal-modal-close{
+  position:absolute;
+  top:10px;right:12px;
+  background:rgba(255,255,255,0.1);
+  border:none;
+  color:var(--white-80);
+  font-size:18px;
+  cursor:pointer;
+  line-height:1;
+  padding:4px 8px;
+  border-radius:6px;
+  z-index:10;
+  transition:background .15s;
+}
+.cal-modal-close:hover{background:rgba(255,255,255,0.18)}
 </style>
 </head>
 <body>
@@ -2766,12 +2811,37 @@ function gateBook() {
 /* ─── BOOKING + SCROLL HELPERS ───────────────────────────────────────────── */
 function openBooking(e) {
   if (e) e.preventDefault();
-  if (BOOKING_URL && BOOKING_URL !== 'https://calendly.com/your-link') {
-    window.open(BOOKING_URL, '_blank', 'noopener');
+  const url = BOOKING_URL && BOOKING_URL !== 'https://calendly.com/your-link' ? BOOKING_URL : null;
+  if (!url) { openModal(); return; }
+
+  // Try Calendly popup widget first
+  if (typeof Calendly !== 'undefined' && Calendly.initPopupWidget) {
+    Calendly.initPopupWidget({ url });
   } else {
-    openModal();
+    // Fallback: iframe modal
+    const overlay = document.getElementById('cal-modal-overlay');
+    const iframe  = document.getElementById('cal-iframe');
+    if (iframe) iframe.src = url;
+    if (overlay) {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
   }
+  return false;
 }
+
+function closeCalModal() {
+  const overlay = document.getElementById('cal-modal-overlay');
+  const iframe  = document.getElementById('cal-iframe');
+  if (overlay) { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  if (iframe)  { setTimeout(() => { iframe.src = ''; }, 300); }
+}
+
+function closeCalModalIfOverlay(e) {
+  if (e.target === document.getElementById('cal-modal-overlay')) closeCalModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalModal(); });
 
 function scrollToLead(e) {
   if (e) e.preventDefault();
@@ -2853,5 +2923,23 @@ document.getElementById('inp-url').addEventListener('keydown', e => {
   if (e.key === 'Enter') startScan();
 });
 </script>
+
+<!-- ─── CALENDLY FALLBACK MODAL ──────────────────────────────────────────── -->
+<div class="cal-modal-overlay" id="cal-modal-overlay" onclick="closeCalModalIfOverlay(event)">
+  <div class="cal-modal-box">
+    <button class="cal-modal-close" onclick="closeCalModal()" aria-label="Close">×</button>
+    <iframe
+      id="cal-iframe"
+      src=""
+      width="100%"
+      height="680"
+      frameborder="0"
+      style="display:block;border-radius:0 0 var(--radius-lg) var(--radius-lg)"
+    ></iframe>
+  </div>
+</div>
+
+<!-- Calendly popup widget -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
