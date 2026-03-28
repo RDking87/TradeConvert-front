@@ -1219,14 +1219,6 @@ footer .logo{color:var(--white);}
             <div class="sc-findings-section" id="sc-findings-preview">
               <div class="sc-findings-section-title">Score Breakdown</div>
               <div class="sc-breakdown-bars" id="sc-breakdown-bars-teaser"></div>
-              <div id="sc-teaser-issue-wrap" style="display:none">
-                <div class="sc-findings-section-title" style="margin-top:16px">Key Issue</div>
-                <ul class="sc-issues-list" id="sc-teaser-issue"></ul>
-              </div>
-              <div id="sc-teaser-fix-wrap" style="display:none">
-                <div class="sc-findings-section-title" style="margin-top:16px">Fastest Fix</div>
-                <ul class="sc-fixes-list" id="sc-teaser-fix"></ul>
-              </div>
             </div>
 
             <!-- Locked / blur overlay -->
@@ -2094,10 +2086,8 @@ function scRenderResults(data) {
   // Render dynamic lowest-3 weakness panel
   scRenderTopWeaknesses(scores);
 
+  /* teaser-issue and teaser-fix elements removed from DOM — no-op */
   const issuesData = data.issues||[];
-  const ti=document.getElementById('sc-teaser-issue'),tiw=document.getElementById('sc-teaser-issue-wrap');
-  if(issuesData.length&&ti){tiw.style.display='block';ti.innerHTML=`<li class="sc-issue-item"><span class="sc-issue-icon">⚠</span><span>${scEscHtml(issuesData[0])}</span></li>`;}
-  const fixesData=data.priorityFixes||data.fixes||[];
   const tf=document.getElementById('sc-teaser-fix'),tfw=document.getElementById('sc-teaser-fix-wrap');
   if(fixesData.length&&tf){tfw.style.display='block';tf.innerHTML=`<li class="sc-fix-item"><span class="sc-fix-num">1</span><span>${scEscHtml(fixesData[0])}</span></li>`;}
   const il=document.getElementById('sc-issues-list'),it=document.getElementById('sc-issues-title');
