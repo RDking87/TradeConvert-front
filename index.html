@@ -1237,22 +1237,19 @@ footer .logo{color:var(--white);}
               </div>
             </div>
 
-            <!-- Unlock confirmation -->
+            <!-- Unlock confirmation — sits directly above score bars -->
             <div class="sc-findings-unlock-strip" id="sc-unlock-strip">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12 13 5" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Unlocked — here's your full breakdown.
             </div>
 
-            <!-- C. TOP 3 WEAKNESSES (post-unlock) -->
-            <div class="sc-findings-section" id="sc-top-weaknesses" style="display:none;"></div>
-
-            <!-- D. COLLAPSIBLE SCORE BREAKDOWN (post-unlock) -->
+            <!-- D. SCORE BREAKDOWN (post-unlock, expanded by default) -->
             <div class="sc-findings-full" id="sc-findings-full">
-              <button class="sc-breakdown-toggle" id="sc-breakdown-toggle" onclick="scToggleBreakdown(this)" type="button">
-                View full score breakdown
+              <button class="sc-breakdown-toggle open" id="sc-breakdown-toggle" onclick="scToggleBreakdown(this)" type="button">
+                Hide score breakdown
                 <svg class="sc-breakdown-toggle-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
               </button>
-              <div class="sc-breakdown-collapsible" id="sc-breakdown-collapsible">
+              <div class="sc-breakdown-collapsible open" id="sc-breakdown-collapsible">
                 <div class="sc-breakdown-bars" id="sc-breakdown-bars" style="margin-top:14px;"></div>
               </div>
               <!-- JS compat only -->
@@ -1261,6 +1258,9 @@ footer .logo{color:var(--white);}
               <div id="sc-fixes-title" style="display:none"></div>
               <ul class="sc-fixes-list" id="sc-fixes-list"></ul>
             </div>
+
+            <!-- C. TOP 3 WEAKNESSES (post-unlock) -->
+            <div class="sc-findings-section" id="sc-top-weaknesses" style="display:none;"></div>
 
             <!-- E. FINAL CTA (post-unlock, single instance) -->
             <div class="sc-results-bottom-cta" id="sc-results-bottom-cta" style="display:none">
@@ -2007,6 +2007,9 @@ function scRenderResults(data) {
     if (g(els.lo)) g(els.lo).style.display = '';
     g(els.st)?.classList.remove('visible');
     g(els.fu)?.classList.remove('revealed');
+    /* Reset breakdown to closed for fresh scan */
+    document.getElementById('sc-breakdown-collapsible')?.classList.remove('open');
+    const tb=document.getElementById('sc-breakdown-toggle');if(tb){tb.classList.remove('open');if(tb.childNodes[0])tb.childNodes[0].textContent='View full score breakdown ';}
     if (g(els.po)) { g(els.po).style.display='none'; g(els.po).style.opacity='0'; }
     g(els.mb)?.classList.remove('visible');
     g(els.dd)?.classList.remove('visible');
@@ -2124,15 +2127,23 @@ function scUnlockDetails() {
   // Show unlock confirmation
   document.getElementById('sc-unlock-strip')?.classList.add('visible');
 
-  // Show weaknesses panel and full breakdown
+  // Reveal full breakdown section (already open by default via HTML classes)
   document.getElementById('sc-findings-full')?.classList.add('revealed');
+
+  // Ensure breakdown panel is open and toggle reflects that
+  const panel=document.getElementById('sc-breakdown-collapsible');
+  const toggleBtn=document.getElementById('sc-breakdown-toggle');
+  if(panel){panel.classList.add('open');}
+  if(toggleBtn){toggleBtn.classList.add('open');if(toggleBtn.childNodes[0])toggleBtn.childNodes[0].textContent='Hide score breakdown ';}
+
+  // Show weaknesses below the breakdown
   const wp=document.getElementById('sc-top-weaknesses');if(wp){wp.style.display='block';wp.style.paddingTop='24px';}
 
   // Show final CTA
   const bc=document.getElementById('sc-results-bottom-cta');if(bc)bc.style.display='block';
 
-  // Scroll to top of weaknesses
-  setTimeout(()=>{ document.getElementById('sc-top-weaknesses')?.scrollIntoView({behavior:'smooth',block:'start'}); },350);
+  // Scroll to unlock strip (score bars are immediately below it)
+  setTimeout(()=>{ document.getElementById('sc-unlock-strip')?.scrollIntoView({behavior:'smooth',block:'start'}); },350);
 }
 
 /* ── SUBMIT LEAD ─────────────────────────────────────────────────────────── */
