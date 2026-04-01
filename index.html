@@ -2318,14 +2318,33 @@ async function scSubmitLead(intent) {
   const btn=document.getElementById('sc-btn-lead-submit');
   btn.textContent='Sending…';btn.disabled=true;
   try {
-    const res=await fetch(LEAD_BACKEND_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone,intent:intent||'unlock',qualifier:qualifierValue,scanPayload:scanResult})});
-    if(!res.ok)throw new Error(`Server error ${res.status}`);
-    scUnlockDetails();
+    const res = await fetch(LEAD_BACKEND_URL, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    name,
+    email,
+    phone,
+    intent: intent || 'unlock',
+    qualifier: qualifierValue,
+    scanPayload: scanResult
+  })
+});
+
+const result = await res.json().catch(() => ({}));
+
+if (!res.ok) {
+  throw new Error(result.details || result.message || `Server error ${res.status}`);
+}
+
+scUnlockDetails();
   } catch(err) {
-    console.error('[Lead]',err);
-    errEl.textContent='Submission failed — please try again.';errEl.style.display='block';
-    btn.textContent='Reveal My Full Breakdown →';btn.disabled=false;
-  }
+  console.error('[Lead]', err);
+  errEl.textContent = err.message || 'Submission failed — please try again.';
+  errEl.style.display = 'block';
+  btn.textContent = 'Reveal My Full Breakdown →';
+  btn.disabled = false;
+}
 }
 
 /* ── BOOKING ─────────────────────────────────────────────────────────────── */
