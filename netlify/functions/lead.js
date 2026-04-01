@@ -17,16 +17,15 @@ function sanitise(v, max = 200) {
 }
 
 function isValidEmail(e) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,10}$/.test(e);
 }
 
 function getSupabase() {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-  if (!url || !key) {
-    throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
-  }
+  if (!url) throw new Error('Missing SUPABASE_URL');
+  if (!key) throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY');
 
   return createClient(url, key);
 }
@@ -51,11 +50,10 @@ exports.handler = async (event) => {
     return {
       statusCode: 400,
       headers: CORS,
-      body: JSON.stringify({ success: false, message: 'Invalid JSON' }),
+      body: JSON.stringify({ success: false, message: 'Invalid JSON body' }),
     };
   }
 
-  // Honeypot
   if (body.website2) {
     return {
       statusCode: 200,
@@ -88,19 +86,22 @@ exports.handler = async (event) => {
   try {
     const supabase = getSupabase();
 
-    const { error } = await supabase
+    const payload = {
+      workspace_id: WORKSPACE_ID,
+      name,
+      email,
+      phone,
+      message: message || null,
+      status: 'new',
+      source: 'website',
+    };
+
+    console.log('Lead insert payload:', payload);
+
+    const { data, error } = await supabase
       .from('client_leads')
-      .insert([
-        {
-          name,
-          email,
-          phone,
-          message: message || null,
-          workspace_id: WORKSPACE_ID,
-          status: 'new',
-          source: 'website'
-        },
-      ]);
+      .insert([payload])
+      .select();
 
     if (error) {
       console.error('Supabase insert error:', error);
@@ -109,8 +110,10 @@ exports.handler = async (event) => {
         headers: CORS,
         body: JSON.stringify({
           success: false,
-          message: 'Database error',
-          details: error.message
+          message: 'Supabase insert failed',
+          details: error.message,
+          hint: error.hint || null,
+          code: error.code || null,
         }),
       };
     }
@@ -121,6 +124,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         success: true,
         message: "Thank you — we'll review your site and be in touch within 1 working day.",
+        inserted: data,
       }),
     };
   } catch (err) {
@@ -130,8 +134,8 @@ exports.handler = async (event) => {
       headers: CORS,
       body: JSON.stringify({
         success: false,
-        message: 'Server error',
-        details: err.message || 'Unknown error'
+        message: 'Function crashed',
+        details: err.message || 'Unknown error',
       }),
     };
   }
