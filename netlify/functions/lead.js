@@ -9,7 +9,7 @@ const CORS = {
   'Content-Type': 'application/json',
 };
 
-const WORKSPACE_ID = '36e3a296-adbb-4a87-9623-f1fe37f0bd92';
+const WORKSPACE_ID = '36e3a296-adbb-4a87-9623-f1fe37f0bd92'; // Pnut Den
 
 function sanitise(v, max = 200) {
   if (!v || typeof v !== 'string') return '';
@@ -55,6 +55,7 @@ exports.handler = async (event) => {
     };
   }
 
+  // Honeypot
   if (body.website2) {
     return {
       statusCode: 200,
@@ -72,7 +73,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 400,
       headers: CORS,
-      body: JSON.stringify({ success: false, message: 'Enter name' }),
+      body: JSON.stringify({ success: false, message: 'Please enter your name.' }),
     };
   }
 
@@ -80,7 +81,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 400,
       headers: CORS,
-      body: JSON.stringify({ success: false, message: 'Invalid email' }),
+      body: JSON.stringify({ success: false, message: 'Please enter a valid email address.' }),
     };
   }
 
@@ -94,7 +95,7 @@ exports.handler = async (event) => {
           name,
           email,
           phone,
-          message,
+          message: message || null,
           workspace_id: WORKSPACE_ID,
           status: 'new',
           source: 'website'
@@ -106,7 +107,11 @@ exports.handler = async (event) => {
       return {
         statusCode: 500,
         headers: CORS,
-        body: JSON.stringify({ success: false, message: 'Database error', details: error.message }),
+        body: JSON.stringify({
+          success: false,
+          message: 'Database error',
+          details: error.message
+        }),
       };
     }
 
@@ -123,7 +128,11 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       headers: CORS,
-      body: JSON.stringify({ success: false, message: 'Server error', details: err.message || 'Unknown error' }),
+      body: JSON.stringify({
+        success: false,
+        message: 'Server error',
+        details: err.message || 'Unknown error'
+      }),
     };
   }
 };
