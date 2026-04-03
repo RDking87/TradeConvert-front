@@ -4,11 +4,22 @@
 [functions]
   node_bundler = "esbuild"
 
-# Increase timeout for scan function — PageSpeed API can take 12-18s
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Increase timeouts for slower functions
 [functions."scan"]
   timeout = 26
 
 [functions."lead"]
+  timeout = 10
+
+[functions."create-checkout-session"]
+  timeout = 15
+
+[functions."stripe-webhook"]
   timeout = 10
 
 [build.environment]

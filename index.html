@@ -2674,21 +2674,7 @@ async function submitBuyForm() {
   document.getElementById('buy-submit-label').textContent = 'Securing your slot…';
   btn.disabled = true;
 
-  /* Send lead data to backend regardless of Stripe */
-  try {
-    fetch(LEAD_BACKEND_URL, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({
-        name, email, websiteUrl: url, notes,
-        intent: 'start_now',
-        package: pkg.label,
-        deposit: pkg.deposit,
-        scanPayload: scanResult || null
-      })
-    }).catch(() => {});
-  } catch(_) {}
-
+  /* Stripe Checkout also creates/updates the owner lead record */
   /* Stripe Checkout */
   try {
     const session = await createStripeCheckoutSession({
@@ -2696,6 +2682,10 @@ async function submitBuyForm() {
       packageLabel: pkg.label,
       deposit:      pkg.deposit,
       stripePriceId: pkg.stripePriceId,
+      intent: 'start_now',
+      phone: (document.getElementById('inp-phone')?.value || '').trim(),
+      qualifier: qualifierValue || null,
+      scanPayload: scanResult || null,
       name, email, websiteUrl: url, notes
     });
 
