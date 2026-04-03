@@ -77,13 +77,13 @@ function deriveBusinessName(body, websiteUrl) {
 
 function buildNotes(body) {
   const parts = [];
-  const freeText = sanitise(body.notes || body.message || '', 3000);
+  const freeText = sanitise(body.notes || body.message || body.goal || '', 3000);
   if (freeText) parts.push(freeText);
   const qualifier = sanitise(body.qualifier || '', 120);
   if (qualifier) parts.push(`Qualifier: ${qualifier}`);
-  const monthlyVolume = sanitise(body.monthlyVolume || '', 120);
+  const monthlyVolume = sanitise(body.monthlyVolume || body.monthly_volume || body.monthlyJobsGoal || '', 120);
   if (monthlyVolume) parts.push(`Monthly volume: ${monthlyVolume}`);
-  const toolType = sanitise(body.toolType || '', 120);
+  const toolType = sanitise(body.toolType || body.tool_type || '', 120);
   if (toolType) parts.push(`Requested system: ${toolType}`);
   return parts.join('\n\n') || null;
 }
@@ -92,6 +92,54 @@ function dedupeMatch(body) {
   const email = sanitise(body.email, 200).toLowerCase();
   const website = deriveWebsite(body).toLowerCase();
   return { email, website };
+}
+
+function buildScanPayload(body) {
+  if (body.scanPayload && typeof body.scanPayload === 'object' && !Array.isArray(body.scanPayload)) {
+    return body.scanPayload;
+  }
+
+  const scan = {};
+  const maybeUrl = sanitise(body.url || body.website || body.websiteUrl || '', 300);
+  const maybeTrade = sanitise(body.trade || '', 120);
+  const maybeJobs = sanitise(body.monthlyJobsGoal || body.monthlyVolume || body.monthly_volume || '', 120);
+  const maybeScore = body.scoreSnapshot && typeof body.scoreSnapshot === 'object' ? body.scoreSnapshot : null;
+
+  if (maybeUrl) scan.url = maybeUrl;
+  if (maybeTrade) scan.trade = maybeTrade;
+  if (maybeJobs) scan.monthlyJobsGoal = maybeJobs;
+  if (maybeScore) scan.scoreSnapshot = maybeScore;
+
+  return Object.keys(scan).length ? scan : null;
+}
+
+function buildExtraData(body) {
+  const extra = {
+    intent: sanitise(body.intent, 80) || null,
+    qualifier: sanitise(body.qualifier || '', 120) || null,
+    monthly_volume: sanitise(body.monthlyVolume || body.monthly_volume || body.monthlyJobsGoal || '', 120) || null,
+    package_interest: packageSlug(body.package || body.packageKey || body.packageLabel || ''),
+    application_type: sanitise(body.applicationType || '', 120) || null,
+    tool_type: sanitise(body.toolType || body.tool_type || '', 120) || null,
+    current_site_status: sanitise(body.currentSiteStatus || '', 240) || null,
+    budget_range: sanitise(body.budgetRange || '', 120) || null,
+    readiness: sanitise(body.readiness || '', 120) || null,
+    selected_option: sanitise(body.selectedOption || body.selected_option || '', 160) || null,
+    score_snapshot: body.scoreSnapshot && typeof body.scoreSnapshot === 'object' ? body.scoreSnapshot : null,
+    raw_submission: body,
+  };
+
+  Object.keys(extra).forEach((key) => {
+    if (
+      extra[key] == null ||
+      extra[key] === '' ||
+      (typeof extra[key] === 'object' && !Array.isArray(extra[key]) && Object.keys(extra[key]).length === 0)
+    ) {
+      delete extra[key];
+    }
+  });
+
+  return Object.keys(extra).length ? extra : null;
 }
 
 exports.handler = async (event) => {
@@ -131,17 +179,24 @@ exports.handler = async (event) => {
     const notes = buildNotes(body);
     const businessName = deriveBusinessName(body, websiteUrl);
     const { email: matchEmail, website: matchWebsite } = dedupeMatch(body);
+    const scanPayload = buildScanPayload(body);
+    const extraData = buildExtraData(body);
 
     let existing = null;
-    let query = supabase
+    const { data: existingRows, error: fetchError } = await supabase
       .from('tradeconvert_prospects')
-      .select('id, status, payment_status, selected_package, created_at, website_url')
+      .select('id, status, payment_status, selected_package, created_at, website_url, extra_data, notes')
       .eq('email', matchEmail)
       .order('created_at', { ascending: false })
       .limit(5);
-    const { data: existingRows, error: fetchError } = await query;
+
     if (fetchError) throw fetchError;
     existing = (existingRows || []).find(row => !matchWebsite || String(row.website_url || '').toLowerCase() === matchWebsite) || existingRows?.[0] || null;
+
+    const mergedExtraData = {
+      ...(existing?.extra_data && typeof existing.extra_data === 'object' ? existing.extra_data : {}),
+      ...(extraData || {}),
+    };
 
     const payload = {
       name,
@@ -151,17 +206,13 @@ exports.handler = async (event) => {
       business_name: businessName,
       trade: deriveTrade(body),
       source,
-      intent,
       status: existing?.status || 'new',
       payment_status: existing?.payment_status || 'unpaid',
       selected_package: selectedPackage || existing?.selected_package || null,
-      notes,
-      qualifier: sanitise(body.qualifier || '', 120) || null,
-      monthly_volume: sanitise(body.monthlyVolume || '', 120) || null,
-      tool_type: sanitise(body.toolType || '', 120) || null,
-      scan_payload: body.scanPayload && typeof body.scanPayload === 'object' ? body.scanPayload : null,
+      notes: notes || existing?.notes || null,
+      scan_payload: scanPayload,
+      extra_data: Object.keys(mergedExtraData).length ? mergedExtraData : null,
       next_action: existing?.status && existing.status !== 'new' ? undefined : 'Review and contact',
-      last_contacted_at: null,
     };
 
     let result;
@@ -177,7 +228,10 @@ exports.handler = async (event) => {
     } else {
       const { data, error } = await supabase
         .from('tradeconvert_prospects')
-        .insert({ ...Object.fromEntries(Object.entries(payload).filter(([, v]) => v !== undefined)), next_action: 'Review and contact' })
+        .insert({
+          ...Object.fromEntries(Object.entries(payload).filter(([, v]) => v !== undefined)),
+          next_action: 'Review and contact'
+        })
         .select()
         .single();
       if (error) throw error;
@@ -189,7 +243,7 @@ exports.handler = async (event) => {
       headers: CORS,
       body: JSON.stringify({
         success: true,
-        message: "Thank you — your details have been saved.",
+        message: 'Thank you — your details have been saved.',
         prospect_id: result.id,
       }),
     };
