@@ -2716,10 +2716,20 @@ async function submitBuyForm() {
       return;
     }
   } catch(err) {
-    console.warn('[Stripe]', err.message, '— falling through to success state');
+    console.error('[Stripe]', err.message);
+    const errEl = document.getElementById('buy-error-banner');
+    if (errEl) {
+      errEl.textContent = 'Payment could not be started: ' + (err.message || 'Unknown error. Please try again.');
+      errEl.style.display = 'block';
+    }
+    const btn = document.getElementById('buy-submit-btn');
+    const lbl = document.getElementById('buy-submit-label');
+    if (btn) btn.disabled = false;
+    if (lbl) lbl.textContent = 'Secure Your Slot →';
+    return;
   }
 
-  /* Fallback / no-backend: show success state directly */
+  /* Only reach here if STRIPE_BACKEND_URL is null (dev mode) */
   document.getElementById('buy-form-wrap').classList.add('hidden');
   document.getElementById('buy-success').classList.add('visible');
 }
