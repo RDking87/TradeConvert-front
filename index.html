@@ -2617,7 +2617,7 @@ function buyFileSelected(input) {
  * To test without a backend, set STRIPE_BACKEND_URL = null and the form
  * will fall through to the success state directly.
  */
-const STRIPE_BACKEND_URL = '/api/create-checkout-session'; /* ← set to null to skip */
+const STRIPE_BACKEND_URL = '/.netlify/functions/create-checkout-session';
 
 async function createStripeCheckoutSession(payload) {
   if (!STRIPE_BACKEND_URL) return null;
@@ -2680,6 +2680,7 @@ async function submitBuyForm() {
       body: JSON.stringify({
         name, email, websiteUrl: url, notes,
         intent: leadIntent,
+      prospect_id: window._lastProspectId || '',
         package: pkg.label,
         packageKey: selectedPackage,
         phone: (document.getElementById('inp-phone')?.value || '').trim(),
@@ -2710,7 +2711,7 @@ async function submitBuyForm() {
     }
     if (session?.sessionId && typeof Stripe !== 'undefined') {
       /* Use Stripe.js if loaded */
-      const stripe = Stripe('pk_live_YOUR_PUBLISHABLE_KEY'); /* ← replace */
+      const stripe = Stripe('pk_live_51TK4MiIkIZu1A07B1BSA5R6IdU93F57G7EKeMKrKUWWV1PkMvnJZ0cBeSTPhx84KfRJZtYE9IOZqnk03BsNYhrkZ003TCH6qkp');
       await stripe.redirectToCheckout({ sessionId: session.sessionId });
       return;
     }
