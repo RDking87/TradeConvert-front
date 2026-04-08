@@ -1,4 +1,19 @@
-"use strict";
+'use strict';
+
+/**
+ * lead.js — Front website lead capture
+ * POST /.netlify/functions/lead
+ *
+ * Accepts submissions from all forms on the front site:
+ *   scanner_unlock         — free site scan / reveal
+ *   rebuild_deposit        — website rebuild deposit form
+ *   conversion_system_deposit — website + conversion system deposit form
+ *   custom_build_application  — growth/custom build application form
+ *   booking_request        — general booking / contact
+ *
+ * Dedupes by email (+ website if present). Creates or updates
+ * tradeconvert_prospects and appends to tradeconvert_prospect_events.
+ */
 
 const { createClient } = require('@supabase/supabase-js');
 
@@ -8,6 +23,8 @@ const CORS = {
   'Access-Control-Allow-Headers': 'Content-Type',
   'Content-Type': 'application/json',
 };
+
+// ── Sanitise / validate ───────────────────────────────────────────────────────
 
 function sanitise(value, max = 400) {
   if (value == null) return '';
@@ -26,29 +43,32 @@ function getSupabase() {
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
+// ── Intent → source mapping ───────────────────────────────────────────────────
+// These are the canonical source tags used in tradeconvert_prospects.source
+
+const INTENT_TO_SOURCE = {
+  scanner_unlock:               'scanner_unlock',
+  rebuild_deposit:              'rebuild_deposit',
+  conversion_system_deposit:    'conversion_system_deposit',
+  custom_build_application:     'custom_build_application',
+  booking_request:              'booking_request',
+  // Legacy fallbacks from older front site versions
+  unlock:                       'scanner_unlock',
+  start_now:                    'rebuild_deposit',       // generic start_now → rebuild as default
+  growth_application:           'custom_build_application',
+  contact:                      'booking_request',
+};
+
 function mapSource(intent) {
-  const map = {
-    unlock: 'website_scanner',
-    start_now: 'website_start_now',
-    growth_application: 'growth_application',
-    contact: 'contact_form',
-    booking_request: 'booking_request',
-  };
-  return map[String(intent || '').toLowerCase()] || 'website_enquiry';
+  return INTENT_TO_SOURCE[String(intent || '').toLowerCase()] || 'website_enquiry';
 }
 
-function packageSlug(raw) {
-  const value = String(raw || '').trim().toLowerCase();
-  if (!value) return null;
-  if (['rebuild', 'website rebuild'].includes(value)) return 'rebuild';
-  if (['system', 'website + conversion system', 'website and conversion system'].includes(value)) return 'system';
-  if (['growth', 'growth system'].includes(value)) return 'growth';
-  return value.replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || null;
-}
+// ── Field derivation ──────────────────────────────────────────────────────────
 
 function deriveWebsite(body) {
   return sanitise(
-    body.websiteUrl || body.website || body.url || body.scanPayload?.websiteUrl || body.scanPayload?.url || '',
+    body.websiteUrl || body.website_url || body.website || body.url
+    || body.scanPayload?.websiteUrl || body.scanPayload?.url || '',
     300
   );
 }
@@ -62,14 +82,11 @@ function deriveBusinessName(body, websiteUrl) {
   if (explicit) return explicit;
   if (!websiteUrl) return null;
   try {
-    const host = new URL(/^https?:\/\//i.test(websiteUrl) ? websiteUrl : `https://${websiteUrl}`).hostname.replace(/^www\./i, '');
+    const host = new URL(/^https?:\/\//i.test(websiteUrl) ? websiteUrl : `https://${websiteUrl}`)
+      .hostname.replace(/^www\./i, '');
     const root = host.split('.')[0] || host;
-    return root
-      .split(/[-_]/g)
-      .filter(Boolean)
-      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-      .join(' ')
-      .slice(0, 200) || null;
+    return root.split(/[-_]/g).filter(Boolean)
+      .map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' ').slice(0, 200) || null;
   } catch {
     return null;
   }
@@ -81,86 +98,91 @@ function buildNotes(body) {
   if (freeText) parts.push(freeText);
   const qualifier = sanitise(body.qualifier || '', 120);
   if (qualifier) parts.push(`Qualifier: ${qualifier}`);
-  const monthlyVolume = sanitise(body.monthlyVolume || body.monthly_volume || body.monthlyJobsGoal || '', 120);
-  if (monthlyVolume) parts.push(`Monthly volume: ${monthlyVolume}`);
+  const volume = sanitise(body.monthlyVolume || body.monthly_volume || body.monthlyJobsGoal || '', 120);
+  if (volume) parts.push(`Monthly volume: ${volume}`);
   const toolType = sanitise(body.toolType || body.tool_type || '', 120);
   if (toolType) parts.push(`Requested system: ${toolType}`);
   return parts.join('\n\n') || null;
 }
 
-function dedupeMatch(body) {
-  const email = sanitise(body.email, 200).toLowerCase();
-  const website = deriveWebsite(body).toLowerCase();
-  return { email, website };
+function packageSlug(raw) {
+  const v = String(raw || '').trim().toLowerCase();
+  if (!v) return null;
+  if (['rebuild', 'website rebuild'].includes(v)) return 'rebuild';
+  if (['system', 'conversion system', 'website + conversion system', 'website and conversion system'].includes(v)) return 'system';
+  if (['growth', 'growth system', 'custom'].includes(v)) return 'growth';
+  return v.replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || null;
 }
 
 function buildScanPayload(body) {
   if (body.scanPayload && typeof body.scanPayload === 'object' && !Array.isArray(body.scanPayload)) {
     return body.scanPayload;
   }
-
   const scan = {};
-  const maybeUrl = sanitise(body.url || body.website || body.websiteUrl || '', 300);
-  const maybeTrade = sanitise(body.trade || '', 120);
-  const maybeJobs = sanitise(body.monthlyJobsGoal || body.monthlyVolume || body.monthly_volume || '', 120);
-  const maybeScore = body.scoreSnapshot && typeof body.scoreSnapshot === 'object' ? body.scoreSnapshot : null;
-
-  if (maybeUrl) scan.url = maybeUrl;
-  if (maybeTrade) scan.trade = maybeTrade;
-  if (maybeJobs) scan.monthlyJobsGoal = maybeJobs;
-  if (maybeScore) scan.scoreSnapshot = maybeScore;
-
+  const url = sanitise(body.url || body.website || body.websiteUrl || '', 300);
+  const trade = sanitise(body.trade || '', 120);
+  const jobs = sanitise(body.monthlyJobsGoal || body.monthlyVolume || '', 120);
+  const score = (body.scoreSnapshot && typeof body.scoreSnapshot === 'object') ? body.scoreSnapshot : null;
+  if (url) scan.url = url;
+  if (trade) scan.trade = trade;
+  if (jobs) scan.monthlyJobsGoal = jobs;
+  if (score) scan.scoreSnapshot = score;
   return Object.keys(scan).length ? scan : null;
 }
 
 function buildExtraData(body) {
   const extra = {
-    intent: sanitise(body.intent, 80) || null,
-    qualifier: sanitise(body.qualifier || '', 120) || null,
-    monthly_volume: sanitise(body.monthlyVolume || body.monthly_volume || body.monthlyJobsGoal || '', 120) || null,
-    package_interest: packageSlug(body.package || body.packageKey || body.packageLabel || ''),
-    application_type: sanitise(body.applicationType || '', 120) || null,
-    tool_type: sanitise(body.toolType || body.tool_type || '', 120) || null,
-    current_site_status: sanitise(body.currentSiteStatus || '', 240) || null,
-    budget_range: sanitise(body.budgetRange || '', 120) || null,
-    readiness: sanitise(body.readiness || '', 120) || null,
-    selected_option: sanitise(body.selectedOption || body.selected_option || '', 160) || null,
-    score_snapshot: body.scoreSnapshot && typeof body.scoreSnapshot === 'object' ? body.scoreSnapshot : null,
-    raw_submission: body,
+    intent:               sanitise(body.intent, 80) || null,
+    qualifier:            sanitise(body.qualifier || '', 120) || null,
+    monthly_volume:       sanitise(body.monthlyVolume || body.monthly_volume || body.monthlyJobsGoal || '', 120) || null,
+    package_interest:     packageSlug(body.package || body.packageKey || body.packageLabel || ''),
+    application_type:     sanitise(body.applicationType || '', 120) || null,
+    tool_type:            sanitise(body.toolType || body.tool_type || '', 120) || null,
+    current_site_status:  sanitise(body.currentSiteStatus || '', 240) || null,
+    budget_range:         sanitise(body.budgetRange || '', 120) || null,
+    readiness:            sanitise(body.readiness || '', 120) || null,
+    selected_option:      sanitise(body.selectedOption || body.selected_option || '', 160) || null,
+    score_snapshot:       (body.scoreSnapshot && typeof body.scoreSnapshot === 'object') ? body.scoreSnapshot : null,
+    raw_submission:       body,
   };
-
-  Object.keys(extra).forEach((key) => {
-    if (
-      extra[key] == null ||
-      extra[key] === '' ||
-      (typeof extra[key] === 'object' && !Array.isArray(extra[key]) && Object.keys(extra[key]).length === 0)
-    ) {
-      delete extra[key];
+  // Strip nulls / empty objects
+  Object.keys(extra).forEach(k => {
+    const v = extra[k];
+    if (v == null || v === '' || (typeof v === 'object' && !Array.isArray(v) && Object.keys(v).length === 0)) {
+      delete extra[k];
     }
   });
-
   return Object.keys(extra).length ? extra : null;
 }
 
 function eventTitle(intent, packageKey) {
   const map = {
-    unlock: 'Scanner reveal submitted',
-    start_now: packageKey ? `Start now submitted (${packageKey})` : 'Start now submitted',
-    growth_application: 'Growth application submitted',
-    contact: 'Contact enquiry submitted',
-    booking_request: 'Booking request submitted',
+    scanner_unlock:              'Scanner reveal submitted',
+    rebuild_deposit:             packageKey ? `Rebuild deposit submitted (${packageKey})` : 'Rebuild deposit submitted',
+    conversion_system_deposit:   packageKey ? `Conversion system deposit submitted (${packageKey})` : 'Conversion system deposit submitted',
+    custom_build_application:    'Custom build application submitted',
+    booking_request:             'Booking request submitted',
+    // Legacy
+    unlock:                      'Scanner reveal submitted',
+    start_now:                   packageKey ? `Start now submitted (${packageKey})` : 'Start now submitted',
+    growth_application:          'Growth application submitted',
+    contact:                     'Contact enquiry submitted',
   };
   return map[String(intent || '').toLowerCase()] || 'Website enquiry submitted';
 }
 
-async function insertProspectEvent(supabase, eventRow) {
+// ── Event insert (non-fatal) ──────────────────────────────────────────────────
+
+async function insertProspectEvent(supabase, row) {
   try {
-    const { error } = await supabase.from('tradeconvert_prospect_events').insert(eventRow);
+    const { error } = await supabase.from('tradeconvert_prospect_events').insert(row);
     if (error) throw error;
   } catch (err) {
     console.warn('tradeconvert_prospect_events insert failed:', err.message || err);
   }
 }
+
+// ── Handler ───────────────────────────────────────────────────────────────────
 
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') return { statusCode: 200, headers: CORS, body: '' };
@@ -175,6 +197,7 @@ exports.handler = async (event) => {
     return { statusCode: 400, headers: CORS, body: JSON.stringify({ success: false, message: 'Invalid JSON body' }) };
   }
 
+  // Honeypot
   if (body.website2) {
     return { statusCode: 200, headers: CORS, body: JSON.stringify({ success: true, message: 'OK' }) };
   }
@@ -182,7 +205,7 @@ exports.handler = async (event) => {
   const name = sanitise(body.name, 120);
   const email = sanitise(body.email, 200).toLowerCase();
   const phone = sanitise(body.phone, 40) || null;
-  const intent = sanitise(body.intent, 80) || 'unlock';
+  const intent = sanitise(body.intent, 80) || 'scanner_unlock';
   const websiteUrl = deriveWebsite(body) || null;
 
   if (name.length < 2) {
@@ -198,11 +221,12 @@ exports.handler = async (event) => {
     const selectedPackage = packageSlug(body.package || body.packageKey || body.packageLabel || '');
     const notes = buildNotes(body);
     const businessName = deriveBusinessName(body, websiteUrl);
-    const { email: matchEmail, website: matchWebsite } = dedupeMatch(body);
+    const matchEmail = email;
+    const matchWebsite = (websiteUrl || '').toLowerCase();
     const scanPayload = buildScanPayload(body);
     const extraData = buildExtraData(body);
 
-    let existing = null;
+    // Dedupe: find existing record by email (prefer matching website too)
     const { data: existingRows, error: fetchError } = await supabase
       .from('tradeconvert_prospects')
       .select('id, status, payment_status, selected_package, created_at, website_url, extra_data, notes')
@@ -211,7 +235,10 @@ exports.handler = async (event) => {
       .limit(5);
 
     if (fetchError) throw fetchError;
-    existing = (existingRows || []).find(row => !matchWebsite || String(row.website_url || '').toLowerCase() === matchWebsite) || existingRows?.[0] || null;
+
+    const existing = (existingRows || []).find(row =>
+      !matchWebsite || String(row.website_url || '').toLowerCase() === matchWebsite
+    ) || existingRows?.[0] || null;
 
     const mergedExtraData = {
       ...(existing?.extra_data && typeof existing.extra_data === 'object' ? existing.extra_data : {}),
@@ -235,15 +262,15 @@ exports.handler = async (event) => {
       notes: notes || existing?.notes || null,
       scan_payload: scanPayload,
       extra_data: Object.keys(mergedExtraData).length ? mergedExtraData : null,
-      next_action: existing?.status && existing.status !== 'new' ? undefined : 'Review and contact',
     };
 
     let result;
     let eventAction = 'created';
+
     if (existing?.id) {
       const { data, error } = await supabase
         .from('tradeconvert_prospects')
-        .update(Object.fromEntries(Object.entries(payload).filter(([, v]) => v !== undefined)))
+        .update({ ...Object.fromEntries(Object.entries(payload).filter(([, v]) => v !== undefined)), updated_at: new Date().toISOString() })
         .eq('id', existing.id)
         .select()
         .single();
@@ -253,10 +280,7 @@ exports.handler = async (event) => {
     } else {
       const { data, error } = await supabase
         .from('tradeconvert_prospects')
-        .insert({
-          ...Object.fromEntries(Object.entries(payload).filter(([, v]) => v !== undefined)),
-          next_action: 'Review and contact'
-        })
+        .insert({ ...payload, next_action: 'Review and contact', updated_at: new Date().toISOString() })
         .select()
         .single();
       if (error) throw error;
@@ -281,11 +305,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers: CORS,
-      body: JSON.stringify({
-        success: true,
-        message: 'Thank you — your details have been saved.',
-        prospect_id: result.id,
-      }),
+      body: JSON.stringify({ success: true, message: 'Thank you — your details have been saved.', prospect_id: result.id }),
     };
   } catch (err) {
     console.error('lead.js failed:', err);
