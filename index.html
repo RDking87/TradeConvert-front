@@ -2696,12 +2696,10 @@ async function submitBuyForm() {
       packageKey:   selectedPackage,
       packageLabel: pkg.label,
       deposit:      pkg.deposit,
-      stripePriceId: pkg.stripePriceId,
-      intent: leadIntent,
+      name, email, websiteUrl: url, notes,
       phone: (document.getElementById('inp-phone')?.value || '').trim(),
       qualifier: qualifierValue || null,
-      scanPayload: scanResult || null,
-      name, email, websiteUrl: url, notes
+      scanPayload: scanResult || null
     });
 
     if (session?.url) {
