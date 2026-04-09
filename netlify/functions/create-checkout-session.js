@@ -4,18 +4,17 @@
  * create-checkout-session.js
  * POST /.netlify/functions/create-checkout-session
  *
- * Creates a Stripe Checkout session for:
- *   - One-off deposits (rebuild £150, conversion system £300)
- *   - Monthly subscription (£29/month) sent from owner workspace page
+ * Accepts both formats:
+ *   packageKey: 'rebuild' | 'system'  (from front site buy form)
+ *   intent: 'rebuild_deposit' | 'conversion_system_deposit' | 'subscription'
  *
- * Body:
- *   intent        'rebuild_deposit' | 'conversion_system_deposit' | 'subscription'
- *   name          customer name
- *   email         customer email
- *   websiteUrl    their website (for deposits)
- *   notes         optional notes
- *   prospect_id   optional — links payment to existing owner lead
- *   workspace_id  optional — links subscription to existing workspace
+ * Env vars needed on the FRONT site:
+ *   STRIPE_SECRET_KEY
+ *   STRIPE_PRICE_REBUILD          (price_... for £150 deposit)
+ *   STRIPE_PRICE_SYSTEM           (price_... for £300 deposit)
+ *   STRIPE_PRICE_MONTHLY          (price_... for £29/month)
+ *   SUPABASE_URL
+ *   SUPABASE_SERVICE_ROLE_KEY
  */
 
 const Stripe = require('stripe');
@@ -28,15 +27,23 @@ const CORS = {
   'Content-Type': 'application/json',
 };
 
-const PRICE_MAP = {
-  rebuild_deposit:           process.env.STRIPE_PRICE_REBUILD,
-  conversion_system_deposit: process.env.STRIPE_PRICE_SYSTEM,
-  subscription:              process.env.STRIPE_PRICE_MONTHLY,
+// Map packageKey (from buy form) to intent (canonical)
+const PACKAGE_TO_INTENT = {
+  rebuild: 'rebuild_deposit',
+  system:  'conversion_system_deposit',
+  growth:  null, // growth uses application form not checkout
+};
+
+// Map intent to Stripe price env var
+const INTENT_TO_PRICE_ENV = {
+  rebuild_deposit:           'STRIPE_PRICE_REBUILD',
+  conversion_system_deposit: 'STRIPE_PRICE_SYSTEM',
+  subscription:              'STRIPE_PRICE_MONTHLY',
 };
 
 const INTENT_LABELS = {
-  rebuild_deposit:           'Website Rebuild Deposit',
-  conversion_system_deposit: 'Website + Conversion System Deposit',
+  rebuild_deposit:           'Website Rebuild Deposit — £150',
+  conversion_system_deposit: 'Website + Conversion System Deposit — £300',
   subscription:              'TradeConvert Client Dashboard — £29/month',
 };
 
@@ -58,11 +65,30 @@ exports.handler = async (event) => {
   try { body = JSON.parse(event.body || '{}'); }
   catch { return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'Invalid JSON' }) }; }
 
-  const { intent, name, email, websiteUrl, notes, prospect_id, workspace_id } = body;
-
-  if (!intent || !PRICE_MAP[intent]) {
-    return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: `Unknown intent: ${intent}` }) };
+  // Resolve intent — accept either packageKey or intent
+  let intent = body.intent || null;
+  if (!intent && body.packageKey) {
+    intent = PACKAGE_TO_INTENT[body.packageKey] || null;
   }
+
+  if (!intent || !INTENT_TO_PRICE_ENV[intent]) {
+    return {
+      statusCode: 400, headers: CORS,
+      body: JSON.stringify({ error: `Unknown package. Received packageKey="${body.packageKey}" intent="${body.intent}"` })
+    };
+  }
+
+  const priceEnvKey = INTENT_TO_PRICE_ENV[intent];
+  const priceId = process.env[priceEnvKey];
+  if (!priceId) {
+    return {
+      statusCode: 500, headers: CORS,
+      body: JSON.stringify({ error: `Missing env var: ${priceEnvKey}` })
+    };
+  }
+
+  const { name, email, websiteUrl, notes, prospect_id, workspace_id } = body;
+
   if (!email) {
     return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'email is required' }) };
   }
@@ -70,11 +96,9 @@ exports.handler = async (event) => {
   const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
   const siteUrl = (process.env.SITE_URL || process.env.URL || 'https://tradeconvert.co.uk').replace(/\/$/, '');
   const appUrl = 'https://tradeconvert-app.netlify.app';
-
   const isSubscription = intent === 'subscription';
 
   try {
-    // Build metadata to pass through to webhook
     const metadata = {
       intent,
       name:         String(name || '').slice(0, 500),
@@ -86,12 +110,9 @@ exports.handler = async (event) => {
     };
 
     const sessionParams = {
-      mode:                isSubscription ? 'subscription' : 'payment',
-      customer_email:      email.toLowerCase(),
-      line_items: [{
-        price:    PRICE_MAP[intent],
-        quantity: 1,
-      }],
+      mode:           isSubscription ? 'subscription' : 'payment',
+      customer_email: email.toLowerCase(),
+      line_items: [{ price: priceId, quantity: 1 }],
       metadata,
       success_url: isSubscription
         ? `${appUrl}/client/dashboard.html?payment=success`
@@ -101,32 +122,20 @@ exports.handler = async (event) => {
         : `${siteUrl}/#pricing`,
     };
 
-    // For subscriptions, also attach metadata to the subscription itself
-    if (isSubscription) {
-      sessionParams.subscription_data = { metadata };
-    }
-
-    // For deposits, attach metadata to the payment intent
-    if (!isSubscription) {
-      sessionParams.payment_intent_data = { metadata };
-    }
+    if (isSubscription) sessionParams.subscription_data = { metadata };
+    if (!isSubscription) sessionParams.payment_intent_data = { metadata };
 
     const session = await stripe.checkout.sessions.create(sessionParams);
 
-    // If we have a prospect_id, create a pending payment event immediately
+    // Log checkout started event (non-fatal if this fails)
     if (prospect_id && !isSubscription) {
       try {
-        const supabase = getSupabase();
-        await supabase.from('tradeconvert_prospect_events').insert({
+        await getSupabase().from('tradeconvert_prospect_events').insert({
           prospect_id,
           event_type: 'checkout_started',
           source:     intent,
           title:      `${INTENT_LABELS[intent]} — checkout opened`,
-          payload: {
-            stripe_session_id: session.id,
-            intent,
-            amount: intent === 'rebuild_deposit' ? 150 : 300,
-          },
+          payload:    { stripe_session_id: session.id, intent },
         });
       } catch (e) {
         console.warn('Event insert failed (non-fatal):', e.message);
