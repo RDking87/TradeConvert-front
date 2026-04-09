@@ -23,5 +23,8 @@
 [functions."stripe-webhook"]
   timeout = 10
 
+[functions."scan-chat"]
+  timeout = 15
+
 [build.environment]
   NODE_VERSION = "20"
