@@ -1,5 +1,7 @@
 [build]
   functions = "netlify/functions"
+  command = "npm install"
+  publish = "."
 
 [functions]
   node_bundler = "esbuild"
@@ -9,7 +11,6 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
-# Increase timeouts for slower functions
 [functions."scan"]
   timeout = 26
 
