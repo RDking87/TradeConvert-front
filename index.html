@@ -1050,6 +1050,23 @@ footer .logo{}
 }
 
 /* ══ Scan AI Chat ══════════════════════════════════════════════════════════ */
+
+/* ── Browser autofill override — prevents white background on autofilled dark inputs */
+.buy-modal-box input:-webkit-autofill,
+.buy-modal-box input:-webkit-autofill:hover,
+.buy-modal-box input:-webkit-autofill:focus,
+.buy-modal-box textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px var(--sc-navy-light) inset !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff;
+}
+.sc-modal-box input:-webkit-autofill,
+.sc-modal-box input:-webkit-autofill:hover,
+.sc-modal-box input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px var(--sc-navy-light) inset !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff;
+}
 </style>
 </head>
 <body>
@@ -1975,6 +1992,7 @@ async function scStartScan() {
     if (rem > 0) await new Promise(r => setTimeout(r, rem));
     scMarkComplete();
     await new Promise(r => setTimeout(r, 400));
+    window.scanResult = scanResult; // expose for AI chat IIFE
     scRenderResults(scanResult);
     scShowState('sc-state-results');
   } catch(err) {
@@ -2645,8 +2663,10 @@ async function createStripeCheckoutSession(payload) {
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify(payload)
   });
-  if (!res.ok) throw new Error(`Checkout session error ${res.status}`);
-  return await res.json(); /* { url } or { sessionId } */
+  let data;
+  try { data = await res.json(); } catch { data = {}; }
+  if (!res.ok) throw new Error(data.error || `Checkout session error ${res.status}`);
+  return data; /* { url } or { sessionId } */
 }
 
 async function submitBuyForm() {
@@ -2894,8 +2914,8 @@ function scEscHtml(str) {
         ? "Your site scored " + score + "/100 — there’s clear room to improve. Ask me what the main issues mean, or what a rebuild would fix."
         : "Your site scored " + score + "/100 — that’s quite low, and it’s likely costing you bathroom fit jobs. Ask me what the problems mean or what fixing them involves.";
     addMsg(opening, 'ai');
-    // Pre-load context into history so AI knows results immediately
-    chatHistory.push({ role: 'assistant', content: opening });
+    // Opening greeting is display-only — do NOT push to chatHistory.
+    // History must start with a user message for the API to work.
   }
 
   function buildScanContext() {
