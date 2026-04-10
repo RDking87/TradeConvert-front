@@ -892,6 +892,107 @@ footer .logo{}
 @media(max-width:860px){body,html{overflow-x:hidden;max-width:100vw;}}
 
 /* ══ Scan AI Chat ══════════════════════════════════════════════════════════ */
+
+/* ══ SCANNER / BUY MODALS & OVERLAYS ═══════════════════════════════════════ */
+.hidden{display:none !important;}
+.sc-modal-overlay,
+.buy-modal-overlay,
+.sc-booked-overlay,
+.sc-cal-modal-overlay{
+  position:fixed;inset:0;z-index:800;display:none;align-items:center;justify-content:center;
+  background:rgba(7,17,31,.76);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  padding:18px;
+}
+.sc-modal-overlay.open,
+.buy-modal-overlay.open,
+.sc-booked-overlay.open,
+.sc-cal-modal-overlay.open{display:flex;}
+.sc-modal-box,
+.buy-modal-box,
+.sc-cal-modal-box,
+.sc-booked-box{
+  width:min(100%,560px);max-height:min(92vh,900px);overflow:auto;
+  background:linear-gradient(180deg,#17263d 0%,#132238 100%);
+  border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.45);
+  color:#fff;position:relative;
+}
+.sc-cal-modal-box{width:min(100%,980px);padding:0;overflow:hidden;}
+.sc-booked-box{width:min(100%,520px);padding:34px 28px;text-align:center;}
+.sc-modal-box{padding:28px 24px 24px;}
+.buy-modal-box{padding:28px 28px 24px;}
+.sc-modal-close,
+.buy-modal-close,
+.sc-cal-modal-close{
+  position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:10px;border:none;
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);font-size:24px;line-height:1;cursor:pointer;
+}
+.sc-cal-modal-close{z-index:2;}
+.sc-modal-title,
+.buy-modal-title,
+.sc-booked-title,
+.buy-success-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;line-height:1.05;letter-spacing:-.01em;
+}
+.sc-modal-title{font-size:40px;margin:4px 0 8px;}
+.buy-modal-title{font-size:44px;margin:6px 0 8px;}
+.sc-booked-title,
+.buy-success-title{font-size:42px;margin:8px 0 10px;}
+.sc-modal-body,
+.buy-modal-subtitle,
+.sc-booked-sub,
+.buy-success-sub{color:rgba(255,255,255,.62);font-size:15px;line-height:1.6;}
+.sc-qualifier-block{margin:22px 0 16px;}
+.sc-qualifier-headline{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:10px;}
+.sc-qualifier-options{display:grid;gap:8px;}
+.sc-qualifier-option{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:#1a2a42;color:#fff;cursor:pointer;}
+.sc-qualifier-option.selected{border-color:rgba(244,96,12,.55);background:rgba(244,96,12,.1);}
+.sc-qualifier-option-dot{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.35);display:inline-block;}
+.sc-qualifier-option.selected .sc-qualifier-option-dot{border-color:var(--sc-orange);background:var(--sc-orange);}
+.sc-lead-error,
+.buy-error-banner{display:none;background:rgba(239,68,68,.11);border:1px solid rgba(239,68,68,.35);color:#fecaca;border-radius:10px;padding:10px 12px;margin:0 0 14px;}
+.sc-action-btn-primary,
+.btn-buy,
+.buy-success-close,
+.sc-booked-btn-close{
+  width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,#f4600c,#ff7a2f);color:#fff;border:none;border-radius:12px;
+  padding:15px 18px;font-weight:800;font-size:18px;cursor:pointer;text-decoration:none;
+  box-shadow:0 8px 26px rgba(244,96,12,.28);
+}
+.sc-action-btn-primary:disabled,.btn-buy:disabled{opacity:.6;cursor:not-allowed;}
+.buy-modal-eyebrow{display:flex;align-items:center;gap:7px;color:var(--sc-orange);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.buy-modal-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--sc-green);box-shadow:0 0 8px rgba(34,197,94,.6);}
+.buy-modal-score-ctx{display:none;background:rgba(22,163,74,.09);border:1px solid rgba(22,163,74,.22);color:#d1fae5;border-radius:10px;padding:10px 12px;margin:0 0 14px;font-size:14px;}
+.buy-modal-score-ctx.visible{display:block;}
+.buy-form-row{margin-bottom:14px;}
+.buy-form-label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px;}
+.buy-form-input{width:100%;background:#1a2a42;border:1.5px solid rgba(255,255,255,.08);border-radius:12px;color:#fff;padding:14px 14px;outline:none;}
+.buy-form-input:focus{border-color:rgba(244,96,12,.6);box-shadow:0 0 0 3px rgba(244,96,12,.12);}
+.buy-form-input::placeholder{color:rgba(255,255,255,.35);}
+.buy-form-textarea{min-height:118px;resize:vertical;}
+.buy-pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.buy-pkg-option{position:relative;display:block;padding:16px 16px 14px;border-radius:14px;border:1.5px solid rgba(255,255,255,.12);background:#1a2a42;cursor:pointer;min-height:118px;}
+.buy-pkg-option.selected{border-color:var(--sc-orange);background:rgba(244,96,12,.1);}
+.buy-pkg-option input{position:absolute;opacity:0;pointer-events:none;}
+.buy-pkg-radio{position:absolute;top:14px;right:14px;width:18px;height:18px;border-radius:50%;border:2px solid rgba(255,255,255,.25);}
+.buy-pkg-option.selected .buy-pkg-radio{border-color:var(--sc-orange);background:var(--sc-orange);box-shadow:inset 0 0 0 4px #1a2a42;}
+.buy-pkg-name{display:block;color:#fff;font-weight:800;margin-bottom:6px;}
+.buy-pkg-price{display:block;font-family:'Barlow Condensed',sans-serif;font-size:42px;line-height:1;color:var(--sc-orange);font-weight:900;margin-bottom:4px;}
+.buy-pkg-deposit{display:block;color:rgba(255,255,255,.6);font-size:13px;}
+.buy-deposit-note,.buy-microcopy{font-size:12px;color:rgba(255,255,255,.42);text-align:center;margin-top:10px;line-height:1.5;}
+.buy-form-file-label{display:flex;align-items:center;gap:8px;padding:12px 14px;border:1.5px dashed rgba(255,255,255,.15);border-radius:12px;color:rgba(255,255,255,.75);cursor:pointer;background:#182740;}
+.buy-form-file-input{display:none;}
+.buy-form-file-name{font-size:12px;color:#d1fae5;margin-top:8px;}
+.buy-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:20px 4px 6px;}
+.buy-success.visible{display:flex;}
+.buy-success-icon,.sc-booked-icon{font-size:58px;line-height:1;}
+.buy-success-confirm,.sc-booked-email-confirm{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.2);color:#d1fae5;border-radius:12px;padding:12px 14px;margin:16px 0 18px;font-size:13px;}
+.sc-booked-btns{margin-top:12px;}
+@media(max-width:640px){
+  .sc-modal-box,.buy-modal-box,.sc-booked-box{padding:22px 18px 18px;border-radius:16px;}
+  .sc-modal-title,.buy-modal-title,.sc-booked-title,.buy-success-title{font-size:34px;}
+  .buy-pkg-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -2081,6 +2182,13 @@ function scRenderResults(data) {
   // Render dynamic lowest-3 weakness panel
   scRenderTopWeaknesses(scores);
 
+  /* Reset and reveal optional AI helper below the CTA area */
+  const chatWrap = document.getElementById('scanChatWrap');
+  const chatBox = document.getElementById('scanChatBox');
+  if (chatWrap) chatWrap.style.display = detailsUnlocked ? 'block' : 'none';
+  if (chatBox) chatBox.classList.remove('open');
+  if (window.currentScanContext) window.currentScanContext = null;
+
   /* teaser-issue, teaser-fix, issues-list and fixes-list elements removed — no-op */
   const issuesData = data.issues||[];
   const fixesData=data.priorityFixes||data.fixes||[];
@@ -2713,25 +2821,28 @@ function scEscHtml(str) {
 
   if (!trigger || !box || !msgs || !input || !sendBtn) return;
 
+  function revealChatIfReady() {
+    var resultsEl = document.getElementById('sc-state-results');
+    if (!resultsEl || !resultsEl.classList.contains('active') || !window.scanResult) return;
+    if (wrap) wrap.style.display = 'block';
+    if (!chatReady) initChat();
+  }
+
   // Show the chat panel once scan results are rendered
-  // Hook into scRenderResults by polling for the results state becoming active
   var showPoll = setInterval(function() {
     var resultsEl = document.getElementById('sc-state-results');
-    if (resultsEl && resultsEl.classList.contains('active')) {
+    if (resultsEl && resultsEl.classList.contains('active') && window.scanResult) {
       clearInterval(showPoll);
-      // Short delay so the results render fully first
-      setTimeout(function() {
-        if (wrap) wrap.style.display = 'block';
-        if (!chatReady) initChat();
-      }, 800);
+      setTimeout(revealChatIfReady, 500);
     }
   }, 300);
 
   function initChat() {
     chatReady = true;
     chatHistory = [];
-    // Generate opening message using scan data
+    msgs.innerHTML = '';
     var ctx = buildScanContext();
+    window.currentScanContext = ctx;
     var score = ctx.score || 0;
     var opening = score >= 70
       ? "Your site scored " + score + "/100 — that’s solid. A few things could still win you more jobs. What would you like to know?"
@@ -2739,23 +2850,45 @@ function scEscHtml(str) {
         ? "Your site scored " + score + "/100 — there’s clear room to improve. Ask me what the main issues mean, or what a rebuild would fix."
         : "Your site scored " + score + "/100 — that’s quite low, and it’s likely costing you bathroom fit jobs. Ask me what the problems mean or what fixing them involves.";
     addMsg(opening, 'ai');
-    // Pre-load context into history so AI knows results immediately
     chatHistory.push({ role: 'assistant', content: opening });
   }
 
-  function buildScanContext() {
-    // Read from scanResult global (set by scanner JS)
-    var sr = window.scanResult || {};
-    var score   = sr.totalScore || sr.score?.total || 0;
-    var url     = sr.url || document.getElementById('sc-url-display')?.textContent || '';
-    var trade   = sr.trade || 'bathroom fitter';
-    var cats    = sr.categoryScores || {};
-    var issues  = (sr.issues || []).slice(0, 6);
-    var catSummary = {};
-    Object.entries(cats).forEach(function(pair) {
-      catSummary[pair[0]] = (pair[1].score || 0);
+  function normaliseIssues(rawIssues, rawFixes) {
+    var items = [];
+    (Array.isArray(rawIssues) ? rawIssues : []).forEach(function(issue) {
+      if (!issue) return;
+      if (typeof issue === 'string') { items.push(issue); return; }
+      if (issue.issue) { items.push(issue.issue); return; }
+      if (issue.title && issue.description) { items.push(issue.title + ': ' + issue.description); return; }
+      if (issue.title) { items.push(issue.title); }
     });
-    return { score: score, url: url, trade: trade, categories: catSummary, issues: issues };
+    (Array.isArray(rawFixes) ? rawFixes : []).forEach(function(fix) {
+      if (typeof fix === 'string') items.push('Recommended fix: ' + fix);
+    });
+    return items.slice(0, 8);
+  }
+
+  function buildScanContext() {
+    var sr = window.scanResult || {};
+    var score = sr.totalScore || (sr.score && sr.score.total) || 0;
+    var url = sr.websiteUrl || sr.url || sr.domain || document.getElementById('inp-url')?.value || '';
+    var trade = sr.trade || document.getElementById('inp-trade')?.value || 'bathroom fitter';
+    var cats = sr.categoryScores || {};
+    var catSummary = {};
+    Object.keys(cats).forEach(function(key) {
+      var val = cats[key];
+      catSummary[key] = typeof val === 'number' ? val : (val && val.score) || 0;
+    });
+    var issues = normaliseIssues(sr.issues, sr.priorityFixes || sr.fixes);
+    return {
+      score: score,
+      url: url,
+      trade: trade,
+      categories: catSummary,
+      issues: issues,
+      summary: sr.summary || null,
+      fallbackFlags: sr.fallbackFlags || null
+    };
   }
 
   trigger.addEventListener('click', function() {

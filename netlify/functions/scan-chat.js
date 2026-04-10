@@ -29,13 +29,23 @@ function buildSystem(ctx) {
   const trade  = ctx?.trade  ?? 'bathroom fitter';
   const issues = Array.isArray(ctx?.issues) ? ctx.issues : [];
   const cats   = ctx?.categories || {};
+  const summary = ctx?.summary || {};
 
-  const issueList = issues.length
-    ? issues.slice(0, 6).map(i => `- ${i}`).join('\n')
+  const cleanIssues = issues.map(function(i){
+    if (!i) return null;
+    if (typeof i === 'string') return i;
+    if (typeof i === 'object' && i.issue) return i.issue;
+    if (typeof i === 'object' && i.title && i.description) return i.title + ': ' + i.description;
+    if (typeof i === 'object' && i.title) return i.title;
+    return String(i);
+  }).filter(Boolean);
+
+  const issueList = cleanIssues.length
+    ? cleanIssues.slice(0, 8).map(i => `- ${i}`).join('\n')
     : '- No specific issues detected';
 
   const catLines = Object.entries(cats)
-    .map(([k, v]) => `- ${k}: ${v}/20`)
+    .map(([k, v]) => `- ${k}: ${typeof v === 'number' ? v : (v?.score ?? 0)}/20`)
     .join('\n');
 
   return `You are a friendly website expert working for TradeConvert, a UK web agency that builds websites for bathroom fitters.
@@ -85,6 +95,7 @@ exports.handler = async (event) => {
 
   const { messages, scan_context } = body;
   if (!Array.isArray(messages) || !messages.length) return err(400, 'messages required');
+  console.log('scan-chat context keys:', scan_context ? Object.keys(scan_context) : []);
 
   // Cap history to last 8 exchanges to keep cost low
   const trimmed = messages.slice(-8);
@@ -98,7 +109,7 @@ exports.handler = async (event) => {
         'Content-Type':      'application/json',
       },
       body: JSON.stringify({
-        model:      'claude-haiku-4-5-20251001',
+        model:      process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001',
         max_tokens: 280,
         system:     buildSystem(scan_context),
         messages:   trimmed,
