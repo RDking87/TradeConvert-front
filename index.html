@@ -365,7 +365,7 @@ body.sc-results-active .mobile-contact-bar{display:none !important;}
 .sc-summary-circle svg{transform:rotate(-90deg);}
 .sc-summary-text{flex:1;padding-top:6px;}
 .sc-score-circle-bg{stroke:rgba(0,0,0,.08);fill:none;stroke-width:7;}
-.sc-score-circle-fill{fill:none;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 0 5px rgba(244,96,12,.3));}
+.sc-score-circle-fill{fill:none;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.34,1.56,.64,1);}
 .sc-score-circle-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .sc-score-number{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;line-height:1;color:#1a1a2e;}
 .sc-score-denom{font-size:11px;color:rgba(0,0,0,.35);font-weight:600;}
@@ -989,9 +989,9 @@ footer .logo{}
 .sc-qualifier-headline{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--sc-w50); margin-bottom:10px;}
 .sc-qualifier-options{display:flex; flex-wrap:wrap; gap:8px;}
 .sc-qualifier-option{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; border:1px solid var(--sc-navy-border); background:var(--sc-navy-light); color:#fff; cursor:pointer;}
-.sc-qualifier-option.active{border-color:var(--sc-orange); box-shadow:0 0 0 3px var(--sc-orange-glow);}
+.sc-qualifier-option.active,.sc-qualifier-option.selected{border-color:var(--sc-orange); box-shadow:0 0 0 3px var(--sc-orange-glow);}
 .sc-qualifier-option-dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.3);} 
-.sc-qualifier-option.active .sc-qualifier-option-dot{background:var(--sc-orange);} 
+.sc-qualifier-option.active .sc-qualifier-option-dot,.sc-qualifier-option.selected .sc-qualifier-option-dot{background:var(--sc-orange);} 
 .sc-lead-error,
 .buy-error-banner{display:none; margin-bottom:14px; background:rgba(239,68,68,.1); border:1px solid rgba(239,68,68,.35); border-radius:10px; padding:12px 14px; color:#fca5a5; font-size:14px;}
 
@@ -1023,9 +1023,9 @@ footer .logo{}
 .buy-pkg-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
 .buy-pkg-option{position:relative; display:flex; flex-direction:column; gap:2px; padding:14px 14px 14px 16px; border:1px solid var(--sc-navy-border); border-radius:12px; background:var(--sc-navy-light); cursor:pointer; min-height:120px;}
 .buy-pkg-option input{position:absolute; opacity:0; pointer-events:none;}
-.buy-pkg-option.active{border-color:var(--sc-orange); box-shadow:0 0 0 3px var(--sc-orange-glow);}
+.buy-pkg-option.active,.buy-pkg-option.selected{border-color:var(--sc-orange); box-shadow:0 0 0 3px var(--sc-orange-glow);}
 .buy-pkg-radio{position:absolute; top:14px; right:14px; width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,.25);}
-.buy-pkg-option.active .buy-pkg-radio{border-color:var(--sc-orange); background:radial-gradient(circle at center,var(--sc-orange) 0 45%, transparent 50%);} 
+.buy-pkg-option.active .buy-pkg-radio,.buy-pkg-option.selected .buy-pkg-radio{border-color:var(--sc-orange); background:radial-gradient(circle at center,var(--sc-orange) 0 45%, transparent 50%);} 
 .buy-pkg-name{font-weight:700; color:#fff; margin-top:10px;}
 .buy-pkg-price{font-family:'Barlow Condensed',sans-serif; font-size:32px; line-height:1; font-weight:900; color:var(--sc-orange);}
 .buy-pkg-deposit{font-size:12px; color:var(--sc-w50);} 
@@ -1043,10 +1043,6 @@ footer .logo{}
 #sc-modal-overlay.open,#sc-booked-overlay.open,#buy-modal-overlay.open,#growth-modal-overlay.open,#sc-cal-modal-overlay.open{display:flex;}
 
 /* More visible AI helper */
-.scan-chat-wrap{margin-top:18px; border-top:1px solid rgba(0,0,0,.08); padding-top:16px; text-align:left;}
-.scan-chat-trigger{width:100%; justify-content:center; padding:12px 14px; border:1px solid rgba(0,0,0,.12); border-radius:12px; background:#fff; color:#374151; font-weight:600;}
-.scan-chat-trigger:hover{background:#f8fafc; color:#111827;}
-
 @media(max-width:640px){
   .sc-modal-overlay,.sc-booked-overlay,.buy-modal-overlay,.sc-cal-modal-overlay{padding:12px; align-items:flex-end;}
   .sc-modal-box,.buy-modal-box,.sc-booked-box,.sc-cal-modal-box{width:100%; max-height:92vh; border-radius:18px 18px 0 0;}
@@ -1164,21 +1160,11 @@ footer .logo{}
                   <label class="sc-form-label" for="inp-trade">Your Trade</label>
                   <select id="inp-trade" class="sc-form-input sc-form-select">
                     <option value="">Select trade…</option>
+                    <option value="bathroom-fitter">Bathroom Fitter</option>
                     <option value="plumber">Plumber</option>
-                    <option value="electrician">Electrician</option>
-                    <option value="builder">Builder</option>
-                    <option value="roofer">Roofer</option>
-                    <option value="plasterer">Plasterer</option>
-                    <option value="joiner">Joiner / Carpenter</option>
-                    <option value="painter">Painter & Decorator</option>
-                    <option value="landscaper">Landscaper / Groundworks</option>
-                    <option value="hvac">Heating & HVAC</option>
                     <option value="tiler">Tiler</option>
-                    <option value="driveways">Driveways & Patios</option>
-                    <option value="windows">Windows & Doors</option>
-                    <option value="loft">Loft Conversions</option>
-                    <option value="extensions">Extensions</option>
-                    <option value="other">Other Trade</option>
+                    <option value="wet-room">Wet Room Specialist</option>
+                    <option value="other">Other</option>
                   </select>
                 </div>
                 <div>
@@ -1334,6 +1320,9 @@ footer .logo{}
                 <button onclick="scrollToPricing()" class="sc-cta-secondary-btn">See packages</button>
               </div>
               <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.3)">No call needed. No hard sell. Built for bathroom fitters.</div>
+              <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)">
+                <a href="#" onclick="scOpenBooking(event)" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:underline;text-underline-offset:3px;">Or book a free 10-min site review →</a>
+              </div>
             </div>
 
             <!-- AI CHAT — subtle text link, below CTA -->
@@ -2961,8 +2950,7 @@ function scEscHtml(str) {
       });
 
       var data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Error');
-
+      // scan-chat always returns 200; errors surface in data.reply
       typingEl.remove();
       var reply = data.reply || 'Sorry, I could not respond. Please try again.';
       addMsg(reply, 'ai');
