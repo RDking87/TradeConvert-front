@@ -1067,6 +1067,102 @@ footer .logo{}
   -webkit-text-fill-color: #fff !important;
   caret-color: #fff;
 }
+
+/* ── Buy modal form inputs ─────────────────────────────────────────────────── */
+.buy-form-row{margin-bottom:14px;}
+.buy-form-label{display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--sc-w50);margin-bottom:6px;}
+.buy-form-input{
+  width:100%;
+  background:var(--sc-navy-light);
+  border:1.5px solid var(--sc-navy-border);
+  border-radius:10px;
+  color:#fff;
+  font-size:14px;
+  padding:10px 13px;
+  outline:none;
+  font-family:'Inter',system-ui,sans-serif;
+  transition:border-color .2s, box-shadow .2s;
+}
+.buy-form-input::placeholder{color:var(--sc-w50);}
+.buy-form-input:focus{border-color:var(--sc-orange);box-shadow:0 0 0 3px var(--sc-orange-glow);}
+.buy-form-input.error{border-color:var(--sc-red);}
+.buy-form-textarea{min-height:110px;resize:vertical;}
+.buy-form-file-label{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 14px;
+  border:1px dashed var(--sc-navy-border);
+  border-radius:10px;
+  background:var(--sc-navy-light);
+  color:var(--sc-w50);
+  cursor:pointer;
+  font-size:13px;
+  transition:border-color .2s, color .2s;
+}
+.buy-form-file-label:hover{border-color:rgba(249,115,22,.4);color:var(--sc-w80);}
+.buy-form-file-input{display:none;}
+.buy-form-file-name{font-size:12px;color:var(--sc-green);margin-top:5px;display:none;}
+.buy-error-banner{
+  background:rgba(239,68,68,.1);
+  border:1px solid rgba(239,68,68,.3);
+  border-radius:10px;
+  padding:12px 14px;
+  font-size:13px;
+  color:#fca5a5;
+  margin-bottom:14px;
+  display:none;
+}
+.buy-deposit-note{font-size:11px;color:var(--sc-w50);text-align:center;margin-top:8px;line-height:1.5;}
+.buy-microcopy{font-size:12px;color:var(--sc-w50);text-align:center;margin-top:10px;line-height:1.5;}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   VISIBILITY & ACCESSIBILITY FIXES
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Pricing cards: pc-orient orientation label ─────────────────────────── */
+/* Default (light card — card 1) */
+.pc-orient {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: .55rem;
+  line-height: 1.3;
+}
+/* Dark cards (featured + premium) — already orange so stays readable */
+.price-card.featured .pc-orient,
+.price-card.premium  .pc-orient {
+  color: rgba(244,96,12,.85);
+}
+
+/* ── Pricing cards: featured card text overrides (dark navy bg) ─────────── */
+/* Name */
+.price-card.featured .pc-name {
+  color: rgba(255,255,255,.92);
+}
+/* Feature list items */
+.price-card.featured .pc-feats li {
+  color: rgba(255,255,255,.82);
+}
+.price-card.featured .pc-feats li svg {
+  color: var(--orange);
+}
+
+/* ── Scan results: commercial impact block (light card bg) ──────────────── */
+.sc-impact-block {
+  background: rgba(17,24,39,.04);
+  border-left-color: #d97706;
+}
+.sc-impact-label { color: #d97706; }
+.sc-impact-text  { color: #374151; }
+.sc-impact-sub   { color: #6b7280; }
+
+/* ── Scan results: score wheel insights (light bg) ──────────────────────── */
+.sc-wheel-insight { color: #6b7280; }
+.sc-wheel-name    { color: #374151; }
+
+/* ── Scan results: dark CTA block — ensure white text ───────────────────── */
+/* sc-results-bottom-cta text: dark on light bg — set in original rule above */
 </style>
 </head>
 <body>
@@ -1337,8 +1433,9 @@ footer .logo{}
                 <button onclick="scrollToPricing()" class="sc-cta-secondary-btn">See packages</button>
               </div>
               <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.3)">No call needed. No hard sell. Built for bathroom fitters.</div>
-              <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)">
-                <a href="#" onclick="scOpenBooking(event)" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:underline;text-underline-offset:3px;">Or book a free 10-min site review →</a>
+              <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);text-align:center;">
+                <span style="font-size:12px;color:rgba(255,255,255,.45);margin-right:8px;">Not ready to commit yet?</span>
+                <a href="#" onclick="scOpenBooking(event)" style="font-size:13px;font-weight:700;color:#f4600c;text-decoration:underline;text-underline-offset:3px;letter-spacing:.01em;">Book a free 10-min site review →</a>
               </div>
             </div>
 
@@ -1807,7 +1904,9 @@ footer .logo{}
 
     </div><!-- /price-grid -->
 
-    <p class="price-note-bottom reveal">Not sure which is right? <strong>Scan your site free first</strong> — the results will tell you exactly what level of fix you need.</p>
+    <p class="price-note-bottom reveal">Not sure which is right? <strong>Scan your site free first</strong> — the results will tell you exactly what level of fix you need.
+    Or, <a href="#" onclick="scOpenBooking(event)" style="color:#f4600c;font-weight:700;text-decoration:underline;text-underline-offset:3px;">book a free 10-min review</a> and we'll walk you through it.
+  </p>
   </div>
 </section>
 
@@ -1826,6 +1925,10 @@ footer .logo{}
     <button onclick="openBuyModal()" class="btn-call" style="font-size:1rem;padding:1rem 2rem;cursor:pointer;">Get Started — From £150 →</button>
   </div>
   <p style="margin-top:1.5rem;color:rgba(255,255,255,.22);font-size:.78rem;">No call needed. First draft in 48–72 hours.</p>
+  <p style="margin-top:1rem;font-size:.85rem;">
+    <span style="color:rgba(255,255,255,.35);">Not sure yet? </span>
+    <a href="#" onclick="scOpenBooking(event)" style="color:#f4600c;font-weight:700;text-decoration:underline;text-underline-offset:3px;">Book a free 10-min site review →</a>
+  </p>
 </section>
 
 <footer>
