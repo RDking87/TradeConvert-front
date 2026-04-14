@@ -1163,6 +1163,778 @@ footer .logo{}
 
 /* ── Scan results: dark CTA block — ensure white text ───────────────────── */
 /* sc-results-bottom-cta text: dark on light bg — set in original rule above */
+
+/* ══ HERO VISUAL ═══════════════════════════════════════════════════════════ */
+.hero-visual{
+  margin:2.5rem auto 0;
+  max-width:900px;
+  position:relative;
+  z-index:1;
+}
+.hv-wrap{
+  display:grid;
+  grid-template-columns:1fr 60px 1fr;
+  gap:0;
+  align-items:center;
+}
+.hv-browser{
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,.5);
+  border:1px solid rgba(255,255,255,.08);
+  transition:transform .3s ease;
+}
+.hv-browser:hover{transform:translateY(-4px);}
+.hv-browser-bar{
+  background:#1a2535;
+  padding:.5rem .8rem;
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hv-dot{width:9px;height:9px;border-radius:50%;}
+.hv-dot-r{background:#ef4444;}
+.hv-dot-y{background:#f59e0b;}
+.hv-dot-g{background:#22c55e;}
+.hv-url{
+  margin-left:.5rem;
+  background:rgba(255,255,255,.06);
+  border-radius:4px;
+  padding:.2rem .6rem;
+  font-size:.65rem;
+  color:rgba(255,255,255,.3);
+  flex:1;
+  font-family:'Inter',sans-serif;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.hv-body-before{
+  background:#d4cfc9;
+  padding:.8rem;
+  min-height:160px;
+}
+.hv-body-after{
+  background:#0B1525;
+  padding:.8rem;
+  min-height:160px;
+}
+.hv-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:.3rem;
+}
+.hv-arrow-bg{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 8px rgba(244,96,12,.15),0 0 0 16px rgba(244,96,12,.07);
+  animation:hv-pulse 2.5s infinite;
+}
+@keyframes hv-pulse{
+  0%,100%{box-shadow:0 0 0 8px rgba(244,96,12,.15),0 0 0 16px rgba(244,96,12,.07);}
+  50%{box-shadow:0 0 0 12px rgba(244,96,12,.2),0 0 0 22px rgba(244,96,12,.08);}
+}
+.hv-labels{
+  display:grid;
+  grid-template-columns:1fr 60px 1fr;
+  margin-top:.75rem;
+  text-align:center;
+}
+.hv-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.hv-label.bad{color:#ef4444;}
+.hv-label.good{color:#22c55e;}
+@media(max-width:600px){
+  .hero-visual{display:none;}
+}
+
+/* ══ BEFORE/AFTER SLIDER — TradeConvert component ══════════════════════════ */
+
+/* Stage wrapper */
+.tc-stage-wrap{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.07),inset 0 0 0 1px rgba(255,255,255,.07);
+  cursor:ew-resize;
+  aspect-ratio:16/9;
+  background:#111e35;
+  margin-top:3rem;
+  max-width:960px;
+  margin-left:auto;
+  margin-right:auto;
+  user-select:none;
+}
+
+/* Media layers */
+.tc-before,
+.tc-after-clip{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.tc-before img,
+.tc-before video,
+.tc-before .tc-placeholder,
+.tc-after-clip img,
+.tc-after-clip video,
+.tc-after-clip .tc-placeholder{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Placeholder (shown until real media is uploaded) */
+.tc-placeholder{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+.tc-placeholder.before-ph{
+  background:linear-gradient(135deg,#0e1b2e 0%,#1a2a40 40%,#0d1520 100%);
+}
+.tc-placeholder.after-ph{
+  background:linear-gradient(135deg,#0a1520 0%,#1a2d4a 40%,#0b1525 100%);
+}
+.tc-ph-inner{text-align:center;opacity:.45;user-select:none;}
+.tc-ph-icon{font-size:48px;margin-bottom:12px;display:block;}
+.tc-ph-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:15px;
+  letter-spacing:.1em;text-transform:uppercase;color:#7a8fa8;
+}
+.tc-ph-desc{font-size:12px;color:#7a8fa8;margin-top:6px;opacity:.7;max-width:200px;}
+
+/* After layer clips from the right */
+.tc-after-clip{
+  clip-path:inset(0 50% 0 0);
+  will-change:clip-path;
+}
+
+/* Stage labels */
+.tc-stage-label{
+  position:absolute;
+  top:20px;
+  z-index:30;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:800;font-size:13px;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:6px 14px;border-radius:6px;
+  pointer-events:none;
+  backdrop-filter:blur(8px);
+  transition:opacity .3s;
+}
+.tc-label-before{
+  left:20px;
+  background:rgba(92,130,160,.15);
+  border:1px solid rgba(92,130,160,.5);
+  color:#a8c4dc;
+}
+.tc-label-after{
+  right:20px;
+  background:rgba(244,96,12,.15);
+  border:1px solid rgba(244,96,12,.5);
+  color:var(--orange);
+}
+
+/* Divider line */
+.tc-divider{
+  position:absolute;
+  top:0;bottom:0;
+  width:2px;
+  background:rgba(255,255,255,.9);
+  left:50%;
+  transform:translateX(-50%);
+  z-index:25;
+  pointer-events:none;
+  box-shadow:0 0 16px rgba(0,0,0,.5),0 0 4px rgba(255,255,255,.3);
+  will-change:left;
+}
+
+/* Drag handle */
+.tc-handle{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:30;
+  width:52px;height:52px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 6px 28px rgba(0,0,0,.4),0 2px 8px rgba(0,0,0,.2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:ew-resize;
+  will-change:left;
+  transition:transform .12s,box-shadow .12s;
+}
+.tc-handle:hover{
+  transform:translate(-50%,-50%) scale(1.08);
+  box-shadow:0 8px 36px rgba(0,0,0,.45),0 0 0 6px rgba(255,255,255,.12);
+}
+.tc-handle.dragging{transform:translate(-50%,-50%) scale(0.95);}
+.tc-handle svg{width:22px;height:22px;flex-shrink:0;}
+
+/* Context labels below slider */
+.tc-context-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  margin-top:2px;
+  max-width:960px;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius:0 0 18px 18px;
+  overflow:hidden;
+}
+.tc-context-cell{
+  padding:14px 20px;
+  background:#111e35;
+  border:1px solid rgba(255,255,255,.07);
+}
+.tc-context-cell:first-child{border-radius:0 0 0 18px;}
+.tc-context-cell:last-child{border-radius:0 0 18px 0;}
+.tc-context-tag{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:4px;
+}
+.tc-context-cell:first-child .tc-context-tag{color:#5C82A0;}
+.tc-context-cell:last-child  .tc-context-tag{color:var(--orange);}
+.tc-context-desc{font-size:13px;color:#7a8fa8;line-height:1.5;}
+
+/* Hint text */
+.tc-hint{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin-top:16px;font-size:12px;color:var(--mid);opacity:.7;
+}
+.tc-hint svg{width:12px;height:12px;opacity:.5;}
+
+.ba-tag-line{text-align:center;margin-top:2.5rem;font-size:1rem;color:var(--mid);}
+.ba-tag-line span{color:var(--orange);font-weight:700;}
+
+@media(max-width:560px){
+  .tc-stage-wrap{aspect-ratio:4/3;border-radius:12px;}
+  .tc-context-row{grid-template-columns:1fr;}
+  .tc-context-cell:first-child{border-radius:0;}
+  .tc-context-cell:last-child{border-radius:0 0 12px 12px;}
+  .tc-handle{width:44px;height:44px;}
+}
+
+/* ══ HIW ILLUSTRATIONS ══════════════════════════════════════════════════════ */
+.hiw-illus{
+  width:80px;height:80px;
+  margin:0 auto 1.2rem;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+  background:var(--off-white);
+  position:relative;
+}
+.hiw-step.active .hiw-illus{
+  background:rgba(244,96,12,.1);
+}
+.hiw-illus svg{width:38px;height:38px;}
+.hiw-step .hiw-illus svg{color:var(--navy);}
+.hiw-step.active .hiw-illus svg{color:var(--orange);}
+
+/* ══ VIDEO PLACEHOLDER ENHANCED ═════════════════════════════════════════════ */
+.vp-thumb{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+}
+.vp-thumb-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(11,21,37,.7) 0%,rgba(11,21,37,.3) 100%);
+}
+.vp-loom-badge{
+  position:absolute;
+  top:1rem;right:1rem;
+  background:rgba(11,21,37,.85);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:6px;
+  padding:.35rem .7rem;
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.68rem;font-weight:700;color:rgba(255,255,255,.7);
+  text-transform:uppercase;letter-spacing:.08em;
+  pointer-events:none;
+}
+.vp-loom-dot{width:8px;height:8px;border-radius:50%;background:#e2431e;animation:loom-pulse 1.8s infinite;}
+@keyframes loom-pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+
+/* ══ NEW SECTIONS — restructured layout ═══════════════════════════════════ */
+
+/* ── Hero split layout ── */
+.hero-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+  align-items:center;
+  text-align:left;
+  max-width:1100px;
+  margin:0 auto;
+}
+.hero-split .hero-badge{justify-content:flex-start;}
+.hero-split .hero-sub{margin-left:0;max-width:480px;}
+.hero-split .hero-actions{justify-content:flex-start;}
+.hero-split .hero-trust{justify-content:flex-start;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07);}
+.hero-right{position:relative;}
+.hero-media-frame{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:1rem;
+  position:relative;
+}
+.hero-media-frame-label{
+  font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);
+}
+.hero-media-badge{
+  position:absolute;bottom:1rem;left:1rem;
+  background:rgba(11,21,37,.85);border:1px solid rgba(255,255,255,.1);
+  border-radius:5px;padding:.35rem .8rem;
+  font-size:.68rem;font-weight:700;color:rgba(255,255,255,.6);
+  display:flex;align-items:center;gap:.4rem;
+}
+.hero-stat-row{
+  display:flex;flex-direction:column;gap:.6rem;
+  position:absolute;top:1rem;right:-1rem;
+}
+.hero-stat{
+  background:rgba(11,21,37,.9);border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:.5rem .9rem;
+  display:flex;align-items:center;gap:.5rem;white-space:nowrap;
+}
+.hero-stat-num{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;color:var(--orange);}
+.hero-stat-label{font-size:.72rem;color:rgba(255,255,255,.5);}
+@media(max-width:900px){
+  .hero-split{grid-template-columns:1fr;text-align:center;gap:2.5rem;}
+  .hero-split .hero-badge,.hero-split .hero-actions,.hero-split .hero-trust{justify-content:center;}
+  .hero-split .hero-sub{margin:0 auto 2.5rem;}
+  .hero-stat-row{display:none;}
+}
+
+/* ── What Your System Does — feature grid ── */
+.features-section{background:var(--off-white);}
+.feat-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+  margin-top:3rem;
+}
+@media(max-width:800px){.feat-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.feat-grid{grid-template-columns:1fr;}}
+.feat-card{
+  background:var(--white);
+  border:2px solid var(--rule);
+  border-radius:10px;
+  padding:1.75rem 1.5rem;
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+}
+.feat-card:hover{
+  border-color:var(--orange);
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(244,96,12,.08);
+}
+.feat-media{
+  background:var(--off-white);
+  border-radius:8px;
+  height:100px;
+  margin-bottom:1.2rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:rgba(0,0,0,.12);
+  font-size:.62rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:700;
+  border:1px dashed rgba(0,0,0,.1);
+}
+.feat-icon{
+  width:42px;height:42px;border-radius:8px;
+  background:var(--orange-pale);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--orange);margin-bottom:1rem;
+}
+.feat-icon svg{width:22px;height:22px;}
+.feat-title{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:900;text-transform:uppercase;color:var(--navy);margin-bottom:.4rem;}
+.feat-desc{font-size:.84rem;color:var(--mid);line-height:1.6;}
+
+/* ── Estimator / Qualification Spotlight ── */
+.estimator-section{background:var(--navy);overflow:hidden;position:relative;}
+.estimator-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(244,96,12,.08) 0%,transparent 65%);
+  pointer-events:none;
+}
+.estimator-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+  position:relative;z-index:1;
+}
+.estimator-media{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  aspect-ratio:3/2;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.8rem;
+  color:rgba(255,255,255,.2);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+}
+.estimator-ui-preview{
+  position:relative;
+}
+.estimator-step{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  padding:1rem 1.2rem;margin-bottom:.75rem;display:flex;align-items:center;gap:1rem;
+}
+.estimator-step-num{
+  width:28px;height:28px;border-radius:50%;background:var(--orange);
+  color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.estimator-step-text{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.4;}
+.estimator-step-text strong{color:#fff;display:block;font-size:.9rem;}
+.estimator-result{
+  background:rgba(244,96,12,.1);border:1px solid rgba(244,96,12,.3);border-radius:10px;
+  padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;margin-top:.5rem;
+}
+.estimator-result-icon{font-size:1.4rem;}
+.estimator-result-text{font-size:.85rem;color:rgba(255,255,255,.8);}
+.estimator-result-text strong{color:var(--orange);}
+@media(max-width:768px){
+  .estimator-inner{grid-template-columns:1fr;gap:2.5rem;}
+}
+
+/* ── ROI / Money Section ── */
+.roi-section{background:var(--off-white);}
+.roi-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+  margin-top:3rem;
+}
+@media(max-width:700px){.roi-grid{grid-template-columns:1fr;}}
+.roi-card{
+  background:var(--white);border:2px solid var(--rule);border-radius:10px;padding:1.75rem 1.5rem;
+  position:relative;overflow:hidden;
+}
+.roi-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--orange);
+}
+.roi-num{
+  font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:900;
+  color:var(--orange);line-height:1;margin-bottom:.4rem;
+}
+.roi-label{font-weight:700;color:var(--navy);font-size:1rem;margin-bottom:.4rem;}
+.roi-desc{font-size:.82rem;color:var(--mid);line-height:1.55;}
+.roi-calc{
+  background:var(--navy);border-radius:10px;padding:2rem;margin-top:3rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;
+}
+@media(max-width:600px){.roi-calc{grid-template-columns:1fr;}}
+.roi-calc-left{}
+.roi-calc-title{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:.5rem;}
+.roi-calc-sub{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.6;}
+.roi-calc-right{
+  display:flex;flex-direction:column;gap:.6rem;
+}
+.roi-calc-line{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.6rem .8rem;background:rgba(255,255,255,.05);border-radius:6px;
+  border:1px solid rgba(255,255,255,.07);
+}
+.roi-calc-key{font-size:.83rem;color:rgba(255,255,255,.55);}
+.roi-calc-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:#fff;}
+.roi-calc-line.highlight .roi-calc-key{color:rgba(255,255,255,.7);}
+.roi-calc-line.highlight .roi-calc-val{color:var(--orange);font-size:1.2rem;}
+
+/* ── Trust / Proof Section ── */
+.proof-section{background:var(--white);}
+.proof-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+  margin-top:3rem;
+}
+@media(max-width:700px){.proof-grid{grid-template-columns:1fr;}}
+.proof-card{
+  border:2px solid var(--rule);border-radius:10px;overflow:hidden;
+}
+.proof-media{
+  background:var(--off-white);
+  aspect-ratio:4/3;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;
+  color:rgba(0,0,0,.2);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+}
+.proof-caption{
+  padding:1rem 1.2rem;background:var(--white);
+  border-top:1px solid var(--rule);
+}
+.proof-caption-title{font-weight:700;color:var(--navy);font-size:.88rem;margin-bottom:.2rem;}
+.proof-caption-sub{font-size:.75rem;color:var(--mid);}
+
+/* Testimonial placeholder strip */
+.testimonial-strip{
+  background:var(--navy);padding:3rem 2rem;margin-top:3rem;border-radius:10px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.testimonial-strip p{font-size:1.1rem;color:rgba(255,255,255,.65);font-style:italic;max-width:600px;line-height:1.7;margin-bottom:1.2rem;}
+.testimonial-strip cite{font-size:.82rem;color:var(--orange);font-weight:700;font-style:normal;letter-spacing:.04em;}
+
+/* ── Objections Section ── */
+.objections-section{background:var(--off-white);}
+.obj-list{
+  display:flex;flex-direction:column;gap:.75rem;
+  margin-top:2.5rem;max-width:760px;
+}
+.obj-item{
+  background:var(--white);border:2px solid var(--rule);border-radius:8px;overflow:hidden;
+}
+.obj-trigger{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.2rem 1.5rem;background:none;border:none;cursor:pointer;text-align:left;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.obj-trigger:hover{background:rgba(0,0,0,.02);}
+.obj-q{font-weight:700;color:var(--navy);font-size:.95rem;}
+.obj-chevron{width:18px;height:18px;flex-shrink:0;color:var(--orange);transition:transform .25s;}
+.obj-item.open .obj-chevron{transform:rotate(180deg);}
+.obj-body{
+  max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s ease;
+  padding:0 1.5rem;
+}
+.obj-item.open .obj-body{max-height:200px;padding:.25rem 1.5rem 1.2rem;}
+.obj-body p{font-size:.88rem;color:var(--mid);line-height:1.7;border-left:3px solid var(--orange);padding-left:1rem;}
+
+/* ── Tighten spacing between alternating sections ── */
+.section{padding:5rem 2rem;}
+@media(max-width:768px){.section{padding:3.5rem 1.2rem;}}
+
+/* ══ VISUAL CLEANUP — simplified, more open, less nested ═════════════════ */
+
+/* Remove trade-cards section redundancy (relatable section removed) */
+.relatable-section { display: none; }
+
+/* Hero: tighter, cleaner */
+.hero { padding: 6rem 2rem 4.5rem; }
+.hero::before { opacity: .7; }
+.hero-split { max-width: 1080px; }
+.hero-media-frame {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px;
+}
+.hero-stat {
+  background: rgba(11,21,37,.7);
+  border: 1px solid rgba(255,255,255,.07);
+  box-shadow: none;
+}
+
+/* Trust strip: lighter */
+.trust-strip { background: var(--navy); border-top: 1px solid rgba(255,255,255,.05); }
+
+/* Trades strip: cleaner */
+.trades-strip { padding: .9rem 2rem; }
+
+/* Sections: generous, open */
+.section { padding: 5.5rem 2rem; }
+@media(max-width:768px){ .section{ padding: 3.5rem 1.2rem; } }
+
+/* Before/After section: open, no background frame */
+.ba-section { background: var(--off-white); }
+.ba-section .container { max-width: 1060px; }
+.tc-stage-wrap { margin-top: 2.5rem; }
+.tc-context-row { border-radius: 0 0 14px 14px; }
+.tc-hint { margin-top: 1.2rem; }
+.ba-tag-line { margin-top: 2rem; }
+
+/* Video section: let content breathe */
+.video-section { background: var(--navy); }
+.video-inner { gap: 3.5rem; }
+.video-placeholder { border-radius: 12px; }
+.video-guide-box {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+/* Scanner: simplified framing — no extra shells */
+.scanner-section { padding: 5rem 2rem; }
+.scanner-intro { margin-bottom: 2rem; }
+.scanner-intro h2 { font-size: clamp(1.8rem, 4vw, 3rem); }
+/* Soften the scanner card borders */
+.sc-scan-form {
+  background: var(--sc-navy-card);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,.25);
+}
+/* Results panels: flatter, less boxed */
+.sc-summary-card {
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,.05);
+}
+.sc-findings-panel {
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,.04);
+}
+
+/* Problems: open on navy, cards lighter */
+.problems-section { padding: 5.5rem 2rem; }
+.problems-grid { margin-top: 2.5rem; }
+.prob-card {
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.03);
+}
+/* Remove the prob-cta box - replace with simple CTA */
+.prob-cta {
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.07);
+  border-radius: 0;
+  padding: 2rem 0 0;
+  margin-top: 2rem;
+}
+.prob-cta p { color: rgba(255,255,255,.6); }
+.prob-cta p strong { color: #fff; }
+
+/* Features: clean off-white, borderless cards */
+.features-section { background: var(--white); }
+.feat-card {
+  border: 1px solid var(--rule);
+  box-shadow: none;
+  border-radius: 8px;
+}
+.feat-card:hover {
+  box-shadow: 0 6px 24px rgba(244,96,12,.07);
+}
+.feat-media {
+  background: var(--off-white);
+  border: 1px dashed rgba(0,0,0,.08);
+}
+
+/* Estimator: dark, simple split — no inner shells */
+.estimator-section { background: var(--navy); }
+.estimator-section::before { opacity: .6; }
+.estimator-media {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px;
+}
+.estimator-step {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.estimator-result {
+  background: rgba(244,96,12,.08);
+  border: 1px solid rgba(244,96,12,.2);
+}
+
+/* ROI: off-white, flat cards */
+.roi-section { background: var(--off-white); }
+.roi-card {
+  box-shadow: none;
+  border: 1px solid var(--rule);
+}
+/* ROI calc: dark block, no inner boxes */
+.roi-calc {
+  border-radius: 10px;
+  gap: 3rem;
+}
+.roi-calc-line {
+  background: rgba(255,255,255,.04);
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  border-radius: 0;
+  padding: .7rem 0;
+}
+.roi-calc-line:last-child { border-bottom: none; }
+.roi-calc-line.highlight { border-top: 1px solid rgba(255,255,255,.1); padding-top: .9rem; }
+
+/* HIW: white, open — remove hiw-bottom dark box */
+.hiw-section { background: var(--white); }
+.hiw-bottom {
+  background: transparent;
+  border-radius: 0;
+  border-top: 1px solid var(--rule);
+  padding: 2rem 0 0;
+  margin-top: 2.5rem;
+}
+.hiw-bottom p { color: var(--mid); }
+.hiw-bottom p strong { color: var(--navy); }
+
+/* Proof section: white, cards flatter */
+.proof-section { background: var(--off-white); }
+.proof-card {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  box-shadow: none;
+}
+.proof-media {
+  background: rgba(0,0,0,.03);
+  border-bottom: 1px solid var(--rule);
+}
+/* Testimonial: simple, no outer box */
+.testimonial-strip {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 2.5rem 2rem;
+  margin-top: 2.5rem;
+}
+
+/* Objections: white, borderless accordion feel */
+.objections-section { background: var(--white); }
+.obj-list { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-top: 2.5rem; }
+.obj-item { border-radius: 0; border: none; border-bottom: 1px solid var(--rule); }
+.obj-item:last-child { border-bottom: none; }
+.obj-trigger { padding: 1.1rem 1.4rem; }
+.obj-body p { border-left: 2px solid var(--orange); padding-left: .9rem; }
+
+/* Pricing: off-white, cards cleaner */
+.pricing-section { background: var(--off-white); }
+.pricing-section > div { max-width: 1200px; padding: 0 2rem; }
+.price-grid { gap: 1.25rem; }
+.price-card { border-radius: 10px; box-shadow: none; }
+.price-card:hover { box-shadow: 0 8px 30px rgba(11,21,37,.1); }
+.pricing-no-call { margin-bottom: 2rem; }
+
+/* Urgency band: bolder, simpler */
+.urgency-band {
+  background: var(--orange);
+  padding: 2.5rem 2rem;
+}
+.urgency-band h3 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); margin-bottom: .75rem; }
+.urgency-band p { margin-bottom: 0; }
+.urgency-spots { background: rgba(255,255,255,.18); border-radius: 100px; }
+
+/* Final CTA: open, no inner containers */
+.final-cta { padding: 5.5rem 2rem; }
+.final-cta::before { opacity: .8; }
+.final-cta h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: .75rem; }
+.final-actions { gap: 1.2rem; }
+
+/* Footer: slightly cleaner */
+footer { border-top: 1px solid rgba(255,255,255,.05); }
 </style>
 </head>
 <body>
@@ -1195,28 +1967,49 @@ footer .logo{}
 
 <!-- ══ HERO ════════════════════════════════════════════════════════════════════ -->
 <section class="hero">
-  <!-- ══ Brand logo animation — plays once on load ══ -->
-  <div class="hero-logo-anim" id="heroLogoAnim" aria-hidden="true">
+    <div class="hero-logo-anim" id="heroLogoAnim" aria-hidden="true">
     <svg viewBox="0 0 438.56 99.5" role="img" aria-label="TradeConvert.co.uk" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
       <g class="logo-trade" fill="#FFFFFF"><path d="M32.72 8.96V15.04Q32.72 15.44 32.44 15.72Q32.16 16 31.76 16H21.6Q21.2 16 21.2 16.4V63.04Q21.2 63.44 20.92 63.72Q20.64 64 20.24 64H12.88Q12.48 64 12.2 63.72Q11.92 63.44 11.92 63.04V16.4Q11.92 16 11.52 16H1.84Q1.44 16 1.16 15.72Q0.88 15.44 0.88 15.04V8.96Q0.88 8.56 1.16 8.28Q1.44 8 1.84 8H31.76Q32.16 8 32.44 8.28Q32.72 8.56 32.72 8.96Z"/><path d="M60.72 63.2 53.92 40.24Q53.76 39.92 53.52 39.92H49.28Q48.88 39.92 48.88 40.32V63.04Q48.88 63.44 48.6 63.72Q48.32 64 47.92 64H40.56Q40.16 64 39.88 63.72Q39.6 63.44 39.6 63.04V8.96Q39.6 8.56 39.88 8.28Q40.16 8 40.56 8H55.6Q59.84 8 63.08 10.04Q66.32 12.08 68.12 15.8Q69.92 19.52 69.92 24.32Q69.92 29.28 68 32.92Q66.08 36.56 62.64 38.4Q62.32 38.56 62.4 38.88L70.16 62.88Q70.24 63.04 70.24 63.28Q70.24 64 69.36 64H61.76Q60.96 64 60.72 63.2ZM48.88 16.4V32.32Q48.88 32.72 49.28 32.72H54.08Q57.04 32.72 58.84 30.48Q60.64 28.24 60.64 24.4Q60.64 20.56 58.84 18.28Q57.04 16 54.08 16H49.28Q48.88 16 48.88 16.4Z"/><path d="M100 63.12 98.48 54.72Q98.48 54.32 98 54.32H86.32Q85.84 54.32 85.84 54.72L84.32 63.12Q84.24 64 83.28 64H75.92Q74.88 64 75.12 62.96L86.88 8.88Q87.04 8 87.92 8H96.48Q97.36 8 97.52 8.88L109.36 62.96V63.28Q109.36 64 108.48 64H101.04Q100.08 64 100 63.12ZM87.68 47.04H96.56Q97.04 47.04 96.96 46.64L92.32 21.36Q92.24 21.12 92.08 21.12Q91.92 21.12 91.84 21.36L87.28 46.64Q87.2 47.04 87.68 47.04Z"/><path d="M117.28 8H130.88Q137.76 8 141.92 12.16Q146.08 16.32 146.08 23.28V48.72Q146.08 55.68 141.92 59.84Q137.76 64 130.88 64H117.28Q116.88 64 116.6 63.72Q116.32 63.44 116.32 63.04V8.96Q116.32 8.56 116.6 8.28Q116.88 8 117.28 8ZM136.8 48.16V23.84Q136.8 20.24 135.16 18.12Q133.52 16 130.72 16H126Q125.6 16 125.6 16.4V55.6Q125.6 56 126 56L130.8 55.92Q133.44 55.92 135.04 53.8Q136.64 51.68 136.8 48.16Z"/><path d="M181.84 16H164.56Q164.16 16 164.16 16.4V31.52Q164.16 31.92 164.56 31.92H174.8Q175.2 31.92 175.48 32.2Q175.76 32.48 175.76 32.88V39.04Q175.76 39.44 175.48 39.72Q175.2 40 174.8 40H164.56Q164.16 40 164.16 40.4V55.6Q164.16 56 164.56 56H181.84Q182.24 56 182.52 56.28Q182.8 56.56 182.8 56.96V63.04Q182.8 63.44 182.52 63.72Q182.24 64 181.84 64H155.84Q155.44 64 155.16 63.72Q154.88 63.44 154.88 63.04V8.96Q154.88 8.56 155.16 8.28Q155.44 8 155.84 8H181.84Q182.24 8 182.52 8.28Q182.8 8.56 182.8 8.96V15.04Q182.8 15.44 182.52 15.72Q182.24 16 181.84 16Z"/></g>
       <g class="logo-convert" fill="#F4600C"><path d="M188.64 48.24V23.68Q188.64 16.16 193.2 11.76Q197.76 7.36 205.36 7.36Q212.96 7.36 217.56 11.76Q222.16 16.16 222.16 23.68V24.4Q222.16 24.8 221.88 25.08Q221.6 25.36 221.2 25.36L209.84 25.84Q208.88 25.84 208.88 24.88V22.72Q208.88 20.88 207.92 19.8Q206.96 18.72 205.36 18.72Q203.84 18.72 202.88 19.8Q201.92 20.88 201.92 22.72V49.36Q201.92 51.12 202.88 52.2Q203.84 53.28 205.36 53.28Q206.96 53.28 207.92 52.2Q208.88 51.12 208.88 49.36V47.04Q208.88 46.64 209.16 46.36Q209.44 46.08 209.84 46.08L221.2 46.56Q221.6 46.56 221.88 46.84Q222.16 47.12 222.16 47.52V48.24Q222.16 55.68 217.56 60.16Q212.96 64.64 205.36 64.64Q197.76 64.64 193.2 60.16Q188.64 55.68 188.64 48.24Z"/><path d="M223.2 48.08V23.92Q223.2 16.4 227.8 11.88Q232.4 7.36 240.16 7.36Q247.92 7.36 252.56 11.88Q257.2 16.4 257.2 23.92V48.08Q257.2 55.68 252.56 60.16Q247.92 64.64 240.16 64.64Q232.4 64.64 227.8 60.16Q223.2 55.68 223.2 48.08ZM243.92 48.64V23.36Q243.92 21.2 242.92 19.96Q241.92 18.72 240.16 18.72Q238.4 18.72 237.44 19.96Q236.48 21.2 236.48 23.36V48.64Q236.48 50.8 237.44 52.04Q238.4 53.28 240.16 53.28Q241.92 53.28 242.92 52.04Q243.92 50.8 243.92 48.64Z"/><path d="M284.32 8H295.52Q295.92 8 296.2 8.28Q296.48 8.56 296.48 8.96V63.04Q296.48 63.44 296.2 63.72Q295.92 64 295.52 64H282.8Q281.92 64 281.68 63.2L273.76 35.36Q273.68 35.12 273.48 35.08Q273.28 35.04 273.28 35.36L273.44 63.04Q273.44 63.44 273.16 63.72Q272.88 64 272.48 64H261.2Q260.8 64 260.52 63.72Q260.24 63.44 260.24 63.04V8.96Q260.24 8.56 260.52 8.28Q260.8 8 261.2 8H273.76Q274.64 8 274.88 8.8L282.96 36.8Q283.04 37.04 283.2 37Q283.36 36.96 283.36 36.72V8.96Q283.36 8.56 283.64 8.28Q283.92 8 284.32 8Z"/><path d="M322.48 8H334.56Q335.6 8 335.36 9.04L323.92 63.12Q323.76 64 322.88 64H310.32Q309.44 64 309.28 63.12L297.92 9.04L297.84 8.72Q297.84 8 298.72 8H311.12Q312.08 8 312.16 8.88L316.72 41.52Q316.8 41.76 317 41.76Q317.2 41.76 317.2 41.52L321.52 8.88Q321.6 8 322.48 8Z"/><path d="M366.56 19.36H350.4Q350 19.36 350 19.76V29.84Q350 30.24 350.4 30.24H359.28Q359.68 30.24 359.96 30.52Q360.24 30.8 360.24 31.2V40.72Q360.24 41.12 359.96 41.4Q359.68 41.68 359.28 41.68H350.4Q350 41.68 350 42.08V52.24Q350 52.64 350.4 52.64H366.56Q366.96 52.64 367.24 52.92Q367.52 53.2 367.52 53.6V63.04Q367.52 63.44 367.24 63.72Q366.96 64 366.56 64H337.68Q337.28 64 337 63.72Q336.72 63.44 336.72 63.04V8.96Q336.72 8.56 337 8.28Q337.28 8 337.68 8H366.56Q366.96 8 367.24 8.28Q367.52 8.56 367.52 8.96V18.4Q367.52 18.8 367.24 19.08Q366.96 19.36 366.56 19.36Z"/><path d="M390.48 63.2 385.04 42Q384.96 41.68 384.64 41.68H383.44Q383.04 41.68 383.04 42.08V63.04Q383.04 63.44 382.76 63.72Q382.48 64 382.08 64H370.72Q370.32 64 370.04 63.72Q369.76 63.44 369.76 63.04V8.96Q369.76 8.56 370.04 8.28Q370.32 8 370.72 8H388Q392.64 8 396.2 10.2Q399.76 12.4 401.76 16.36Q403.76 20.32 403.76 25.36Q403.76 29.92 402.08 33.44Q400.4 36.96 397.44 39.12Q397.28 39.2 397.2 39.32Q397.12 39.44 397.2 39.6L404.08 62.88L404.16 63.2Q404.16 64 403.28 64H391.6Q390.72 64 390.48 63.2ZM383.04 19.76V31.12Q383.04 31.52 383.44 31.52H385.68Q387.84 31.52 389.16 29.92Q390.48 28.32 390.48 25.52Q390.48 22.56 389.16 20.96Q387.84 19.36 385.68 19.36H383.44Q383.04 19.36 383.04 19.76Z"/><path d="M439.6 8.96V18.4Q439.6 18.8 439.32 19.08Q439.04 19.36 438.64 19.36H428.8Q428.4 19.36 428.4 19.76V63.04Q428.4 63.44 428.12 63.72Q427.84 64 427.44 64H416.08Q415.68 64 415.4 63.72Q415.12 63.44 415.12 63.04V19.76Q415.12 19.36 414.72 19.36H405.12Q404.72 19.36 404.44 19.08Q404.16 18.8 404.16 18.4V8.96Q404.16 8.56 404.44 8.28Q404.72 8 405.12 8H438.64Q439.04 8 439.32 8.28Q439.6 8.56 439.6 8.96Z"/></g>
       <g class="logo-couk" fill="#5C82A0"><path d="M402.83 94.465Q402.83 94 403.13 93.7Q403.43 93.4 403.895 93.4Q404.36 93.4 404.653 93.7Q404.945 94 404.945 94.465Q404.945 94.93 404.645 95.23Q404.345 95.53 403.895 95.53Q403.43 95.53 403.13 95.23Q402.83 94.93 402.83 94.465Z"/><path d="M406.745 93.175V90.145Q406.745 89.05 407.457 88.382Q408.17 87.715 409.4 87.715Q410.63 87.715 411.35 88.368Q412.07 89.02 412.07 90.025V90.235Q412.07 90.31 412.018 90.363Q411.965 90.415 411.89 90.415L410.51 90.475Q410.33 90.475 410.33 90.295V90.145Q410.33 89.77 410.067 89.493Q409.805 89.215 409.4 89.215Q408.995 89.215 408.74 89.515Q408.485 89.815 408.485 90.28V93.055Q408.485 93.52 408.74 93.82Q408.995 94.12 409.4 94.12Q409.805 94.12 410.067 93.843Q410.33 93.565 410.33 93.175V93.025Q410.33 92.95 410.383 92.898Q410.435 92.845 410.51 92.845L411.89 92.86Q411.965 92.86 412.018 92.912Q412.07 92.965 412.07 93.04V93.31Q412.07 94.345 411.35 94.983Q410.63 95.62 409.4 95.62Q408.17 95.62 407.457 94.96Q406.745 94.3 406.745 93.175Z"/><path d="M413.645 93.175V90.16Q413.645 89.05 414.365 88.382Q415.085 87.715 416.315 87.715Q417.56 87.715 418.28 88.382Q419 89.05 419 90.16V93.175Q419 94.3 418.288 94.96Q417.575 95.62 416.315 95.62Q415.07 95.62 414.357 94.96Q413.645 94.3 413.645 93.175ZM417.26 93.04V90.28Q417.26 89.815 416.998 89.515Q416.735 89.215 416.315 89.215Q415.895 89.215 415.64 89.507Q415.385 89.8 415.385 90.28V93.04Q415.385 93.52 415.64 93.812Q415.895 94.105 416.315 94.105Q416.735 94.105 416.998 93.812Q417.26 93.52 417.26 93.04Z"/><path d="M420.8 94.465Q420.8 94 421.1 93.7Q421.4 93.4 421.865 93.4Q422.33 93.4 422.622 93.7Q422.915 94 422.915 94.465Q422.915 94.93 422.615 95.23Q422.315 95.53 421.865 95.53Q421.4 95.53 421.1 95.23Q420.8 94.93 420.8 94.465Z"/><path d="M428.6 87.835H429.98Q430.055 87.835 430.107 87.887Q430.16 87.94 430.16 88.015V95.32Q430.16 95.395 430.107 95.447Q430.055 95.5 429.98 95.5H428.6Q428.525 95.5 428.472 95.447Q428.42 95.395 428.42 95.32V94.99Q428.42 94.945 428.39 94.93Q428.36 94.915 428.33 94.96Q427.895 95.605 426.935 95.605Q426.02 95.605 425.457 95.058Q424.895 94.51 424.895 93.37V88.015Q424.895 87.94 424.947 87.887Q425 87.835 425.075 87.835H426.455Q426.53 87.835 426.582 87.887Q426.635 87.94 426.635 88.015V92.995Q426.635 94.12 427.505 94.12Q427.94 94.12 428.18 93.797Q428.42 93.475 428.42 92.92V88.015Q428.42 87.94 428.472 87.887Q428.525 87.835 428.6 87.835Z"/><path d="M432.425 85H433.805Q433.88 85 433.933 85.053Q433.985 85.105 433.985 85.18V90.52Q433.985 90.58 434.015 90.58Q434.045 90.58 434.075 90.535L435.71 87.955Q435.77 87.835 435.92 87.835H437.36Q437.465 87.835 437.495 87.903Q437.525 87.97 437.465 88.06L435.905 90.415Q435.875 90.475 435.89 90.52L437.69 95.29Q437.705 95.32 437.705 95.365Q437.705 95.5 437.54 95.5H436.115Q435.965 95.5 435.92 95.35L434.825 91.96Q434.81 91.915 434.787 91.915Q434.765 91.915 434.735 91.945L434.015 92.995Q433.985 93.055 433.985 93.085V95.32Q433.985 95.395 433.933 95.447Q433.88 95.5 433.805 95.5H432.425Q432.35 95.5 432.297 95.447Q432.245 95.395 432.245 95.32V85.18Q432.245 85.105 432.297 85.053Q432.35 85 432.425 85Z"/></g>
     </svg>
   </div>
-  <div class="hero-badge"><span class="badge-dot"></span> For Bathroom Fitters</div>
-  <h1><span class="block">Your website</span><span class="block highlight">is losing</span><span class="block">bathroom jobs</span></h1>
-  <p class="hero-sub">Every day your site is slow, broken on mobile, or missing the basics — bathroom fit enquiries go to someone else. We fix that in 48–72 hours.</p>
-  <div class="hero-actions">
-    <a href="#scanner" class="btn-orange">Scan My Website Free →</a>
-    <a href="tel:01919260045" class="btn-call">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.26.2 2.47.57 3.58.11.35.03.74-.24 1.02L6.6 10.8z"/></svg>
-      Call Now
-    </a>
-  </div>
-  <div class="hero-trust">
-    <div class="ht-item"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>Free scan — <strong>no obligation</strong></span></div>
-    <div class="ht-item"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>First draft in <strong>48–72 hours</strong></span></div>
-    <div class="ht-item"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>No call needed to <strong>get started</strong></span></div>
+  <div class="hero-split">
+    <div class="hero-left">
+      <div class="hero-badge"><span class="badge-dot"></span> For Bathroom Fitters</div>
+      <h1><span class="block">Your website</span><span class="block highlight">is losing</span><span class="block">bathroom jobs</span></h1>
+      <p class="hero-sub">Every day your site is slow, broken on mobile, or missing the basics — bathroom fit enquiries go to someone else. We fix that in 48–72 hours.</p>
+      <div class="hero-actions">
+        <a href="#scanner" class="btn-orange">Scan My Website Free →</a>
+        <a href="tel:01919260045" class="btn-call">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.26.2 2.47.57 3.58.11.35.03.74-.24 1.02L6.6 10.8z"/></svg>
+          Call Now
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="ht-item"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>Free scan — <strong>no obligation</strong></span></div>
+        <div class="ht-item"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>First draft in <strong>48–72 hours</strong></span></div>
+        <div class="ht-item"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>No call needed to <strong>get started</strong></span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-row">
+        <div class="hero-stat"><span class="hero-stat-num">8–15</span><span class="hero-stat-label">enquiries/week</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">48h</span><span class="hero-stat-label">first draft</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">£0</span><span class="hero-stat-label">to scan your site</span></div>
+      </div>
+      <div class="hero-media-frame">
+        <!-- HERO_VISUAL_ESTIMATOR -->
+        <!-- HERO_VISUAL_DASHBOARD -->
+        <!-- HERO_VISUAL_ONSITE   -->
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span class="hero-media-frame-label">Visual goes here</span>
+        <div class="hero-media-badge">
+          <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;box-shadow:0 0 6px rgba(34,197,94,.7)"></span>
+          Live system preview
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1243,18 +2036,176 @@ footer .logo{}
   </div>
 </div>
 
+<!-- ══ BEFORE / AFTER ════════════════════════════════════════════════════════ -->
+<section class="section ba-section">
+  <div class="container">
+    <div class="section-chip">The transformation</div>
+    <h2>Before <span class="em">vs</span> after</h2>
+    <p class="lead">A better-looking site is a byproduct. The real goal is more calls.</p>
+
+    <!--
+    ══ BEFORE / AFTER SLIDER — update via Netlify ══════════════════════
+    Upload to /media/ in repo root:
+      media/before.jpg  (or before.mp4)
+      media/after.jpg   (or after.mp4)
+    Placeholders show automatically until files are uploaded.
+    ════════════════════════════════════════════════════════════════════
+    -->
+    <!-- Stage -->
+    <div class="tc-stage-wrap reveal" id="tcStage">
+
+      <!-- ── BEFORE layer (bottom) ───────────────────────────── -->
+      <div class="tc-before">
+
+        <video autoplay muted loop playsinline preload="none" id="tcBeforeVid">
+          <source src="./media/before.mp4" type="video/mp4">
+        </video>
+
+      </div>
+
+      <!-- ── AFTER layer (clipped on top) ────────────────────── -->
+      <div class="tc-after-clip" id="tcAfterClip">
+
+        <video autoplay muted loop playsinline preload="none" id="tcAfterVid">
+          <source src="./media/after.mp4" type="video/mp4">
+        </video>
+
+      </div>
+
+      <!-- Labels -->
+      <div class="tc-stage-label tc-label-before">Before</div>
+      <div class="tc-stage-label tc-label-after">After</div>
+
+      <!-- Slider controls -->
+      <div class="tc-divider" id="tcDivider"></div>
+      <div class="tc-handle"  id="tcHandle">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 5L4 12L9 19"  stroke="#0B1525" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 5L20 12L15 19" stroke="#0B1525" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+    </div><!-- /tc-stage-wrap -->
+
+    <!-- Context labels -->
+    <div class="tc-context-row">
+      <div class="tc-context-cell">
+        <div class="tc-context-tag">Before TradeConvert</div>
+        <div class="tc-context-desc">No contact button, broken on mobile, slow load, no reviews — 0–2 enquiries a week.</div>
+      </div>
+      <div class="tc-context-cell">
+        <div class="tc-context-tag">After TradeConvert</div>
+        <div class="tc-context-desc">Fast, mobile-first, trust signals front and centre — 8–15 qualified enquiries a week.</div>
+      </div>
+    </div>
+
+    <!-- Hint -->
+    <div class="tc-hint">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 5L4 12L9 19M15 5L20 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Drag the slider to reveal the difference
+    </div>
+
+    <p class="ba-tag-line reveal">Every build is measured on one thing — <span>more bathroom enquiries.</span></p>
+  </div>
+</section>
+
+<!-- ══ VIDEO / DEMO ══════════════════════════════════════════════════════════ -->
+<section class="section video-section">
+  <div class="container">
+    <div class="video-inner">
+      <div>
+        <div class="video-placeholder">
+          <!-- Thumbnail: bathroom scene SVG -->
+          <div class="vp-thumb">
+            <svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+              <!-- Room background -->
+              <rect width="560" height="315" fill="#1a2e44"/>
+              <!-- Floor -->
+              <rect x="0" y="220" width="560" height="95" fill="#16253a"/>
+              <!-- Tiles on wall -->
+              <rect x="0" y="60" width="560" height="165" fill="#1e3050"/>
+              <!-- Tile grid -->
+              <line x1="0" y1="95" x2="560" y2="95" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="0" y1="130" x2="560" y2="130" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="0" y1="165" x2="560" y2="165" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="0" y1="200" x2="560" y2="200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="80" y1="60" x2="80" y2="225" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+              <line x1="160" y1="60" x2="160" y2="225" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+              <line x1="240" y1="60" x2="240" y2="225" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+              <line x1="320" y1="60" x2="320" y2="225" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+              <line x1="400" y1="60" x2="400" y2="225" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+              <line x1="480" y1="60" x2="480" y2="225" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+              <!-- Feature tile stripe -->
+              <rect x="0" y="140" width="560" height="30" fill="rgba(244,96,12,.06)"/>
+              <!-- Bath/shower unit -->
+              <rect x="320" y="130" width="220" height="100" rx="6" fill="#152540" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+              <ellipse cx="430" cy="180" rx="60" ry="30" fill="#1a2e44" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+              <ellipse cx="430" cy="178" rx="50" ry="24" fill="#1e3a5a"/>
+              <!-- Tap -->
+              <rect x="490" y="136" width="8" height="30" rx="3" fill="rgba(255,255,255,.2)"/>
+              <rect x="486" y="136" width="16" height="6" rx="2" fill="rgba(255,255,255,.15)"/>
+              <!-- Vanity unit -->
+              <rect x="20" y="160" width="200" height="65" rx="4" fill="#152540" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+              <rect x="20" y="160" width="200" height="4" fill="rgba(255,255,255,.08)"/>
+              <ellipse cx="120" cy="163" rx="55" ry="18" fill="#1a2e44" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+              <!-- Mirror -->
+              <rect x="28" y="75" width="180" height="82" rx="4" fill="#1a2e44" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+              <rect x="34" y="81" width="168" height="70" rx="2" fill="rgba(255,255,255,.03)"/>
+              <!-- Light reflection in mirror -->
+              <rect x="34" y="81" width="168" height="3" fill="rgba(255,255,255,.06)" rx="1"/>
+              <!-- Gradient overlay -->
+              <rect width="560" height="315" fill="url(#vthumb-grad)"/>
+              <defs>
+                <linearGradient id="vthumb-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0B1525" stop-opacity=".45"/>
+                  <stop offset="50%" stop-color="#0B1525" stop-opacity=".1"/>
+                  <stop offset="100%" stop-color="#0B1525" stop-opacity=".6"/>
+                </linearGradient>
+              </defs>
+              <!-- "Example results" overlay text -->
+              <text x="280" y="35" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.3)" font-family="sans-serif" font-weight="600" letter-spacing="2">EXAMPLE SITE WALKTHROUGH</text>
+              <!-- Bottom bar -->
+              <rect x="0" y="280" width="560" height="35" fill="rgba(11,21,37,.75)"/>
+              <circle cx="20" cy="298" r="8" fill="rgba(244,96,12,.8)"/>
+              <rect x="36" y="292" width="160" height="6" rx="2" fill="rgba(255,255,255,.5)"/>
+              <rect x="36" y="302" width="100" height="5" rx="2" fill="rgba(255,255,255,.25)"/>
+              <rect x="460" y="291" width="80" height="14" rx="3" fill="rgba(244,96,12,.7)"/>
+              <text x="500" y="302" text-anchor="middle" font-size="8" fill="white" font-family="sans-serif" font-weight="700">VIEW RESULTS</text>
+            </svg>
+            <div class="vp-thumb-overlay"></div>
+          </div>
+          <div class="vp-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="vp-label"><div class="vp-dot"></div><div class="vp-text">Example — AI Video Hero Section</div></div>
+          <div class="vp-loom-badge"><div class="vp-loom-dot"></div> Loom Audit</div>
+        </div>
+        <div class="video-guide-box">
+          <div class="vg-ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zM10 6v4l3 2"/></svg></div>
+          <div><div class="vg-title">Your audit delivered via Loom</div><div class="vg-desc">We screen-record a personal walkthrough of your site and send it within 24–48 hours.</div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-chip" style="color:var(--orange)">What sets it apart</div>
+        <h2 class="light">A face builds trust<br><span class="em">before they even call</span></h2>
+        <p style="color:rgba(255,255,255,.55);font-size:1rem;line-height:1.7;margin-bottom:2rem;">Most bathroom fitter websites are just photos and a phone number. Yours will have a short intro video — the fastest way to get a stranger to trust you enough to pick up the phone.</p>
+        <div class="video-points">
+          <div class="vpt"><div class="vpt-num">1</div><div><div class="vpt-title">People hire who they feel comfortable with</div><div class="vpt-desc">A 60-second video does more for trust than any written testimonial. It shows who you are before they call.</div></div></div>
+          <div class="vpt"><div class="vpt-num">2</div><div><div class="vpt-title">No local competitor is doing this</div><div class="vpt-desc">In your area, the bathroom fitter with video on their homepage stands out immediately. That's your edge.</div></div></div>
+          <div class="vpt"><div class="vpt-num">3</div><div><div class="vpt-title">15 minutes of your time, that's it</div><div class="vpt-desc">Phone camera, natural light. We handle editing, enhancement, and placement on your site.</div></div></div>
+        </div>
+        <button onclick="openBuyModal()" class="btn-orange" style="cursor:pointer;">Get Started — From £150 Deposit →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ SCANNER SECTION ═════════════════════════════════════════════════════════ -->
 <section class="scanner-section" id="scanner">
   <div class="scanner-inner">
-
-    <!-- Single intro -->
     <div class="scanner-intro reveal">
       <div class="section-chip">Free Bathroom Fitter Website Scan</div>
-      <h2>Scan your bathroom fitter website <span class="em">in 30 seconds</span></h2>
-      <p class="lead">See exactly what's costing you bathroom fit enquiries — speed, mobile-readiness, trust signals, and the conversion issues stopping people from calling.</p>
+      <h2>Is your website <span class="em">costing you jobs?</span></h2>
+      <p class="lead">Scan your site in 30 seconds. See exactly what's stopping bathroom customers from calling you — and what to fix first.</p>
     </div>
-
-    <!-- Scanner App -->
     <div id="sc-app">
 
       <!-- STATE 1: INPUT -->
@@ -1498,9 +2449,10 @@ footer .logo{}
       </section>
 
     </div><!-- /sc-app -->
-  </div><!-- /scanner-inner -->
+  </div>
 </section>
 
+<!-- ══ MODALS ════════════════════════════════════════════════════════════════ -->
 <!-- ══ LEAD MODAL ═══════════════════════════════════════════════════════════ -->
 <div class="sc-modal-overlay" id="sc-modal-overlay" onclick="scCloseModalIfOverlay(event)">
   <div class="sc-modal-box" role="dialog" aria-modal="true">
@@ -1524,6 +2476,8 @@ footer .logo{}
   </div>
 </div>
 
+<!-- ══ BOOKING COMPLETION
+
 <!-- ══ BOOKING COMPLETION MODAL ══════════════════════════════════════════════ -->
 <div class="sc-booked-overlay" id="sc-booked-overlay">
   <div class="sc-booked-box">
@@ -1539,6 +2493,8 @@ footer .logo{}
     </div>
   </div>
 </div>
+
+<!-- ══ BUY
 
 <!-- ══ BUY / START NOW MODAL ══════════════════════════════════════════════════ -->
 <div class="buy-modal-overlay" id="buy-modal-overlay" onclick="closeBuyModalIfOverlay(event)">
@@ -1623,6 +2579,8 @@ footer .logo{}
   </div>
 </div>
 
+<!-- ══ GROWTH
+
 <!-- ══ GROWTH SYSTEM APPLICATION MODAL ════════════════════════════════════════ -->
 <div class="buy-modal-overlay" id="growth-modal-overlay" onclick="closeGrowthModalIfOverlay(event)" style="z-index:820;">
   <div class="buy-modal-box" role="dialog" aria-modal="true" aria-labelledby="growth-modal-title" style="max-width:540px;">
@@ -1693,6 +2651,8 @@ footer .logo{}
   </div>
 </div>
 
+<!-- ══ CALENDLY
+
 <!-- ══ CALENDLY FALLBACK MODAL ══════════════════════════════════════════════ -->
 <div class="sc-cal-modal-overlay" id="sc-cal-modal-overlay" onclick="scCloseCalModalIfOverlay(event)">
   <div class="sc-cal-modal-box">
@@ -1701,26 +2661,9 @@ footer .logo{}
   </div>
 </div>
 
-<!-- ══ REST OF WEBSITE ════════════════════════════════════════════════════════ -->
 
-<section class="section relatable-section">
-  <div class="container">
-    <div class="section-chip">Built for bathroom fitters</div>
-    <h2>You fit bathrooms.<br>Your website should <span class="em">fill your diary.</span></h2>
-    <p class="lead">Most bathroom fitter sites look fine but don't convert. Wrong structure, no trust signals, broken on mobile. We fix all of it.</p>
-    <div class="trade-cards reveal">
-      <div class="trade-card"><div class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="13" width="18" height="7" rx="1"/><path d="M3 14V8a5 5 0 0110 0v1"/><circle cx="17" cy="9" r="2"/></svg></div><div class="tc-name">Full Refits</div><div class="tc-tag">Complete bathroom transformations</div></div>
-      <div class="trade-card"><div class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2C10 2 4 8.5 4 12a6 6 0 0012 0c0-3.5-6-10-6-10z"/><line x1="10" y1="17" x2="10" y2="20"/></svg></div><div class="tc-name">Wet Rooms</div><div class="tc-tag">Walk-in showers &amp; accessibility</div></div>
-      <div class="trade-card"><div class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></div><div class="tc-name">Tiling</div><div class="tc-tag">Floors, walls &amp; feature tiles</div></div>
-      <div class="trade-card"><div class="tc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4-4 4 4 4-4 4 4"/><path d="M4 12l4-4 4 4 4-4 4 4"/></svg></div><div class="tc-name">Shower Installs</div><div class="tc-tag">Enclosures, trays &amp; plumbing</div></div>
-    </div>
-    <div class="relatable-cta reveal">
-      <p>Scan your site free. We'll show you exactly what's costing you jobs — in 30 seconds.</p>
-      <a href="#scanner" class="btn-orange">Scan My Website Free →</a>
-    </div>
-  </div>
-</section>
 
+<!-- ══ WHY SITES UNDERPERFORM ═══════════════════════════════════════════════ -->
 <section class="section problems-section">
   <div class="container">
     <div class="section-chip" style="color:var(--orange)">Why you're losing jobs</div>
@@ -1741,75 +2684,220 @@ footer .logo{}
   </div>
 </section>
 
-<section class="section ba-section">
+<!-- ══ WHAT YOUR SYSTEM DOES ════════════════════════════════════════════════ -->
+<!-- ══ WHAT YOUR NEW SYSTEM DOES ═══════════════════════════════════════════ -->
+<section class="section features-section">
   <div class="container">
-    <div class="section-chip">The difference</div>
-    <h2>Before <span class="em">vs</span> after</h2>
-    <p class="lead">A better-looking site is a byproduct. The real goal is more calls.</p>
-    <div class="ba-grid reveal">
-      <div class="ba-col before">
-        <div class="ba-tag">❌ Before</div>
-        <ul class="ba-list">
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5L5 15M5 5l10 10"/></svg>No clear phone number or contact button</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5L5 15M5 5l10 10"/></svg>Broken on mobile — visitors leave immediately</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5L5 15M5 5l10 10"/></svg>No reviews — zero trust for new visitors</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5L5 15M5 5l10 10"/></svg>Slow load — half your traffic bounces</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 5L5 15M5 5l10 10"/></svg>0–2 enquiries per week</li>
-        </ul>
+    <div class="section-chip">What you get</div>
+    <h2>Not just a website.<br><span class="em">A lead machine.</span></h2>
+    <p class="lead" style="max-width:600px;">Every piece of the system is built to do one thing — get you more serious bathroom enquiries, with less time wasted on the phone.</p>
+    <div class="feat-grid reveal">
+
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <!-- FEATURE_VISUAL_1 -->
+        <div class="feat-title">Premium Website Rebuild</div>
+        <div class="feat-desc">Fast, mobile-first, structured to get calls. Built specifically for bathroom fitters — not a generic template.</div>
       </div>
-      <div class="ba-arrow-col"><div class="ba-arrow-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
-      <div class="ba-col after">
-        <div class="ba-tag">✓ After</div>
-        <ul class="ba-list">
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Phone number prominent on every page</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Fast, clean mobile experience</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Reviews and trust signals front and centre</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Loads in under 2 seconds</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>8–15 enquiries per week</li>
-        </ul>
+
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7H6a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-3M13 3h8v8M17 7L9 15"/></svg></div>
+        <!-- FEATURE_VISUAL_2 -->
+        <div class="feat-title">Bathroom Budget Estimator</div>
+        <div class="feat-desc">Visitors enter their project details and get a ballpark cost. You only hear from people who already know what they want to spend.</div>
       </div>
+
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <!-- FEATURE_VISUAL_3 -->
+        <div class="feat-title">Lead Qualification Flow</div>
+        <div class="feat-desc">Every enquiry answers the same questions before it reaches you. Tyre-kickers filter themselves out — you get the serious ones.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <!-- FEATURE_VISUAL_4 -->
+        <div class="feat-title">Your Work, Front &amp; Centre</div>
+        <div class="feat-desc">Before and after gallery. Real photos of your bathrooms. Trust signals and reviews exactly where visitors need to see them.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.15 6.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.13 1 .4 1.97.7 2.9a2 2 0 01-.45 2.1L9.91 12a16 16 0 006.08 6.08l1.3-1.29a2 2 0 012.1-.45c.93.3 1.9.57 2.9.7A2 2 0 0122 16.92z"/></svg></div>
+        <!-- FEATURE_VISUAL_5 -->
+        <div class="feat-title">Click-to-Call on Every Page</div>
+        <div class="feat-desc">Your number is visible the moment someone loads the page. One tap on mobile. On every page, every time.</div>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <!-- FEATURE_VISUAL_6 -->
+        <div class="feat-title">Built to Make You Money</div>
+        <div class="feat-desc">Every decision — layout, copy, CTA placement — is tested against one metric. More bathroom jobs won per week.</div>
+      </div>
+
     </div>
-    <p class="ba-tag-line reveal">Every build is measured on one thing — <span>more bathroom enquiries.</span></p>
   </div>
 </section>
 
-<section class="section video-section">
+
+
+<!-- ══ ESTIMATOR SPOTLIGHT ══════════════════════════════════════════════════ -->
+<!-- ══ ESTIMATOR / QUALIFICATION SPOTLIGHT ══════════════════════════════════ -->
+<section class="section estimator-section">
   <div class="container">
-    <div class="video-inner">
-      <div>
-        <div class="video-placeholder">
-          <div class="vp-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="vp-label"><div class="vp-dot"></div><div class="vp-text">Example — AI Video Hero Section</div></div>
-        </div>
-        <div class="video-guide-box">
-          <div class="vg-ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zM10 6v4l3 2"/></svg></div>
-          <div><div class="vg-title">Your audit delivered via Loom</div><div class="vg-desc">We screen-record a personal walkthrough of your site and send it within 24–48 hours.</div></div>
-        </div>
-      </div>
+    <div class="estimator-inner">
       <div class="reveal">
-        <div class="section-chip" style="color:var(--orange)">What sets it apart</div>
-        <h2 class="light">A face builds trust<br><span class="em">before they even call</span></h2>
-        <p style="color:rgba(255,255,255,.55);font-size:1rem;line-height:1.7;margin-bottom:2rem;">Most bathroom fitter websites are just photos and a phone number. Yours will have a short intro video — the fastest way to get a stranger to trust you enough to pick up the phone.</p>
-        <div class="video-points">
-          <div class="vpt"><div class="vpt-num">1</div><div><div class="vpt-title">People hire who they feel comfortable with</div><div class="vpt-desc">A 60-second video does more for trust than any written testimonial. It shows who you are before they call.</div></div></div>
-          <div class="vpt"><div class="vpt-num">2</div><div><div class="vpt-title">No local competitor is doing this</div><div class="vpt-desc">In your area, the bathroom fitter with video on their homepage stands out immediately. That's your edge.</div></div></div>
-          <div class="vpt"><div class="vpt-num">3</div><div><div class="vpt-title">15 minutes of your time, that's it</div><div class="vpt-desc">Phone camera, natural light. We handle editing, enhancement, and placement on your site.</div></div></div>
+        <div class="section-chip" style="color:var(--orange)">Stop fielding time-wasters</div>
+        <h2 class="light">Your website should<br><span class="em">pre-qualify every lead</span></h2>
+        <p style="color:rgba(255,255,255,.55);font-size:1rem;line-height:1.7;margin-bottom:2rem;">Most bathroom fitters spend evenings calling back people who can't afford the job. With a built-in budget estimator, visitors self-filter before they reach you. You only speak to people who are serious.</p>
+        <div class="estimator-ui-preview">
+          <div class="estimator-step">
+            <div class="estimator-step-num">1</div>
+            <div class="estimator-step-text"><strong>What type of bathroom?</strong> Full refit, wet room, or shower install</div>
+          </div>
+          <div class="estimator-step">
+            <div class="estimator-step-num">2</div>
+            <div class="estimator-step-text"><strong>Rough size and finish level?</strong> Standard, mid-range, or premium</div>
+          </div>
+          <div class="estimator-step">
+            <div class="estimator-step-num">3</div>
+            <div class="estimator-step-text"><strong>When are you looking to start?</strong> Urgency and availability check</div>
+          </div>
+          <div class="estimator-result">
+            <div class="estimator-result-icon">💰</div>
+            <div class="estimator-result-text">Estimated budget: <strong>£4,500–£7,500</strong> — ready to book a survey?</div>
+          </div>
         </div>
-        <button onclick="openBuyModal()" class="btn-orange" style="cursor:pointer;">Get Started — From £150 Deposit →</button>
+        <button onclick="openBuyModal()" class="btn-orange" style="cursor:pointer;margin-top:2rem;">Get the Full System →</button>
+      </div>
+      <div class="reveal" style="position:relative;">
+        <!-- ESTIMATOR_UI_LARGE -->
+        <div class="estimator-media">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span>Estimator UI preview</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+
+
+<!-- ══ ROI / MONEY ══════════════════════════════════════════════════════════ -->
+<!-- ══ MONEY / ROI SECTION ══════════════════════════════════════════════════ -->
+<section class="section roi-section">
+  <div class="container">
+    <div class="section-chip">The numbers</div>
+    <h2>This isn't a cost.<br><span class="em">It's a revenue tool.</span></h2>
+    <p class="lead" style="max-width:560px;">One extra bathroom refit a month easily covers the investment. Everything after that is pure profit.</p>
+    <div class="roi-grid reveal">
+      <div class="roi-card">
+        <div class="roi-num">1</div>
+        <div class="roi-label">extra job covers the build</div>
+        <div class="roi-desc">A single bathroom refit typically runs £3,000–£8,000. Your website pays for itself before month two.</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-num">5h</div>
+        <div class="roi-label">less admin per week</div>
+        <div class="roi-desc">Fewer calls from tyre-kickers. Fewer evenings chasing leads. The system handles pre-qualification so you don't have to.</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-num">3×</div>
+        <div class="roi-label">better close rate</div>
+        <div class="roi-desc">When enquiries arrive pre-qualified, with budget expectations set — you're talking to the right people, not convincing the wrong ones.</div>
+      </div>
+    </div>
+
+    <div class="roi-calc reveal">
+      <div class="roi-calc-left">
+        <div class="roi-calc-title">Simple maths.</div>
+        <p class="roi-calc-sub">If your average bathroom job is worth £5,000 and you get one extra job a month from a better website — that's £60,000 extra turnover in a year. The website cost you £1,500.</p>
+      </div>
+      <div class="roi-calc-right">
+        <div class="roi-calc-line">
+          <span class="roi-calc-key">Average job value</span>
+          <span class="roi-calc-val">£5,000</span>
+        </div>
+        <div class="roi-calc-line">
+          <span class="roi-calc-key">Extra jobs from site/month</span>
+          <span class="roi-calc-val">+1</span>
+        </div>
+        <div class="roi-calc-line">
+          <span class="roi-calc-key">Website rebuild cost</span>
+          <span class="roi-calc-val">£1,500</span>
+        </div>
+        <div class="roi-calc-line highlight">
+          <span class="roi-calc-key">Year 1 return on investment</span>
+          <span class="roi-calc-val">+£58,500</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ HOW IT WORKS ═════════════════════════════════════════════════════════ -->
 <section class="section hiw-section" id="how-it-works">
   <div class="container">
     <div class="section-chip">How it works</div>
     <h2>Three steps.<br><span class="em">No faff.</span></h2>
     <p class="lead">Scan, rebuild, get jobs. That's it.</p>
     <div class="hiw-steps reveal">
-      <div class="hiw-step"><div class="hiw-num">1</div><div class="hiw-title">We review your site</div><p class="hiw-desc">Scan your site free. We identify exactly what's costing you bathroom fit enquiries — speed, mobile, trust, and conversion issues.</p><span class="hiw-time">Results in 30 seconds</span></div>
-      <div class="hiw-step active"><div class="hiw-num">2</div><div class="hiw-title">We rebuild it fast</div><p class="hiw-desc">We rebuild your site from the ground up. Mobile-first, structured to get calls, with your work front and centre. No call needed to start.</p><span class="hiw-time">First draft in 48–72 hours</span></div>
-      <div class="hiw-step"><div class="hiw-num">3</div><div class="hiw-title">Enquiries start coming in</div><p class="hiw-desc">Your new site goes live. We stay on hand to refine it with you. Most clients start seeing enquiries within the first week.</p><span class="hiw-time">From day one</span></div>
+      <div class="hiw-step">
+        <div class="hiw-illus">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Magnifying glass scanning a site -->
+            <circle cx="19" cy="19" r="12" stroke="currentColor" stroke-width="2.5"/>
+            <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="12" y="14" width="14" height="2" rx="1" fill="currentColor" opacity=".4"/>
+            <rect x="12" y="19" width="10" height="2" rx="1" fill="currentColor" opacity=".4"/>
+            <rect x="12" y="24" width="7" height="2" rx="1" fill="currentColor" opacity=".4"/>
+            <!-- Signal pulse -->
+            <circle cx="19" cy="19" r="16" stroke="currentColor" stroke-width="1" opacity=".2" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+        <div class="hiw-num">1</div>
+        <div class="hiw-title">We review your site</div>
+        <p class="hiw-desc">Scan your site free. We identify exactly what's costing you bathroom fit enquiries — speed, mobile, trust, and conversion issues.</p>
+        <span class="hiw-time">Results in 30 seconds</span>
+      </div>
+      <div class="hiw-step active">
+        <div class="hiw-illus">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Browser rebuild icon -->
+            <rect x="4" y="10" width="40" height="28" rx="4" stroke="currentColor" stroke-width="2.5"/>
+            <line x1="4" y1="18" x2="44" y2="18" stroke="currentColor" stroke-width="2"/>
+            <circle cx="10" cy="14" r="2" fill="currentColor" opacity=".4"/>
+            <circle cx="17" cy="14" r="2" fill="currentColor" opacity=".4"/>
+            <circle cx="24" cy="14" r="2" fill="currentColor" opacity=".4"/>
+            <!-- Wand / magic spark -->
+            <line x1="18" y1="34" x2="30" y2="24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <polygon points="30,24 34,26 32,22" fill="currentColor"/>
+            <!-- Sparkles -->
+            <line x1="34" y1="28" x2="34" y2="32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+            <line x1="32" y1="30" x2="36" y2="30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="hiw-num">2</div>
+        <div class="hiw-title">We rebuild it fast</div>
+        <p class="hiw-desc">We rebuild your site from the ground up. Mobile-first, structured to get calls, with your work front and centre. No call needed to start.</p>
+        <span class="hiw-time">First draft in 48–72 hours</span>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-illus">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Phone ringing -->
+            <path d="M10 8h8l4 9-5 3a22 22 0 0012 12l3-5 9 4v8a2 2 0 01-2 2C16 40 8 22 8 10a2 2 0 012-2z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Signal arcs -->
+            <path d="M32 6a10 10 0 016 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".35"/>
+            <path d="M34 10a6 6 0 014 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+          </svg>
+        </div>
+        <div class="hiw-num">3</div>
+        <div class="hiw-title">Enquiries start coming in</div>
+        <p class="hiw-desc">Your new site goes live. We stay on hand to refine it with you. Most clients start seeing enquiries within the first week.</p>
+        <span class="hiw-time">From day one</span>
+      </div>
     </div>
     <div class="hiw-bottom reveal">
       <p>No call needed. Secure your slot with a deposit — we handle the rest.</p>
@@ -1818,6 +2906,131 @@ footer .logo{}
   </div>
 </section>
 
+<!-- ══ TRUST / PROOF ════════════════════════════════════════════════════════ -->
+<!-- ══ TRUST / PROOF ════════════════════════════════════════════════════════ -->
+<section class="section proof-section">
+  <div class="container">
+    <div class="section-chip">Built for how trades work</div>
+    <h2>See the system<br><span class="em">do the selling.</span></h2>
+    <p class="lead" style="max-width:560px;">Every part of the site is built around how bathroom customers actually behave — not how a web designer thinks they do.</p>
+
+    <div class="proof-grid reveal">
+
+      <div class="proof-card">
+        <!-- DASHBOARD_PREVIEW -->
+        <div class="proof-media">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          <span>Dashboard preview</span>
+        </div>
+        <div class="proof-caption">
+          <div class="proof-caption-title">Lead dashboard — see every enquiry</div>
+          <div class="proof-caption-sub">Know who's contacted you, when, and what they're after — without checking your inbox</div>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <!-- MOBILE_PREVIEW -->
+        <div class="proof-media">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+          <span>Mobile preview</span>
+        </div>
+        <div class="proof-caption">
+          <div class="proof-caption-title">Optimised for mobile searches</div>
+          <div class="proof-caption-sub">80% of bathroom searches happen on a phone — your site is built for that first</div>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <!-- BEFORE_AFTER_PREVIEW -->
+        <div class="proof-media">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+          <span>Before / after preview</span>
+        </div>
+        <div class="proof-caption">
+          <div class="proof-caption-title">Your work, presented properly</div>
+          <div class="proof-caption-sub">Before and after photos that sell the quality of your craftsmanship before they pick up the phone</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Testimonial placeholder -->
+    <div class="testimonial-strip reveal">
+      <p>"We went from 2–3 calls a week to about 12. Most of them already had a rough budget in mind before they rang. The admin side dropped off completely."</p>
+      <cite>— Dan M., Bathroom Fitter, Newcastle</cite>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ══ OBJECTIONS ═══════════════════════════════════════════════════════════ -->
+<!-- ══ OBJECTIONS ═══════════════════════════════════════════════════════════ -->
+<section class="section objections-section">
+  <div class="container container-sm">
+    <div class="section-chip">Common questions</div>
+    <h2>You've probably<br><span class="em">thought this.</span></h2>
+    <div class="obj-list">
+
+      <div class="obj-item" id="obj-1">
+        <button class="obj-trigger" onclick="objToggle('obj-1')">
+          <span class="obj-q">I already have a website</span>
+          <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="obj-body">
+          <p>Most bathroom fitter sites exist — but don't convert. If you're not getting 8–12 qualified enquiries a week, your site is costing you jobs. Our free scan tells you exactly where it's failing.</p>
+        </div>
+      </div>
+
+      <div class="obj-item" id="obj-2">
+        <button class="obj-trigger" onclick="objToggle('obj-2')">
+          <span class="obj-q">I don't want more tyre-kickers calling</span>
+          <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="obj-body">
+          <p>That's exactly what the estimator and qualification flow solves. People who can't afford the job, or just want a quick quote they'll never action, filter themselves out before reaching you.</p>
+        </div>
+      </div>
+
+      <div class="obj-item" id="obj-3">
+        <button class="obj-trigger" onclick="objToggle('obj-3')">
+          <span class="obj-q">I'm too busy to manage another system</span>
+          <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="obj-body">
+          <p>You don't manage it — we handle the build, setup, and refinement. Once it's live, it runs in the background. Most fitters spend less time on admin after launch, not more.</p>
+        </div>
+      </div>
+
+      <div class="obj-item" id="obj-4">
+        <button class="obj-trigger" onclick="objToggle('obj-4')">
+          <span class="obj-q">Will this work in my area?</span>
+          <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="obj-body">
+          <p>Yes — bathroom fitters work the same way everywhere. People search locally, look at photos and reviews, check the price range, then call. We build your site to win at every one of those steps in your area.</p>
+        </div>
+      </div>
+
+      <div class="obj-item" id="obj-5">
+        <button class="obj-trigger" onclick="objToggle('obj-5')">
+          <span class="obj-q">What if I'm not happy with the result?</span>
+          <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="obj-body">
+          <p>We refine it with you until it's right. The deposit secures your slot and covers the first draft — we don't walk away until you're happy with what's live.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top:2rem;text-align:center;font-size:.88rem;color:var(--mid);">
+      Something else on your mind? <a href="#" onclick="scOpenBooking(event)" style="color:var(--orange);font-weight:700;text-decoration:underline;text-underline-offset:3px;">Book a free 10-min call →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══ PRICING ══════════════════════════════════════════════════════════════ -->
 <section class="section pricing-section" id="pricing">
   <div class="container" style="max-width:1280px;padding-left:24px;padding-right:24px">
     <div style="text-align:center;margin-bottom:2.5rem;">
@@ -1910,16 +3123,18 @@ footer .logo{}
   </div>
 </section>
 
+<!-- ══ URGENCY ══════════════════════════════════════════════════════════════ -->
 <div class="urgency-band">
   <h3>Limited slots available each week</h3>
-  <div class="urgency-spots" style="margin-top:1.2rem;margin-bottom:0"><div class="spot-dot"></div>We cap builds to ensure quality — slots fill up</div>
-  <p style="margin-top:1rem;margin-bottom:0">Secure your slot with a deposit. We start within 48–72 hours.</p>
+  <div class="urgency-spots" style="margin-top:1rem;margin-bottom:.75rem;"><div class="spot-dot"></div>We cap builds to ensure quality — slots fill up fast</div>
+  <p>Secure your slot with a deposit. We start within 48–72 hours.</p>
 </div>
 
+<!-- ══ FINAL CTA ═════════════════════════════════════════════════════════════ -->
 <section class="final-cta">
   <div class="section-chip" style="color:var(--orange);display:flex;justify-content:center;margin-bottom:1rem;">Ready to start?</div>
   <h2 class="light" style="margin-bottom:.75rem;">More bathroom jobs.<br><span class="em">Starting this week.</span></h2>
-  <p style="font-size:1rem;color:rgba(255,255,255,.5);margin:0 auto 2.2rem;max-width:480px;line-height:1.6;position:relative;">Scan your site free to see exactly what's costing you jobs. Or go straight to securing your build slot — no call needed.</p>
+  <p>Scan your site free to see exactly what's costing you jobs. Or go straight to securing your build slot — no call needed.</p>
   <div class="final-actions">
     <a href="#scanner" class="btn-orange" style="font-size:1.05rem;padding:1.1rem 2.5rem;">Scan My Site Free →</a>
     <button onclick="openBuyModal()" class="btn-call" style="font-size:1rem;padding:1rem 2rem;cursor:pointer;">Get Started — From £150 →</button>
@@ -1931,11 +3146,11 @@ footer .logo{}
   </p>
 </section>
 
+<!-- ══ FOOTER ════════════════════════════════════════════════════════════════ -->
 <footer>
   <a href="/" class="logo" aria-label="TradeConvert — Home">
     <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 438.56 99.5" role="img" aria-hidden="true"><g fill="#FFFFFF"><path d="M32.72 8.96V15.04Q32.72 15.44 32.44 15.72Q32.16 16 31.76 16H21.6Q21.2 16 21.2 16.4V63.04Q21.2 63.44 20.92 63.72Q20.64 64 20.24 64H12.88Q12.48 64 12.2 63.72Q11.92 63.44 11.92 63.04V16.4Q11.92 16 11.52 16H1.84Q1.44 16 1.16 15.72Q0.88 15.44 0.88 15.04V8.96Q0.88 8.56 1.16 8.28Q1.44 8 1.84 8H31.76Q32.16 8 32.44 8.28Q32.72 8.56 32.72 8.96Z"/><path d="M60.72 63.2 53.92 40.24Q53.76 39.92 53.52 39.92H49.28Q48.88 39.92 48.88 40.32V63.04Q48.88 63.44 48.6 63.72Q48.32 64 47.92 64H40.56Q40.16 64 39.88 63.72Q39.6 63.44 39.6 63.04V8.96Q39.6 8.56 39.88 8.28Q40.16 8 40.56 8H55.6Q59.84 8 63.08 10.04Q66.32 12.08 68.12 15.8Q69.92 19.52 69.92 24.32Q69.92 29.28 68 32.92Q66.08 36.56 62.64 38.4Q62.32 38.56 62.4 38.88L70.16 62.88Q70.24 63.04 70.24 63.28Q70.24 64 69.36 64H61.76Q60.96 64 60.72 63.2ZM48.88 16.4V32.32Q48.88 32.72 49.28 32.72H54.08Q57.04 32.72 58.84 30.48Q60.64 28.24 60.64 24.4Q60.64 20.56 58.84 18.28Q57.04 16 54.08 16H49.28Q48.88 16 48.88 16.4Z"/><path d="M100 63.12 98.48 54.72Q98.48 54.32 98 54.32H86.32Q85.84 54.32 85.84 54.72L84.32 63.12Q84.24 64 83.28 64H75.92Q74.88 64 75.12 62.96L86.88 8.88Q87.04 8 87.92 8H96.48Q97.36 8 97.52 8.88L109.36 62.96V63.28Q109.36 64 108.48 64H101.04Q100.08 64 100 63.12ZM87.68 47.04H96.56Q97.04 47.04 96.96 46.64L92.32 21.36Q92.24 21.12 92.08 21.12Q91.92 21.12 91.84 21.36L87.28 46.64Q87.2 47.04 87.68 47.04Z"/><path d="M117.28 8H130.88Q137.76 8 141.92 12.16Q146.08 16.32 146.08 23.28V48.72Q146.08 55.68 141.92 59.84Q137.76 64 130.88 64H117.28Q116.88 64 116.6 63.72Q116.32 63.44 116.32 63.04V8.96Q116.32 8.56 116.6 8.28Q116.88 8 117.28 8ZM136.8 48.16V23.84Q136.8 20.24 135.16 18.12Q133.52 16 130.72 16H126Q125.6 16 125.6 16.4V55.6Q125.6 56 126 56L130.8 55.92Q133.44 55.92 135.04 53.8Q136.64 51.68 136.8 48.16Z"/><path d="M181.84 16H164.56Q164.16 16 164.16 16.4V31.52Q164.16 31.92 164.56 31.92H174.8Q175.2 31.92 175.48 32.2Q175.76 32.48 175.76 32.88V39.04Q175.76 39.44 175.48 39.72Q175.2 40 174.8 40H164.56Q164.16 40 164.16 40.4V55.6Q164.16 56 164.56 56H181.84Q182.24 56 182.52 56.28Q182.8 56.56 182.8 56.96V63.04Q182.8 63.44 182.52 63.72Q182.24 64 181.84 64H155.84Q155.44 64 155.16 63.72Q154.88 63.44 154.88 63.04V8.96Q154.88 8.56 155.16 8.28Q155.44 8 155.84 8H181.84Q182.24 8 182.52 8.28Q182.8 8.56 182.8 8.96V15.04Q182.8 15.44 182.52 15.72Q182.24 16 181.84 16Z"/></g><g fill="#F4600C"><path d="M188.64 48.24V23.68Q188.64 16.16 193.2 11.76Q197.76 7.36 205.36 7.36Q212.96 7.36 217.56 11.76Q222.16 16.16 222.16 23.68V24.4Q222.16 24.8 221.88 25.08Q221.6 25.36 221.2 25.36L209.84 25.84Q208.88 25.84 208.88 24.88V22.72Q208.88 20.88 207.92 19.8Q206.96 18.72 205.36 18.72Q203.84 18.72 202.88 19.8Q201.92 20.88 201.92 22.72V49.36Q201.92 51.12 202.88 52.2Q203.84 53.28 205.36 53.28Q206.96 53.28 207.92 52.2Q208.88 51.12 208.88 49.36V47.04Q208.88 46.64 209.16 46.36Q209.44 46.08 209.84 46.08L221.2 46.56Q221.6 46.56 221.88 46.84Q222.16 47.12 222.16 47.52V48.24Q222.16 55.68 217.56 60.16Q212.96 64.64 205.36 64.64Q197.76 64.64 193.2 60.16Q188.64 55.68 188.64 48.24Z"/><path d="M223.2 48.08V23.92Q223.2 16.4 227.8 11.88Q232.4 7.36 240.16 7.36Q247.92 7.36 252.56 11.88Q257.2 16.4 257.2 23.92V48.08Q257.2 55.68 252.56 60.16Q247.92 64.64 240.16 64.64Q232.4 64.64 227.8 60.16Q223.2 55.68 223.2 48.08ZM243.92 48.64V23.36Q243.92 21.2 242.92 19.96Q241.92 18.72 240.16 18.72Q238.4 18.72 237.44 19.96Q236.48 21.2 236.48 23.36V48.64Q236.48 50.8 237.44 52.04Q238.4 53.28 240.16 53.28Q241.92 53.28 242.92 52.04Q243.92 50.8 243.92 48.64Z"/><path d="M284.32 8H295.52Q295.92 8 296.2 8.28Q296.48 8.56 296.48 8.96V63.04Q296.48 63.44 296.2 63.72Q295.92 64 295.52 64H282.8Q281.92 64 281.68 63.2L273.76 35.36Q273.68 35.12 273.48 35.08Q273.28 35.04 273.28 35.36L273.44 63.04Q273.44 63.44 273.16 63.72Q272.88 64 272.48 64H261.2Q260.8 64 260.52 63.72Q260.24 63.44 260.24 63.04V8.96Q260.24 8.56 260.52 8.28Q260.8 8 261.2 8H273.76Q274.64 8 274.88 8.8L282.96 36.8Q283.04 37.04 283.2 37Q283.36 36.96 283.36 36.72V8.96Q283.36 8.56 283.64 8.28Q283.92 8 284.32 8Z"/><path d="M322.48 8H334.56Q335.6 8 335.36 9.04L323.92 63.12Q323.76 64 322.88 64H310.32Q309.44 64 309.28 63.12L297.92 9.04L297.84 8.72Q297.84 8 298.72 8H311.12Q312.08 8 312.16 8.88L316.72 41.52Q316.8 41.76 317 41.76Q317.2 41.76 317.2 41.52L321.52 8.88Q321.6 8 322.48 8Z"/><path d="M366.56 19.36H350.4Q350 19.36 350 19.76V29.84Q350 30.24 350.4 30.24H359.28Q359.68 30.24 359.96 30.52Q360.24 30.8 360.24 31.2V40.72Q360.24 41.12 359.96 41.4Q359.68 41.68 359.28 41.68H350.4Q350 41.68 350 42.08V52.24Q350 52.64 350.4 52.64H366.56Q366.96 52.64 367.24 52.92Q367.52 53.2 367.52 53.6V63.04Q367.52 63.44 367.24 63.72Q366.96 64 366.56 64H337.68Q337.28 64 337 63.72Q336.72 63.44 336.72 63.04V8.96Q336.72 8.56 337 8.28Q337.28 8 337.68 8H366.56Q366.96 8 367.24 8.28Q367.52 8.56 367.52 8.96V18.4Q367.52 18.8 367.24 19.08Q366.96 19.36 366.56 19.36Z"/><path d="M390.48 63.2 385.04 42Q384.96 41.68 384.64 41.68H383.44Q383.04 41.68 383.04 42.08V63.04Q383.04 63.44 382.76 63.72Q382.48 64 382.08 64H370.72Q370.32 64 370.04 63.72Q369.76 63.44 369.76 63.04V8.96Q369.76 8.56 370.04 8.28Q370.32 8 370.72 8H388Q392.64 8 396.2 10.2Q399.76 12.4 401.76 16.36Q403.76 20.32 403.76 25.36Q403.76 29.92 402.08 33.44Q400.4 36.96 397.44 39.12Q397.28 39.2 397.2 39.32Q397.12 39.44 397.2 39.6L404.08 62.88L404.16 63.2Q404.16 64 403.28 64H391.6Q390.72 64 390.48 63.2ZM383.04 19.76V31.12Q383.04 31.52 383.44 31.52H385.68Q387.84 31.52 389.16 29.92Q390.48 28.32 390.48 25.52Q390.48 22.56 389.16 20.96Q387.84 19.36 385.68 19.36H383.44Q383.04 19.36 383.04 19.76Z"/><path d="M439.6 8.96V18.4Q439.6 18.8 439.32 19.08Q439.04 19.36 438.64 19.36H428.8Q428.4 19.36 428.4 19.76V63.04Q428.4 63.44 428.12 63.72Q427.84 64 427.44 64H416.08Q415.68 64 415.4 63.72Q415.12 63.44 415.12 63.04V19.76Q415.12 19.36 414.72 19.36H405.12Q404.72 19.36 404.44 19.08Q404.16 18.8 404.16 18.4V8.96Q404.16 8.56 404.44 8.28Q404.72 8 405.12 8H438.64Q439.04 8 439.32 8.28Q439.6 8.56 439.6 8.96Z"/></g><g fill="#5C82A0"><path d="M402.83 94.465Q402.83 94 403.13 93.7Q403.43 93.4 403.895 93.4Q404.36 93.4 404.653 93.7Q404.945 94 404.945 94.465Q404.945 94.93 404.645 95.23Q404.345 95.53 403.895 95.53Q403.43 95.53 403.13 95.23Q402.83 94.93 402.83 94.465Z"/><path d="M406.745 93.175V90.145Q406.745 89.05 407.457 88.382Q408.17 87.715 409.4 87.715Q410.63 87.715 411.35 88.368Q412.07 89.02 412.07 90.025V90.235Q412.07 90.31 412.018 90.363Q411.965 90.415 411.89 90.415L410.51 90.475Q410.33 90.475 410.33 90.295V90.145Q410.33 89.77 410.067 89.493Q409.805 89.215 409.4 89.215Q408.995 89.215 408.74 89.515Q408.485 89.815 408.485 90.28V93.055Q408.485 93.52 408.74 93.82Q408.995 94.12 409.4 94.12Q409.805 94.12 410.067 93.843Q410.33 93.565 410.33 93.175V93.025Q410.33 92.95 410.383 92.898Q410.435 92.845 410.51 92.845L411.89 92.86Q411.965 92.86 412.018 92.912Q412.07 92.965 412.07 93.04V93.31Q412.07 94.345 411.35 94.983Q410.63 95.62 409.4 95.62Q408.17 95.62 407.457 94.96Q406.745 94.3 406.745 93.175Z"/><path d="M413.645 93.175V90.16Q413.645 89.05 414.365 88.382Q415.085 87.715 416.315 87.715Q417.56 87.715 418.28 88.382Q419 89.05 419 90.16V93.175Q419 94.3 418.288 94.96Q417.575 95.62 416.315 95.62Q415.07 95.62 414.357 94.96Q413.645 94.3 413.645 93.175ZM417.26 93.04V90.28Q417.26 89.815 416.998 89.515Q416.735 89.215 416.315 89.215Q415.895 89.215 415.64 89.507Q415.385 89.8 415.385 90.28V93.04Q415.385 93.52 415.64 93.812Q415.895 94.105 416.315 94.105Q416.735 94.105 416.998 93.812Q417.26 93.52 417.26 93.04Z"/><path d="M420.8 94.465Q420.8 94 421.1 93.7Q421.4 93.4 421.865 93.4Q422.33 93.4 422.622 93.7Q422.915 94 422.915 94.465Q422.915 94.93 422.615 95.23Q422.315 95.53 421.865 95.53Q421.4 95.53 421.1 95.23Q420.8 94.93 420.8 94.465Z"/><path d="M428.6 87.835H429.98Q430.055 87.835 430.107 87.887Q430.16 87.94 430.16 88.015V95.32Q430.16 95.395 430.107 95.447Q430.055 95.5 429.98 95.5H428.6Q428.525 95.5 428.472 95.447Q428.42 95.395 428.42 95.32V94.99Q428.42 94.945 428.39 94.93Q428.36 94.915 428.33 94.96Q427.895 95.605 426.935 95.605Q426.02 95.605 425.457 95.058Q424.895 94.51 424.895 93.37V88.015Q424.895 87.94 424.947 87.887Q425 87.835 425.075 87.835H426.455Q426.53 87.835 426.582 87.887Q426.635 87.94 426.635 88.015V92.995Q426.635 94.12 427.505 94.12Q427.94 94.12 428.18 93.797Q428.42 93.475 428.42 92.92V88.015Q428.42 87.94 428.472 87.887Q428.525 87.835 428.6 87.835Z"/><path d="M432.425 85H433.805Q433.88 85 433.933 85.053Q433.985 85.105 433.985 85.18V90.52Q433.985 90.58 434.015 90.58Q434.045 90.58 434.075 90.535L435.71 87.955Q435.77 87.835 435.92 87.835H437.36Q437.465 87.835 437.495 87.903Q437.525 87.97 437.465 88.06L435.905 90.415Q435.875 90.475 435.89 90.52L437.69 95.29Q437.705 95.32 437.705 95.365Q437.705 95.5 437.54 95.5H436.115Q435.965 95.5 435.92 95.35L434.825 91.96Q434.81 91.915 434.787 91.915Q434.765 91.915 434.735 91.945L434.015 92.995Q433.985 93.055 433.985 93.085V95.32Q433.985 95.395 433.933 95.447Q433.88 95.5 433.805 95.5H432.425Q432.35 95.5 432.297 95.447Q432.245 95.395 432.245 95.32V85.18Q432.245 85.105 432.297 85.053Q432.35 85 432.425 85Z"/></g></svg>
   </a>
-
   <ul class="footer-links">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#pricing">Pricing</a></li>
@@ -2971,6 +4186,17 @@ function scEscHtml(str) {
     setTimeout(function() { el.classList.add('playing'); }, 300);
   });
 })();
+
+
+/* ── Objections accordion ─────────────────────────────────────────────────── */
+function objToggle(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.obj-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
 </script>
 
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
@@ -3097,7 +4323,147 @@ function scEscHtml(str) {
     return d;
   }
 })();
+
+
+/* ── Objections accordion ─────────────────────────────────────────────────── */
+function objToggle(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.obj-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
 </script>
+
+<script>
+/* ══ BEFORE/AFTER SLIDER — TradeConvert component ══════════════════════════
+   Performance notes:
+   - IntersectionObserver: videos play only when in viewport
+   - preload="none": no network hit until visible
+   - will-change on animated elements only
+   ══════════════════════════════════════════════════════════════════════════ */
+(function() {
+  var stage     = document.getElementById('tcStage');
+  var divider   = document.getElementById('tcDivider');
+  var handle    = document.getElementById('tcHandle');
+  var afterClip = document.getElementById('tcAfterClip');
+  if (!stage || !divider || !handle || !afterClip) return;
+
+  // Optional video elements (null-safe if image/placeholder used)
+  var beforeVid = document.getElementById('tcBeforeVid');
+  var afterVid  = document.getElementById('tcAfterVid');
+
+  var pos      = 50;
+  var dragging = false;
+
+  // ── Set slider position ──────────────────────────────────
+  function setPos(pct) {
+    pos = Math.max(1, Math.min(99, pct));
+    divider.style.left       = pos + '%';
+    handle.style.left        = pos + '%';
+    afterClip.style.clipPath = 'inset(0 ' + (100 - pos) + '% 0 0)';
+  }
+
+  // ── Pointer helpers ──────────────────────────────────────
+  function clientX(e) {
+    return e.touches ? e.touches[0].clientX : e.clientX;
+  }
+  function pctFromEvent(e) {
+    var rect = stage.getBoundingClientRect();
+    return ((clientX(e) - rect.left) / rect.width) * 100;
+  }
+
+  // ── Drag ────────────────────────────────────────────────
+  stage.addEventListener('mousedown',  startDrag);
+  stage.addEventListener('touchstart', startDrag, { passive: true });
+
+  function startDrag(e) {
+    dragging = true;
+    handle.classList.add('dragging');
+    setPos(pctFromEvent(e));
+  }
+
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onMove, { passive: true });
+
+  function onMove(e) {
+    if (!dragging) return;
+    setPos(pctFromEvent(e));
+  }
+
+  window.addEventListener('mouseup',  endDrag);
+  window.addEventListener('touchend', endDrag);
+
+  function endDrag() {
+    dragging = false;
+    handle.classList.remove('dragging');
+  }
+
+  // ── IntersectionObserver: play/pause videos on visibility ─
+  if (beforeVid || afterVid) {
+    var vidObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          if (beforeVid) beforeVid.play().catch(function(){});
+          if (afterVid)  afterVid.play().catch(function(){});
+        } else {
+          if (beforeVid) beforeVid.pause();
+          if (afterVid)  afterVid.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+    vidObs.observe(stage);
+  }
+
+  // ── Hint animation: sweep left on first scroll into view ─
+  var hinted = false;
+  var hintObs = new IntersectionObserver(function(entries) {
+    if (hinted || !entries[0].isIntersecting) return;
+    hinted = true;
+    hintObs.disconnect();
+    // Sweep left to 30%, then back to 50%
+    var start = null;
+    function sweep(ts) {
+      if (!start) start = ts;
+      var p    = Math.min((ts - start) / 800, 1);
+      var ease = 1 - Math.pow(1 - p, 3);
+      setPos(50 + (30 - 50) * ease);
+      if (p < 1) { requestAnimationFrame(sweep); return; }
+      setTimeout(function() {
+        var start2 = null;
+        function sweepBack(ts2) {
+          if (!start2) start2 = ts2;
+          var p2    = Math.min((ts2 - start2) / 600, 1);
+          var ease2 = 1 - Math.pow(1 - p2, 3);
+          setPos(30 + (50 - 30) * ease2);
+          if (p2 < 1) requestAnimationFrame(sweepBack);
+        }
+        requestAnimationFrame(sweepBack);
+      }, 350);
+    }
+    requestAnimationFrame(sweep);
+  }, { threshold: 0.4 });
+  hintObs.observe(stage);
+
+  // ── Init ─────────────────────────────────────────────────
+  setPos(50);
+})();
+
+
+/* ── Objections accordion ─────────────────────────────────────────────────── */
+function objToggle(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.obj-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+</script>
+
+</body>
+</html>
 
 </body>
 </html>
