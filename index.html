@@ -2374,6 +2374,67 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   }
 }
 
+
+
+/* ── ROI calculator readability hotfix ──
+   Keeps the revenue maths panel readable on light sections and avoids the white-on-dark/white-row clash. */
+.roi-calc{
+  background:#0b1525 !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  box-shadow:0 22px 54px rgba(11,21,37,.18) !important;
+}
+.roi-calc-title{
+  color:#ffffff !important;
+  text-shadow:none !important;
+}
+.roi-calc-sub{
+  color:rgba(255,255,255,.82) !important;
+  max-width:44ch;
+}
+.roi-calc-right{
+  gap:.75rem !important;
+}
+.roi-calc-line{
+  display:flex !important;
+  justify-content:space-between !important;
+  align-items:center !important;
+  min-height:52px !important;
+  padding:.85rem 1rem !important;
+  background:#132036 !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  border-radius:8px !important;
+}
+.roi-calc-key{
+  color:rgba(255,255,255,.86) !important;
+  font-weight:600 !important;
+  line-height:1.35 !important;
+}
+.roi-calc-val{
+  color:#ffffff !important;
+  font-weight:900 !important;
+  text-align:right !important;
+  flex-shrink:0 !important;
+  min-width:88px !important;
+}
+.roi-calc-line.highlight{
+  background:rgba(244,96,12,.12) !important;
+  border:1px solid rgba(244,96,12,.45) !important;
+  padding:.95rem 1rem !important;
+}
+.roi-calc-line.highlight .roi-calc-key{
+  color:#ffffff !important;
+  font-weight:800 !important;
+}
+.roi-calc-line.highlight .roi-calc-val{
+  color:#ff7a1a !important;
+  font-size:1.25rem !important;
+}
+@media(max-width:760px){
+  .roi-calc{padding:1.25rem !important;}
+  .roi-calc-line{align-items:flex-start !important;gap:.75rem !important;}
+  .roi-calc-val{min-width:auto !important;}
+}
+
 </style>
 </head>
 <body>
