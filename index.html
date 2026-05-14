@@ -2326,6 +2326,54 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   .roi-calc-line{align-items:flex-start;}
 }
 
+
+/* ──────────────────────────────────────────────────────────────────────────
+   SCANNER SCANNING STATE READABILITY HOTFIX
+   Keeps the light scanner section, but returns the active scanning panel to a
+   dark card so white text, progress steps and loading UI remain readable.
+   ────────────────────────────────────────────────────────────────────────── */
+#sc-state-scanning .sc-scan-screen{
+  max-width:560px;
+  margin:0 auto;
+  padding:52px 28px 46px;
+  background:#0b1525;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;
+  box-shadow:0 26px 70px rgba(11,21,37,.24);
+  color:#fff;
+}
+#sc-state-scanning .sc-scan-title{
+  color:#fff !important;
+  text-shadow:none;
+}
+#sc-state-scanning .sc-scan-url{
+  color:#ff7a1a !important;
+}
+#sc-state-scanning .sc-scan-step{
+  color:rgba(255,255,255,.68) !important;
+}
+#sc-state-scanning .sc-scan-step.active{
+  background:#141f31 !important;
+  border-color:rgba(255,255,255,.1) !important;
+  color:#fff !important;
+}
+#sc-state-scanning .sc-scan-step.done{
+  color:#7ee0a0 !important;
+}
+#sc-state-scanning .sc-step-spinner{
+  border-color:rgba(255,255,255,.24) !important;
+  border-top-color:#ff7a1a !important;
+}
+#sc-state-scanning .sc-scan-waiting-msg{
+  color:rgba(255,255,255,.66) !important;
+}
+@media(max-width:640px){
+  #sc-state-scanning .sc-scan-screen{
+    padding:42px 18px 38px;
+    border-radius:18px;
+  }
+}
+
 </style>
 </head>
 <body>
