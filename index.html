@@ -2230,6 +2230,102 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 @media(max-width:900px){.main-video-inner{grid-template-columns:1fr;gap:2rem}.main-video-copy{text-align:center}.main-video-copy p{margin-left:auto;margin-right:auto}.main-video-actions{justify-content:center}.main-video-bullets{max-width:460px;margin-left:auto;margin-right:auto}.main-video-section{padding:3.5rem 1.1rem}}
 @media(max-width:560px){.main-video-actions .btn-orange,.main-video-actions .btn-call{width:100%;justify-content:center}.main-video-frame{border-radius:14px}.main-video-frame::after{font-size:.62rem;top:10px;left:10px}}
 
+
+/* ══ READABILITY HOTFIX — 2026-05-14 ═══════════════════════════════════════
+   Fixes text that became low-contrast after light/dark section overrides.
+   Preserves all IDs, form names, scanner hooks, modal hooks and JS behaviour.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.trades-strip{
+  background:#fff;
+  border-top:1px solid #edf0f4;
+  border-bottom:1px solid #edf0f4;
+}
+.trades-inner{gap:.7rem 1rem;}
+.trades-label{
+  color:#6b7480;
+  margin-right:.35rem;
+}
+.trade-tag{
+  color:#0b1525 !important;
+  background:#f4f6f8;
+  border:1px solid #e1e6ee;
+  border-radius:999px;
+  padding:.45rem .78rem;
+  line-height:1;
+  white-space:nowrap;
+}
+.trade-tag svg{
+  color:#f4600c;
+  opacity:1;
+}
+
+.scanner-section{
+  background:linear-gradient(180deg,#f7f8fa 0%,#ffffff 100%);
+}
+.scanner-section::before{
+  opacity:.55;
+  background:radial-gradient(ellipse 55% 32% at 50% 0%,rgba(244,96,12,.08),transparent 70%);
+}
+.scanner-intro h2{
+  color:#0b1525 !important;
+  text-shadow:none;
+}
+.scanner-intro h2 .em{color:#f4600c !important;}
+.scanner-intro .lead{
+  color:#6f7b89 !important;
+  text-shadow:none;
+}
+.scanner-intro .section-chip{
+  color:#f4600c !important;
+}
+.scanner-intro .section-chip::before{
+  background:#f4600c !important;
+}
+
+.roi-calc{
+  background:#0b1525;
+  border:1px solid rgba(11,21,37,.18);
+  box-shadow:0 18px 44px rgba(11,21,37,.16);
+  overflow:hidden;
+}
+.roi-calc-sub{color:rgba(255,255,255,.72);}
+.roi-calc-line{
+  background:#141f31;
+  border:1px solid rgba(255,255,255,.08);
+  gap:1rem;
+}
+.roi-calc-key{
+  color:rgba(255,255,255,.76);
+  line-height:1.35;
+}
+.roi-calc-val{
+  color:#fff;
+  text-align:right;
+  flex-shrink:0;
+}
+.roi-calc-line.highlight{
+  background:#fff;
+  border-color:#fff;
+}
+.roi-calc-line.highlight .roi-calc-key{
+  color:#0b1525;
+  font-weight:800;
+}
+.roi-calc-line.highlight .roi-calc-val{
+  color:#f4600c;
+}
+@media(max-width:760px){
+  .trades-strip{padding:.85rem 1rem;}
+  .trades-inner{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding-bottom:.15rem;}
+  .trades-label{flex:0 0 auto;}
+  .trade-tag{font-size:.82rem;flex:0 0 auto;}
+  .scanner-intro{margin-bottom:1.6rem;}
+  .scanner-intro h2{font-size:clamp(2.25rem,11vw,3.15rem);}
+  .scanner-intro .lead{font-size:.98rem;line-height:1.55;}
+  .roi-calc{padding:1.35rem;gap:1.25rem;}
+  .roi-calc-line{align-items:flex-start;}
+}
+
 </style>
 </head>
 <body>
