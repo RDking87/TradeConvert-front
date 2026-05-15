@@ -1930,6 +1930,27 @@ footer .logo{}
 .roi-calc-line.highlight .roi-calc-key{color:rgba(255,255,255,.7);}
 .roi-calc-line.highlight .roi-calc-val{color:var(--orange);font-size:1.2rem;}
 
+
+.proof-media.has-image{
+  background:#05070a;
+  min-height:260px;
+  padding:0;
+  display:block;
+  overflow:hidden;
+}
+.proof-media-img{
+  width:100%;
+  height:100%;
+  min-height:260px;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+@media(max-width:700px){
+  .proof-media.has-image{min-height:220px;}
+  .proof-media-img{min-height:220px;}
+}
+
 /* ── Trust / Proof Section ── */
 .proof-section{background:var(--white);}
 .proof-grid{
@@ -3455,37 +3476,34 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 
       <div class="proof-card">
         <!-- DASHBOARD_PREVIEW -->
-        <div class="proof-media">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
-          <span>Dashboard preview</span>
+        <div class="proof-media has-image">
+          <img class="proof-media-img" src="assets/proof-dashboard-preview.png" alt="Lead dashboard showing recent enquiries and statuses" loading="lazy">
         </div>
         <div class="proof-caption">
           <div class="proof-caption-title">Lead dashboard — see every enquiry</div>
-          <div class="proof-caption-sub">Know who's contacted you, when, and what they're after — without checking your inbox</div>
+          <div class="proof-caption-sub">See who has enquired, what they are after, and what needs following up — without digging through texts or your inbox.</div>
         </div>
       </div>
 
       <div class="proof-card">
         <!-- MOBILE_PREVIEW -->
-        <div class="proof-media">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
-          <span>Mobile preview</span>
+        <div class="proof-media has-image">
+          <img class="proof-media-img" src="assets/proof-mobile-preview.png" alt="Example premium bathroom fitter website shown on laptop and mobile" loading="lazy">
         </div>
         <div class="proof-caption">
           <div class="proof-caption-title">Optimised for mobile searches</div>
-          <div class="proof-caption-sub">Most homeowner research now starts on a phone — your site is built for that first</div>
+          <div class="proof-caption-sub">Most homeowner research starts on a phone. The site still looks premium, loads clearly, and gives people an obvious next step.</div>
         </div>
       </div>
 
       <div class="proof-card">
         <!-- BEFORE_AFTER_PREVIEW -->
-        <div class="proof-media">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-          <span>Before / after preview</span>
+        <div class="proof-media has-image">
+          <img class="proof-media-img" src="assets/proof-installations-preview.png" alt="Gallery of recent bathroom installations" loading="lazy">
         </div>
         <div class="proof-caption">
           <div class="proof-caption-title">Your work, presented properly</div>
-          <div class="proof-caption-sub">Before and after photos that sell the quality of your craftsmanship before they pick up the phone</div>
+          <div class="proof-caption-sub">A polished gallery helps homeowners see the standard of your work and picture the finish before they ever get in touch.</div>
         </div>
       </div>
 
