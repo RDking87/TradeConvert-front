@@ -1951,6 +1951,134 @@ footer .logo{}
   .proof-media-img{min-height:220px;}
 }
 
+
+/* ── Simplified proof / value section ── */
+.proof-section.simplified-proof{
+  background:var(--off-white);
+}
+.simplified-proof-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
+  gap:4rem;
+  align-items:center;
+  margin-top:3rem;
+}
+.simplified-proof-copy{
+  max-width:520px;
+}
+.simplified-proof .lead{
+  margin-left:0;
+  margin-right:0;
+}
+.simplified-proof-actions{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-top:2rem;
+}
+.simplified-proof-visual{
+  background:#05070a;
+  border:1px solid var(--rule);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 22px 60px rgba(11,21,37,.14);
+}
+.simplified-proof-visual img{
+  width:100%;
+  display:block;
+}
+.simplified-proof-points{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+  margin-top:1.25rem;
+}
+.simplified-proof-point{
+  background:var(--white);
+  border:1px solid var(--rule);
+  border-radius:12px;
+  padding:1rem;
+}
+.simplified-proof-point-top{
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  font-weight:800;
+  color:var(--navy);
+  font-size:.92rem;
+  line-height:1.25;
+  margin-bottom:.35rem;
+}
+.simplified-proof-point-icon{
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:rgba(244,96,12,.12);
+  color:var(--orange);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+}
+.simplified-proof-point-icon svg{
+  width:14px;
+  height:14px;
+}
+.simplified-proof-point p{
+  color:var(--mid);
+  font-size:.82rem;
+  line-height:1.5;
+  margin:0;
+}
+.simplified-proof-mini{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+  margin-top:1rem;
+}
+.simplified-proof-mini-card{
+  background:var(--white);
+  border:1px solid var(--rule);
+  border-radius:12px;
+  overflow:hidden;
+}
+.simplified-proof-mini-card img{
+  width:100%;
+  aspect-ratio:16/8.5;
+  object-fit:cover;
+  display:block;
+}
+.simplified-proof-mini-card div{
+  padding:.8rem .9rem;
+  font-size:.8rem;
+  line-height:1.4;
+  color:var(--mid);
+}
+.simplified-proof-mini-card strong{
+  display:block;
+  color:var(--navy);
+  font-size:.9rem;
+  margin-bottom:.2rem;
+}
+@media(max-width:900px){
+  .simplified-proof-grid{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  .simplified-proof-copy{
+    max-width:none;
+  }
+}
+@media(max-width:700px){
+  .simplified-proof-points{
+    grid-template-columns:1fr;
+  }
+  .simplified-proof-mini{
+    grid-template-columns:1fr;
+  }
+}
+
 /* ── Trust / Proof Section ── */
 .proof-section{background:var(--white);}
 .proof-grid{
@@ -2497,11 +2625,11 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   </div>
   <div class="hero-split">
     <div class="hero-left">
-      <div class="hero-badge"><span class="badge-dot"></span> For Bathroom Fitters</div>
-      <h1><span class="block">Win better</span><span class="block highlight">bathroom jobs</span><span class="block">from your website</span></h1>
-      <p class="hero-sub">You already do the hard part — fitting bathrooms properly. We turn your website into a quote-ready system that brings in direct homeowner enquiries, filters budgets upfront, and helps you choose better jobs.</p>
+      <div class="hero-badge"><span class="badge-dot"></span> For High-Value Trades</div>
+      <h1><span class="block">Win better</span><span class="block highlight">trade jobs</span><span class="block">from your website</span></h1>
+      <p class="hero-sub">You already do the hard part — delivering the work. TradeConvert turns your website into a quote-ready system that shows your projects properly, builds trust, filters enquiries, and helps you win better jobs.</p>
       <div class="hero-actions">
-        <a href="#scanner" class="btn-orange">Scan My Website Free →</a>
+        <a href="#scanner" class="btn-orange">Scan My Trade Site Free →</a>
         <a href="tel:01919260045" class="btn-call">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.26.2 2.47.57 3.58.11.35.03.74-.24 1.02L6.6 10.8z"/></svg>
           Call Now
@@ -2546,9 +2674,9 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 <!-- Trust strip -->
 <div class="trust-strip">
   <div class="trust-strip-inner">
-    <div class="ts-item">Built exclusively for <strong>bathroom fitters</strong></div>
+    <div class="ts-item">Built for <strong>high-value trades</strong></div>
     <div class="ts-dot"></div>
-    <div class="ts-item">See where <strong>better enquiries</strong> could come from</div>
+    <div class="ts-item">See where <strong>better trade enquiries</strong> could come from</div>
     <div class="ts-dot"></div>
     <div class="ts-item">First draft in <strong>48–72 hours</strong></div>
   </div>
@@ -2557,12 +2685,12 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 <!-- ══ TRADES STRIP ════════════════════════════════════════════════════════════ -->
 <div class="trades-strip">
   <div class="trades-inner">
-    <div class="trades-label">Built for bathroom fitters who do:</div>
-    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Full bathroom refits</div>
-    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Wet rooms</div>
-    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Shower installs</div>
-    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Tiling</div>
-    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Same-day repairs</div>
+    <div class="trades-label">Built for high-value trades including:</div>
+    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Bathroom & kitchen fitters</div>
+    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Landscapers</div>
+    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Roofers</div>
+    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Builders</div>
+    <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Driveways & patios</div>
   </div>
 </div>
 
@@ -2571,15 +2699,15 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   <div class="main-video-inner">
     <div class="main-video-copy reveal">
       <div class="section-chip">Watch the overview</div>
-      <h2>See how your site can<br><span class="em">win better jobs.</span></h2>
-      <p>A short bathroom-fitter focused video showing the opportunity: word of mouth is useful, but your website should also bring in direct homeowners, set budget expectations, and turn interest into booked conversations.</p>
+      <h2>See how your trade site can<br><span class="em">win better jobs.</span></h2>
+      <p>A short trade-focused video showing the opportunity: word of mouth is useful, but your website should also bring in direct enquiries, set expectations, and turn interest into booked conversations.</p>
       <div class="main-video-bullets">
-        <div class="main-video-bullet"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>Shows how one extra serious bathroom enquiry can change the value of the whole build.</span></div>
+        <div class="main-video-bullet"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>Shows how one extra serious trade enquiry can change the value of the whole build.</span></div>
         <div class="main-video-bullet"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>Positions TradeConvert as a quote and lead system — not just a nicer-looking website.</span></div>
         <div class="main-video-bullet"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>Shows why better enquiries usually matter more than simply getting more enquiries.</span></div>
       </div>
       <div class="main-video-actions">
-        <a href="#scanner" class="btn-orange">Scan My Site Free →</a>
+        <a href="#scanner" class="btn-orange">Scan My Trade Site Free →</a>
         <button onclick="openBuyModal()" class="btn-call" style="cursor:pointer;">Secure a Build Slot</button>
       </div>
     </div>
@@ -2596,7 +2724,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   <div class="container">
     <div class="section-chip">The transformation</div>
     <h2>Before <span class="em">vs</span> after</h2>
-    <p class="lead">The aim is not just a better-looking site. The aim is more direct enquiries, clearer budgets, and better-fit homeowners before they call.</p>
+    <p class="lead">The aim is not just a better-looking site. The aim is more direct enquiries, stronger proof, clearer next steps, and better-fit customers before they call.</p>
 
     <!-- Minimal indicator labels + slider grouped -->
     <div class="tc-slider-group">
@@ -2726,9 +2854,9 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   <div class="loop-inner">
     <div class="loop-header reveal">
       <div class="section-chip">See the problem</div>
-      <h2 class="light">Most bathroom fitter sites<br><span class="em">cost more than they earn</span></h2>
+      <h2 class="light">Most trade websites<br><span class="em">work less than they should</span></h2>
       <p style="color:rgba(255,255,255,.5);max-width:520px;margin:0 auto;line-height:1.7;">
-        Slow load. Weak mobile layout. No clear way to get in touch. These are the small leaks that quietly cost you enquiries.
+        Slow load. Weak mobile layout. No clear way to enquire. These are the small gaps that stop good customers taking the next step.
       </p>
     </div>
     <div class="loop-video-wrap reveal">
@@ -2746,10 +2874,10 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
       </video>
     </div>
     <div class="loop-footer">
-      <button onclick="openBuyModal()" class="btn-orange">Fix My Website →</button>
+      <button onclick="openBuyModal()" class="btn-orange">Fix My Trade Site →</button>
       <a href="#scanner" class="btn-call">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        Scan my site free
+        Scan my trade site free
       </a>
     </div>
   </div>
@@ -2759,9 +2887,9 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 <section class="scanner-section" id="scanner">
   <div class="scanner-inner">
     <div class="scanner-intro reveal">
-      <div class="section-chip">Free Bathroom Fitter Website Scan</div>
-      <h2>Could your website <span class="em">bring in better jobs?</span></h2>
-      <p class="lead">Scan your site in 30 seconds. See where it could create more trust, clearer next steps, and better-quality bathroom enquiries.</p>
+      <div class="section-chip">Free Trade Website Conversion Scan</div>
+      <h2>Could your trade website <span class="em">bring in better jobs?</span></h2>
+      <p class="lead">Scan your trade site in 30 seconds. See where it could create more trust, clearer next steps, and better-quality trade enquiries.</p>
     </div>
     <div id="sc-app">
 
@@ -2773,7 +2901,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
             <div id="sc-form-error" class="sc-error-banner"></div>
             <div class="sc-scan-form" id="sc-scan-form">
               <div class="sc-form-row">
-                <label class="sc-form-label" for="inp-url">Your Website URL</label>
+                <label class="sc-form-label" for="inp-url">Your Trade Website URL</label>
                 <input id="inp-url" class="sc-form-input" type="url" placeholder="e.g. https://yourbathroomsite.co.uk" autocomplete="url" inputmode="url">
               </div>
               <div class="sc-form-row-split">
@@ -2782,19 +2910,25 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
                   <select id="inp-trade" class="sc-form-input sc-form-select">
                     <option value="">Select trade…</option>
                     <option value="bathroom-fitter">Bathroom Fitter</option>
-                    <option value="plumber">Plumber</option>
+                    <option value="kitchen-fitter">Kitchen Fitter</option>
+                    <option value="landscaper">Landscaper</option>
+                    <option value="roofer">Roofer</option>
+                    <option value="builder">Builder</option>
+                    <option value="driveways-patios">Driveways / Patios</option>
+                    <option value="plumber">Plumber / Heating Engineer</option>
+                    <option value="electrician">Electrician</option>
                     <option value="tiler">Tiler</option>
                     <option value="wet-room">Wet Room Specialist</option>
-                    <option value="other">Other</option>
+                    <option value="other">Other Trade</option>
                   </select>
                 </div>
                 <div>
-                  <label class="sc-form-label" for="inp-jobs">Monthly Jobs Goal</label>
+                  <label class="sc-form-label" for="inp-jobs">Monthly Job Goal</label>
                   <input id="inp-jobs" class="sc-form-input" type="number" placeholder="e.g. 15" min="1" max="999">
-                  <div class="sc-hint">Optional — shows missed job estimate</div>
+                  <div class="sc-hint">Optional — helps estimate opportunity</div>
                 </div>
               </div>
-              <button class="sc-btn-scan" id="sc-btn-scan" onclick="scStartScan()">Scan My Website Now →</button>
+              <button class="sc-btn-scan" id="sc-btn-scan" onclick="scStartScan()">Scan My Trade Site Now →</button>
               <div class="sc-trust-row">
                 <div class="sc-trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.545 5.09H13L9.727 7.582L11.273 11.673L7 9.18L2.727 11.673L4.273 7.582L1 5.09H5.455L7 1Z" fill="#f97316"/></svg>Live site scan</div>
                 <div class="sc-trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="6" width="10" height="7" rx="1.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" fill="none"/></svg>No login needed</div>
@@ -2934,13 +3068,13 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 
             <!-- PRIMARY CTA — dark, dominant -->
             <div class="sc-results-bottom-cta" id="sc-results-bottom-cta" style="display:none">
-              <h3>Fix this. Win more bathroom jobs.</h3>
-              <p>Your site has specific issues costing you enquiries. We rebuild it fast — first draft in 48–72 hours.</p>
+              <h3>Fix the gaps. Win better trade enquiries.</h3>
+              <p>Your site has specific gaps that can reduce enquiry quality. We rebuild it fast — first draft in 48–72 hours.</p>
               <div class="sc-results-bottom-btns">
-                <button onclick="openBuyModal ? openBuyModal() : scrollToPricing()" class="sc-cta-primary-btn">Get my site fixed →</button>
+                <button onclick="openBuyModal ? openBuyModal() : scrollToPricing()" class="sc-cta-primary-btn">Improve my trade site →</button>
                 <button onclick="scrollToPricing()" class="sc-cta-secondary-btn">See packages</button>
               </div>
-              <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.3)">No call needed. No hard sell. Built for bathroom fitters.</div>
+              <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,.3)">No call needed. No hard sell. Built for high-value trades.</div>
               <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);text-align:center;">
                 <span style="font-size:12px;color:rgba(255,255,255,.45);margin-right:8px;">Not ready to commit yet?</span>
                 <a href="#" onclick="scOpenBooking(event)" style="font-size:13px;font-weight:700;color:#f4600c;text-decoration:underline;text-underline-offset:3px;letter-spacing:.01em;">Book a free 10-min site review →</a>
@@ -3014,14 +3148,14 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 <div class="sc-modal-overlay" id="sc-modal-overlay" onclick="scCloseModalIfOverlay(event)">
   <div class="sc-modal-box" role="dialog" aria-modal="true">
     <button class="sc-modal-close" onclick="scCloseModal()" aria-label="Close">×</button>
-    <div class="sc-modal-title">Get Your Full Breakdown</div>
-    <div class="sc-modal-body">Enter your details to reveal the full issues and fastest fixes for your site.</div>
+    <div class="sc-modal-title">Get Your Site Breakdown</div>
+    <div class="sc-modal-body">Enter your details to reveal the main gaps and fastest fixes for your trade site.</div>
     <div class="sc-qualifier-block">
-      <div class="sc-qualifier-headline">What's holding your site back?</div>
+      <div class="sc-qualifier-headline">What do you want your website to improve?</div>
       <div class="sc-qualifier-options">
-        <button class="sc-qualifier-option" onclick="scSelectQualifier(this,'enquiries')" type="button"><span class="sc-qualifier-option-dot"></span>Not enough enquiries</button>
-        <button class="sc-qualifier-option" onclick="scSelectQualifier(this,'calls')" type="button"><span class="sc-qualifier-option-dot"></span>Visits, no calls</button>
-        <button class="sc-qualifier-option" onclick="scSelectQualifier(this,'consistency')" type="button"><span class="sc-qualifier-option-dot"></span>Want more consistent jobs</button>
+        <button class="sc-qualifier-option" onclick="scSelectQualifier(this,'enquiries')" type="button"><span class="sc-qualifier-option-dot"></span>More enquiries</button>
+        <button class="sc-qualifier-option" onclick="scSelectQualifier(this,'calls')" type="button"><span class="sc-qualifier-option-dot"></span>Visits, no enquiries</button>
+        <button class="sc-qualifier-option" onclick="scSelectQualifier(this,'consistency')" type="button"><span class="sc-qualifier-option-dot"></span>More consistent jobs</button>
       </div>
     </div>
     <div id="sc-lead-error" class="sc-lead-error"></div>
@@ -3102,7 +3236,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         <input id="buy-inp-url" class="buy-form-input" type="url" placeholder="https://yoursite.co.uk" autocomplete="url" inputmode="url">
       </div>
       <div class="buy-form-row">
-        <label class="buy-form-label" for="buy-inp-notes">What do you want fixing? <span style="color:rgba(255,255,255,.3);font-weight:400;text-transform:none;font-size:10px;letter-spacing:0"> — the more detail the better</span></label>
+        <label class="buy-form-label" for="buy-inp-notes">What do you want improved? <span style="color:rgba(255,255,255,.3);font-weight:400;text-transform:none;font-size:10px;letter-spacing:0"> — the more detail the better</span></label>
         <textarea id="buy-inp-notes" class="buy-form-input buy-form-textarea" placeholder="e.g. Mobile layout is broken, no clear contact button, loads slowly…"></textarea>
       </div>
       <div class="buy-form-row">
@@ -3224,19 +3358,19 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 <section class="section problems-section">
   <div class="container">
     <div class="section-chip" style="color:var(--orange)">Where the money leaks</div>
-    <h2 class="light">Six places your site could<br><span class="em">win better enquiries</span></h2>
-    <p class="lead" style="color:rgba(255,255,255,.5)">Word of mouth is valuable. Your website should catch the homeowners who are searching, comparing, and ready to spend.</p>
+    <h2 class="light">Six places your trade site could<br><span class="em">win better enquiries</span></h2>
+    <p class="lead" style="color:rgba(255,255,255,.5)">Word of mouth is valuable. Your website should also catch the people searching, comparing, and ready to spend on serious trade work.</p>
     <div class="problems-grid reveal">
-      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div><div><div class="prob-title">Your number should be easy to act on</div><div class="prob-desc">When a homeowner likes your work, calling or enquiring should feel instant — especially on mobile.</div></div></div>
-      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><div><div class="prob-title">Mobile needs to sell the job</div><div class="prob-desc">Homeowners compare fitters on their phone. Your site needs to look premium, load fast, and make the next step obvious.</div></div></div>
+      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div><div><div class="prob-title">Your number should be easy to act on</div><div class="prob-desc">When someone likes your work, calling or enquiring should feel instant — especially on mobile.</div></div></div>
+      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><div><div class="prob-title">Mobile needs to sell the job</div><div class="prob-desc">Customers compare trades on their phone. Your site needs to look credible, load fast, and make the next step obvious.</div></div></div>
       <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="prob-title">Slow pages reduce confidence</div><div class="prob-desc">A fast site feels more professional and keeps people looking at your work instead of backing out.</div></div></div>
-      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="prob-title">Your best work needs to lead</div><div class="prob-desc">Bathroom refits sell on proof. Before-and-after photos help homeowners picture the result and trust the price.</div></div></div>
-      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div><div><div class="prob-title">Budget clarity attracts better-fit leads</div><div class="prob-desc">People need a realistic ballpark before they call. A guide range filters low-budget enquiries without awkward conversations.</div></div></div>
-      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="prob-title">Reviews should support the quote</div><div class="prob-desc">People hire who they trust. Reviews, guarantees, and proof should sit where they help someone decide to enquire.</div></div></div>
+      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="prob-title">Your best projects need to lead</div><div class="prob-desc">High-value trade jobs sell on proof. Before-and-after photos, project galleries, and reviews help people picture the result and trust the price.</div></div></div>
+      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div><div><div class="prob-title">Price clarity attracts better-fit leads</div><div class="prob-desc">People often need a realistic ballpark before they call. A guide range or quote flow filters low-budget enquiries without awkward conversations.</div></div></div>
+      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="prob-title">Reviews should support the enquiry</div><div class="prob-desc">People hire who they trust. Reviews, guarantees, and proof should sit where they help someone decide to enquire.</div></div></div>
     </div>
     <div class="prob-cta reveal">
-      <p><strong>Scan your site free.</strong> We'll show you where your current site could work harder for better enquiries.</p>
-      <a href="#scanner" class="btn-orange">Scan My Site Free →</a>
+      <p><strong>Scan your trade site free.</strong> We'll show you where your current trade site could work harder for better enquiries.</p>
+      <a href="#scanner" class="btn-orange">Scan My Trade Site Free →</a>
     </div>
   </div>
 </section>
@@ -3246,22 +3380,22 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 <section class="section features-section">
   <div class="container">
     <div class="section-chip">What you get</div>
-    <h2>Not just a website.<br><span class="em">A better-job system.</span></h2>
-    <p class="lead" style="max-width:600px;">Every piece of the system is built to help you attract direct homeowner enquiries, set budget expectations early, and spend less time on poor-fit calls.</p>
+    <h2>Not just a website.<br><span class="em">A better-enquiry system.</span></h2>
+    <p class="lead" style="max-width:600px;">Every piece of the system is built to help high-value trades attract direct enquiries, show proof properly, set expectations early, and spend less time on poor-fit calls.</p>
     <div class="feat-grid reveal">
 
       <div class="feat-card">
         <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
         <!-- FEATURE_VISUAL_1 -->
         <div class="feat-title">Premium Website Rebuild</div>
-        <div class="feat-desc">Fast, mobile-first, and built to make your work look premium before a homeowner speaks to you.</div>
+        <div class="feat-desc">Fast, mobile-first, and built to make your trade business look credible before someone speaks to you.</div>
       </div>
 
       <div class="feat-card">
         <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7H6a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-3M13 3h8v8M17 7L9 15"/></svg></div>
         <!-- FEATURE_VISUAL_2 -->
-        <div class="feat-title">Bathroom Budget Estimator</div>
-        <div class="feat-desc">Visitors enter their project details and get a realistic guide range. You speak to people who understand the likely budget before they enquire.</div>
+        <div class="feat-title">Example Quote Estimator</div>
+        <div class="feat-desc">Visitors enter project details and get a realistic guide range. You speak to people who understand the likely budget before they enquire.</div>
       </div>
 
       <div class="feat-card">
@@ -3275,7 +3409,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
         <!-- FEATURE_VISUAL_4 -->
         <div class="feat-title">Your Work, Front &amp; Centre</div>
-        <div class="feat-desc">Before and after gallery. Real photos of your bathrooms. Trust signals and reviews exactly where visitors need to see them.</div>
+        <div class="feat-desc">Before-and-after galleries, project photos, trust signals, and reviews placed exactly where visitors need to see them.</div>
       </div>
 
       <div class="feat-card">
@@ -3289,7 +3423,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
         <!-- FEATURE_VISUAL_6 -->
         <div class="feat-title">Built to Make You Money</div>
-        <div class="feat-desc">Every decision — layout, copy, CTA placement — is built around one commercial goal: more of the bathroom jobs you actually want.</div>
+        <div class="feat-desc">Every decision — layout, copy, CTA placement — is built around one commercial goal: more of the trade jobs you actually want.</div>
       </div>
 
     </div>
@@ -3304,17 +3438,17 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   <div class="container">
     <div class="estimator-inner">
       <div class="reveal">
-        <div class="section-chip" style="color:var(--orange)">Better leads before they call</div>
-        <h2 class="light">Let homeowners<br><span class="em">qualify themselves</span></h2>
-        <p style="color:rgba(255,255,255,.55);font-size:1rem;line-height:1.7;margin-bottom:2rem;">The estimator gives homeowners a realistic budget range before they enquire. That means fewer awkward price calls, better expectations, and more time spent on projects with real potential.</p>
+        <div class="section-chip" style="color:var(--orange)">Example lead tool</div>
+        <h2 class="light">Let customers<br><span class="em">qualify themselves</span></h2>
+        <p style="color:rgba(255,255,255,.55);font-size:1rem;line-height:1.7;margin-bottom:2rem;">This bathroom estimator is an example of the kind of quote tool TradeConvert can build for high-value trades. The same idea can work for kitchens, landscaping, roofing, driveways, building work, and other project-based services.</p>
         <div class="estimator-ui-preview">
           <div class="estimator-step">
             <div class="estimator-step-num">1</div>
-            <div class="estimator-step-text"><strong>What type of bathroom?</strong> Full refit, wet room, or shower install</div>
+            <div class="estimator-step-text"><strong>What type of project?</strong> Example: refit, install, repair, or upgrade</div>
           </div>
           <div class="estimator-step">
             <div class="estimator-step-num">2</div>
-            <div class="estimator-step-text"><strong>Rough size and finish level?</strong> Standard, mid-range, or premium</div>
+            <div class="estimator-step-text"><strong>Rough size and finish level?</strong> Budget expectations set early</div>
           </div>
           <div class="estimator-step">
             <div class="estimator-step-num">3</div>
@@ -3322,10 +3456,10 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
           </div>
           <div class="estimator-result">
             <div class="estimator-result-icon">💰</div>
-            <div class="estimator-result-text">Estimated budget: <strong>£4,500–£7,500</strong> — qualified enough to discuss a survey</div>
+            <div class="estimator-result-text">Estimated budget: <strong>£4,500–£7,500</strong> — qualified enough to discuss next steps</div>
           </div>
         </div>
-        <button onclick="openBuyModal()" class="btn-orange" style="cursor:pointer;margin-top:2rem;">Get the Full System →</button>
+        <button onclick="openBuyModal()" class="btn-orange" style="cursor:pointer;margin-top:2rem;">Build My Trade System →</button>
       </div>
       <div class="reveal" style="position:relative;">
         <!-- ESTIMATOR_UI_LARGE -->
@@ -3333,7 +3467,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
           <div class="estimator-live-label">Live demo</div>
           <iframe id="tcBathroomEstimatorFrame" class="estimator-iframe" title="Bathroom budget estimator demo" loading="lazy"></iframe>
         </div>
-        <p class="estimator-demo-note">Presentation-only demo. The sample estimate does not currently submit data anywhere.</p>
+        <p class="estimator-demo-note">Presentation-only bathroom estimator example. The same quote-flow approach can be adapted for other high-value trades.</p>
       </div>
     </div>
   </div>
@@ -3347,12 +3481,12 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   <div class="container">
     <div class="section-chip">The numbers</div>
     <h2>One better job can<br><span class="em">cover the build.</span></h2>
-    <p class="lead" style="max-width:560px;">You do not need hundreds of leads. For most bathroom fitters, one extra direct homeowner refit can make the website pay for itself.</p>
+    <p class="lead" style="max-width:560px;">For high-value trades, you do not need hundreds of leads. One extra serious project enquiry can make the website pay for itself.</p>
     <div class="roi-grid reveal">
       <div class="roi-card">
         <div class="roi-num">1</div>
-        <div class="roi-label">extra direct job can cover the build</div>
-        <div class="roi-desc">A single bathroom refit can be worth several thousand pounds. One extra right-fit enquiry can change the maths quickly.</div>
+        <div class="roi-label">extra serious job can cover the build</div>
+        <div class="roi-desc">A single high-value trade job can be worth several thousand pounds. One extra right-fit enquiry can change the maths quickly.</div>
       </div>
       <div class="roi-card">
         <div class="roi-num">5h</div>
@@ -3369,11 +3503,11 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
     <div class="roi-calc reveal">
       <div class="roi-calc-left">
         <div class="roi-calc-title">The simple upside.</div>
-        <p class="roi-calc-sub">If a direct bathroom job is worth £5,000 and your upgraded website helps win just one extra job a month, the upside is far bigger than the build cost.</p>
+        <p class="roi-calc-sub">If a direct trade job is worth £5,000 and your upgraded website helps win just one extra job a month, the upside is far bigger than the build cost.</p>
       </div>
       <div class="roi-calc-right">
         <div class="roi-calc-line">
-          <span class="roi-calc-key">Average job value</span>
+          <span class="roi-calc-key">Example job value</span>
           <span class="roi-calc-val">£5,000</span>
         </div>
         <div class="roi-calc-line">
@@ -3399,7 +3533,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   <div class="container">
     <div class="section-chip">How it works</div>
     <h2>Three steps.<br><span class="em">No faff.</span></h2>
-    <p class="lead">Scan the opportunity, rebuild the site, then turn more interest into serious enquiries.</p>
+    <p class="lead">Scan the opportunity, rebuild the site, then turn more trade interest into serious enquiries.</p>
     <div class="hiw-steps reveal">
       <div class="hiw-step">
         <div class="hiw-illus">
@@ -3416,7 +3550,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         </div>
         <div class="hiw-num">1</div>
         <div class="hiw-title">We scan the opportunity</div>
-        <p class="hiw-desc">Scan your site free. We identify where it could create more trust, clearer action, and better enquiry quality.</p>
+        <p class="hiw-desc">Scan your trade site free. We identify where it could create more trust, clearer action, and better enquiry quality.</p>
         <span class="hiw-time">Results in 30 seconds</span>
       </div>
       <div class="hiw-step active">
@@ -3438,7 +3572,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         </div>
         <div class="hiw-num">2</div>
         <div class="hiw-title">We rebuild around better jobs</div>
-        <p class="hiw-desc">We rebuild your site around your best work, clear budget expectations, and direct homeowner enquiries. No call needed to start.</p>
+        <p class="hiw-desc">We rebuild your site around your best work, clear expectations, and direct trade enquiries. No call needed to start.</p>
         <span class="hiw-time">First draft in 48–72 hours</span>
       </div>
       <div class="hiw-step">
@@ -3465,58 +3599,70 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 </section>
 
 <!-- ══ TRUST / PROOF ════════════════════════════════════════════════════════ -->
-<!-- ══ TRUST / PROOF ════════════════════════════════════════════════════════ -->
-<section class="section proof-section">
+<section class="section proof-section simplified-proof">
   <div class="container">
-    <div class="section-chip">Built for how trades work</div>
-    <h2>Show the value<br><span class="em">before they call.</span></h2>
-    <p class="lead" style="max-width:560px;">Every part of the site is built around how bathroom customers actually choose a fitter — proof, trust, budget clarity, and an easy next step.</p>
-
-    <div class="proof-grid reveal">
-
-      <div class="proof-card">
-        <!-- DASHBOARD_PREVIEW -->
-        <div class="proof-media has-image">
-          <img class="proof-media-img" src="assets/proof-dashboard-preview.png" alt="Lead dashboard showing recent enquiries and statuses" loading="lazy">
-        </div>
-        <div class="proof-caption">
-          <div class="proof-caption-title">Lead dashboard — see every enquiry</div>
-          <div class="proof-caption-sub">See who has enquired, what they are after, and what needs following up — without digging through texts or your inbox.</div>
+    <div class="simplified-proof-grid">
+      <div class="simplified-proof-copy reveal">
+        <div class="section-chip">Built for how trades work</div>
+        <h2>Make customers trust the job<br><span class="em">before they call.</span></h2>
+        <p class="lead">People do not just need your phone number. They need to see your standard of work, trust your business, understand the likely next step, and feel confident enough to enquire.</p>
+        <p class="lead" style="font-size:1rem;margin-top:1rem;">TradeConvert rebuilds your site so your best projects, proof, and enquiry path are clear from the first visit.</p>
+        <div class="simplified-proof-actions">
+          <a href="#scanner" class="btn-orange">See What Your Site Is Missing →</a>
         </div>
       </div>
 
-      <div class="proof-card">
-        <!-- MOBILE_PREVIEW -->
-        <div class="proof-media has-image">
-          <img class="proof-media-img" src="assets/proof-mobile-preview.png" alt="Example premium bathroom fitter website shown on laptop and mobile" loading="lazy">
-        </div>
-        <div class="proof-caption">
-          <div class="proof-caption-title">Optimised for mobile searches</div>
-          <div class="proof-caption-sub">Most homeowner research starts on a phone. The site still looks premium, loads clearly, and gives people an obvious next step.</div>
+      <div class="reveal">
+        <div class="simplified-proof-visual">
+          <img src="assets/proof-mobile-preview.png" alt="Premium trade website shown on laptop and mobile" loading="lazy">
         </div>
       </div>
-
-      <div class="proof-card">
-        <!-- BEFORE_AFTER_PREVIEW -->
-        <div class="proof-media has-image">
-          <img class="proof-media-img" src="assets/proof-installations-preview.png" alt="Gallery of recent bathroom installations" loading="lazy">
-        </div>
-        <div class="proof-caption">
-          <div class="proof-caption-title">Your work, presented properly</div>
-          <div class="proof-caption-sub">A polished gallery helps homeowners see the standard of your work and picture the finish before they ever get in touch.</div>
-        </div>
-      </div>
-
     </div>
 
-    <div class="testimonial-strip reveal proof-note">
-      <p><strong>Pilot slots are open.</strong> We are taking on a small number of bathroom fitters first, so the builds can be used as focused examples before opening this to more trades.</p>
-      <cite>Built to attract, qualify, and organise better website enquiries — not just make the page look cleaner.</cite>
+    <div class="simplified-proof-points reveal">
+      <div class="simplified-proof-point">
+        <div class="simplified-proof-point-top">
+          <span class="simplified-proof-point-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="4 10 8 14 16 6"/></svg>
+          </span>
+          Mobile-first presentation
+        </div>
+        <p>Your site needs to look credible and make the next step obvious when customers compare trades on their phone.</p>
+      </div>
+
+      <div class="simplified-proof-point">
+        <div class="simplified-proof-point-top">
+          <span class="simplified-proof-point-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="4 10 8 14 16 6"/></svg>
+          </span>
+          Gallery that sells the result
+        </div>
+        <p>Your best projects are placed where they build confidence, not hidden behind a generic services page.</p>
+      </div>
+
+      <div class="simplified-proof-point">
+        <div class="simplified-proof-point-top">
+          <span class="simplified-proof-point-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="4 10 8 14 16 6"/></svg>
+          </span>
+          Enquiries organised clearly
+        </div>
+        <p>When someone does enquire, their details are captured cleanly so follow-up is easier.</p>
+      </div>
+    </div>
+
+    <div class="simplified-proof-mini reveal">
+      <div class="simplified-proof-mini-card">
+        <img src="assets/proof-installations-preview.png" alt="Recent trade project gallery preview" loading="lazy">
+        <div><strong>Show your workmanship</strong> A polished gallery helps people picture the end result and understand why you are worth contacting.</div>
+      </div>
+      <div class="simplified-proof-mini-card">
+        <img src="assets/proof-dashboard-preview.png" alt="Lead dashboard preview" loading="lazy">
+        <div><strong>Keep enquiries in one place</strong> See who has enquired, what they need, and what needs action.</div>
+      </div>
     </div>
   </div>
 </section>
-
-
 
 <!-- ══ OBJECTIONS ═══════════════════════════════════════════════════════════ -->
 <!-- ══ OBJECTIONS ═══════════════════════════════════════════════════════════ -->
@@ -3532,7 +3678,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
           <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="obj-body">
-          <p>Most fitters already have some kind of website. The question is whether it helps you win direct homeowner work, show your best projects properly, and filter enquiries before they reach you. The free scan shows where it could work harder.</p>
+          <p>Most trades already have some kind of website. The question is whether it helps you win direct work, show your best projects properly, and filter enquiries before they reach you. The free scan shows where it could work harder.</p>
         </div>
       </div>
 
@@ -3558,11 +3704,11 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 
       <div class="obj-item" id="obj-4">
         <button class="obj-trigger" onclick="objToggle('obj-4')">
-          <span class="obj-q">Will this work in my area?</span>
+          <span class="obj-q">Will this work for my trade?</span>
           <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="obj-body">
-          <p>The principle is the same in most areas: homeowners search locally, compare photos and reviews, check whether the fitter feels credible, then enquire. We build your site to compete at each of those decision points.</p>
+          <p>The principle is similar across high-value trades: people search locally, compare photos and reviews, check whether you feel credible, then enquire. We build your site to compete at each of those decision points.</p>
         </div>
       </div>
 
@@ -3590,7 +3736,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
     <div style="text-align:center;margin-bottom:2.5rem;">
       <div class="section-chip" style="justify-content:center">Pricing</div>
       <h2>Choose the level<br><span class="em">that matches the opportunity.</span></h2>
-      <p class="lead" style="max-width:560px;margin:0 auto .8rem;">Start with a straight rebuild, add qualification tools, or build a full growth system around better direct enquiries.</p>
+      <p class="lead" style="max-width:560px;margin:0 auto .8rem;">Start with a straight trade website rebuild, add qualification tools, or build a full growth system around better direct enquiries.</p>
     </div>
 
     <div class="price-grid reveal">
@@ -3599,17 +3745,17 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
       <div class="price-card" id="price-card-rebuild">
         <div class="pc-badge-wrap"></div>
         <div class="pc-header">
-          <div class="pc-orient">Best if you need to look more credible and win more direct enquiries</div>
+          <div class="pc-orient">Best if your current trade site needs a complete credibility upgrade</div>
           <div class="pc-name">Website Rebuild</div>
           <div class="pc-price">£1,500</div>
           <div class="pc-note">One-off · £150 secures your slot</div>
         </div>
         <ul class="pc-feats">
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Full rebuild — structured to get you calls, not just look good</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Before &amp; after gallery of your bathroom work</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Mobile-first, loads in under 2 seconds</li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Before &amp; after gallery of your trade work</li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Mobile-first, built for fast loading</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Phone number and contact buttons on every page</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Intro video section to build trust before they call</li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Intro video section to build trust before they enquire</li>
         </ul>
         <div class="pc-ctas">
           <hr class="pc-divider">
@@ -3624,14 +3770,14 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
           <span class="pc-badge">Most Popular</span>
         </div>
         <div class="pc-header">
-          <div class="pc-orient">Best if you want better-fit enquiries before they call</div>
+          <div class="pc-orient">Best if you want better-fit enquiries before they reach you</div>
           <div class="pc-name">Website + Conversion System</div>
           <div class="pc-price">£3,000</div>
           <div class="pc-note">One-off · £300 secures your slot</div>
         </div>
         <ul class="pc-feats">
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Everything in Website Rebuild</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><strong>Budget estimator that filters low-quality enquiries</strong></li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><strong>Quote tool or estimator that filters low-quality enquiries</strong></li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Lead capture flow — project details and budget expectations before follow-up</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Google review integration — your reviews working harder</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><strong>Priority build — first draft in 48–72 hours</strong></li>
@@ -3654,10 +3800,10 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
           <div class="pc-price" style="font-size:2.2rem">From £5,000</div>
           <div class="pc-note">Custom build · selective intake</div>
         </div>
-        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.55;margin-bottom:1.2rem;">For bathroom fitters who want a more complete system around enquiries, follow-up, reviews, and visibility.</p>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.55;margin-bottom:1.2rem;">For trade businesses that want a more complete system around enquiries, follow-up, reviews, and visibility.</p>
         <ul class="pc-feats">
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Everything in Conversion System</li>
-          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Custom bathroom quote tool — gives instant budgets, books surveys</li>
+          <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Custom quote tool — gives guide budgets, books surveys or enquiries</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Automated follow-up — email and SMS so no lead goes cold</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Review generation flow — gets you Google reviews without chasing</li>
           <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg>Monthly reporting — you see exactly where jobs are coming from</li>
@@ -3671,7 +3817,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 
     </div><!-- /price-grid -->
 
-    <p class="price-note-bottom reveal">Not sure which is right? <strong>Scan your site free first</strong> — the results will tell you exactly what level of fix you need.
+    <p class="price-note-bottom reveal">Not sure which is right? <strong>Scan your trade site free first</strong> — the results will tell you exactly what level of fix you need.
     Or, <a href="#" onclick="scOpenBooking(event)" style="color:#f4600c;font-weight:700;text-decoration:underline;text-underline-offset:3px;">book a free 10-min review</a> and we'll walk you through it.
   </p>
   </div>
@@ -3687,10 +3833,10 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 <!-- ══ FINAL CTA ═════════════════════════════════════════════════════════════ -->
 <section class="final-cta">
   <div class="section-chip" style="color:var(--orange);display:flex;justify-content:center;margin-bottom:1rem;">Ready to start?</div>
-  <h2 class="light" style="margin-bottom:.75rem;">Better bathroom enquiries.<br><span class="em">More jobs worth quoting.</span></h2>
-  <p>Scan your site free to see where it could work harder. Or secure a build slot and start turning your website into a better-job system.</p>
+  <h2 class="light" style="margin-bottom:.75rem;">Better trade enquiries.<br><span class="em">More jobs worth quoting.</span></h2>
+  <p>Scan your trade site free to see where it could work harder. Or secure a build slot and start turning your website into a better-enquiry system.</p>
   <div class="final-actions">
-    <a href="#scanner" class="btn-orange" style="font-size:1.05rem;padding:1.1rem 2.5rem;">Scan My Site Free →</a>
+    <a href="#scanner" class="btn-orange" style="font-size:1.05rem;padding:1.1rem 2.5rem;">Scan My Trade Site Free →</a>
     <button onclick="openBuyModal()" class="btn-call" style="font-size:1rem;padding:1rem 2rem;cursor:pointer;">Get Started — From £150 →</button>
   </div>
   <p style="margin-top:1.5rem;color:rgba(255,255,255,.22);font-size:.78rem;">No call needed. First draft in 48–72 hours.</p>
@@ -4260,7 +4406,7 @@ function scOpenBooking(e) {
   const name=(document.getElementById('inp-name')?.value||'').trim();
   const email=(document.getElementById('inp-email')?.value||'').trim();
   const website=(document.getElementById('inp-url')?.value||'').trim()||(scanResult?.websiteUrl)||(scanResult?.url)||'';
-  const qlabels={enquiries:'Not enough enquiries',calls:'Visits but no calls',consistency:'Want more consistent jobs'};
+  const qlabels={enquiries:'More enquiries',calls:'Visits but no calls',consistency:'More consistent jobs'};
   const issue=qualifierValue?(qlabels[qualifierValue]||qualifierValue):'';
   const params=new URLSearchParams();
   if(name)params.set('name',name);if(email)params.set('email',email);
@@ -4832,7 +4978,7 @@ function objToggle(id) {
     var sr = window.scanResult || {};
     var score   = sr.totalScore || sr.score?.total || 0;
     var url     = sr.url || document.getElementById('sc-url-display')?.textContent || '';
-    var trade   = sr.trade || 'bathroom fitter';
+    var trade   = sr.trade || 'trade business';
     var cats    = sr.categoryScores || {};
     var issues  = (sr.issues || []).slice(0, 6);
     var catSummary = {};
