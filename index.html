@@ -2706,6 +2706,50 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   display:none !important;
 }
 
+
+/* ── Final conversion sweep cleanup ── */
+.trades-strip{
+  padding:1.05rem 2rem !important;
+}
+.trades-inner{
+  gap:.55rem 1.25rem !important;
+}
+.trade-tag{
+  font-size:.82rem !important;
+}
+.ba-caption-note{
+  max-width:720px;
+  margin:1.25rem auto 0;
+  color:var(--mid);
+  font-size:.92rem;
+  line-height:1.65;
+  text-align:center;
+}
+.feat-grid-compact{
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+}
+.roi-num{
+  font-size:clamp(2rem,4vw,3rem) !important;
+}
+.roi-example-note{
+  color:rgba(255,255,255,.42);
+  font-size:.78rem;
+  line-height:1.5;
+  text-align:right;
+  margin:.75rem 0 0;
+}
+@media(max-width:1050px){
+  .feat-grid-compact{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+@media(max-width:700px){
+  .feat-grid-compact{
+    grid-template-columns:1fr !important;
+  }
+  .ba-caption-note{text-align:left;}
+}
+
 </style>
 </head>
 <body>
@@ -2742,9 +2786,9 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
     <div class="hero-left">
       <div class="hero-badge"><span class="badge-dot"></span> For High-Value Trades</div>
       <h1><span class="block">Convert more</span><span class="block highlight">jobs from your</span><span class="block">website</span></h1>
-      <p class="hero-sub">Your website should be working for you — gathering leads, guiding pricing, qualifying enquiries, and helping serious customers book, pay a deposit, or take the next step.</p>
+      <p class="hero-sub">Your website should work like a sales system — capturing leads, guiding price expectations, qualifying enquiries, and helping serious customers take action.</p>
       <div class="hero-actions">
-        <a href="#scanner" class="btn-orange">Scan My Trade Site Free →</a>
+        <a href="#scanner" class="btn-orange">Scan My Website Free →</a>
         <a href="tel:01919260045" class="btn-call">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.26.2 2.47.57 3.58.11.35.03.74-.24 1.02L6.6 10.8z"/></svg>
           Call Now
@@ -2764,21 +2808,10 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   </div>
 </section>
 
-<!-- Trust strip -->
-<div class="trust-strip">
-  <div class="trust-strip-inner">
-    <div class="ts-item">Built for <strong>high-value trades</strong></div>
-    <div class="ts-dot"></div>
-    <div class="ts-item">See where <strong>better trade enquiries</strong> could come from</div>
-    <div class="ts-dot"></div>
-    <div class="ts-item">First draft in <strong>48–72 hours</strong></div>
-  </div>
-</div>
-
 <!-- ══ TRADES STRIP ════════════════════════════════════════════════════════════ -->
 <div class="trades-strip">
   <div class="trades-inner">
-    <div class="trades-label">Built for high-value trades including:</div>
+    <div class="trades-label">Built for high-value trades:</div>
     <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Bathroom & kitchen fitters</div>
     <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Landscapers</div>
     <div class="trade-tag"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4.5 4.5 7.5-8"/></svg>Roofers</div>
@@ -2800,7 +2833,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         <div class="main-video-bullet"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 10 8 14 16 6"/></svg><span>Shows why better enquiries usually matter more than simply getting more enquiries.</span></div>
       </div>
       <div class="main-video-actions">
-        <a href="#scanner" class="btn-orange">Scan My Trade Site Free →</a>
+        <a href="#scanner" class="btn-orange">Scan My Website Free →</a>
         <button onclick="openBuyModal()" class="btn-call" style="cursor:pointer;">Secure a Build Slot</button>
       </div>
     </div>
@@ -2808,170 +2841,6 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
       <video controls playsinline preload="metadata" poster="assets/tradeconvert-main-video-poster.jpg">
         <source src="media/tradeconvert-main-video.mp4" type="video/mp4">
       </video>
-    </div>
-  </div>
-</section>
-
-<!-- ══ BEFORE / AFTER ════════════════════════════════════════════════════════ -->
-<section class="section ba-section">
-  <div class="container">
-    <div class="section-chip">The transformation</div>
-    <h2>Before <span class="em">vs</span> after</h2>
-    <p class="lead">The aim is not just a better-looking site. The aim is more direct enquiries, stronger proof, clearer next steps, and better-fit customers before they call.</p>
-
-    <!-- Minimal indicator labels + slider grouped -->
-    <div class="tc-slider-group">
-    <div class="tc-indicators">
-      <span class="tc-ind tc-ind-before"><span class="tc-ind-dot"></span>Before</span>
-      <span class="tc-ind tc-ind-after"><span class="tc-ind-dot"></span>After</span>
-    </div>
-    <div class="tc-stage-wrap" id="tcSlider">
-      <!-- ── BEFORE panel (bottom layer) ─────────────────────────────── -->
-      <div class="tc-before" id="tcBeforePanel">
-        <div class="tc-site bs" id="tcBeforeSite">
-
-          <!-- Nav -->
-          <div class="bs-nav">
-            <div class="bs-logo">MBP Plumbing &amp; Heating<small>Est. 2008 — Newcastle &amp; Surrounding Areas</small></div>
-            <div class="bs-nav-links">
-              <a href="#">Home</a><a href="#">Services</a><a href="#">Gallery</a>
-              <a href="#">About Us</a><a href="#">Testimonials</a><a href="#">Contact</a><a href="#">FAQ</a>
-            </div>
-            <div class="bs-nav-phone">Call: 07700 900123</div>
-          </div>
-
-          <!-- Ticker -->
-          <div class="bs-ticker">⚠️ LIMITED TIME OFFER — 10% OFF ALL BATHROOMS THIS MONTH ONLY — CALL NOW — FREE QUOTES — NO CALL OUT FEE — FULLY INSURED</div>
-
-          <!-- Hero -->
-          <div class="bs-hero">
-            <h1>Welcome To MBP Plumbing &amp; Heating!!<br>Your Local Bathroom Specialists</h1>
-            <div class="bs-hero-services">Bathrooms · Wet Rooms · Showers · Tiling · Boilers · Gas Safety · Emergency Repairs · Radiators · Underfloor Heating</div>
-            <div class="bs-btns">
-              <button class="bs-btn bs-btn-bl">Get A Quote</button>
-              <button class="bs-btn bs-btn-or">Call Us Now!</button>
-              <button class="bs-btn bs-btn-gr">Free Estimate</button>
-            </div>
-          </div>
-
-          <!-- Trust strip -->
-          <div class="bs-trust">
-            <span>✔ FULLY INSURED</span><span>✔ GAS SAFE REGISTERED</span>
-            <span>✔ 20+ YRS EXPERIENCE</span><span>✔ FREE QUOTES</span>
-          </div>
-
-          <!-- Services row -->
-          <div class="bs-services-row">
-            <div class="bs-srv-title">Our Services</div>
-            <div class="bs-srv-grid">
-              <div class="bs-srv-card"><div class="bs-srv-ph"></div><div class="bs-srv-name">Bathrooms</div></div>
-              <div class="bs-srv-card"><div class="bs-srv-ph"></div><div class="bs-srv-name">Wet Rooms</div></div>
-              <div class="bs-srv-card"><div class="bs-srv-ph"></div><div class="bs-srv-name">Boiler Install</div></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ── AFTER panel (clipped top layer) ──────────────────────────── -->
-      <div class="tc-after-clip" id="tcAfterPanel">
-        <div class="tc-site as" id="tcAfterSite">
-
-          <!-- Nav -->
-          <div class="as-nav">
-            <div class="as-logo">Swift<em>Fix</em></div>
-            <div class="as-nav-links">
-              <a href="#">Work</a><a href="#">Services</a><a href="#">Reviews</a><a href="#">About</a>
-            </div>
-            <div class="as-nav-right">
-              <span class="as-nav-phone">0191 820 4400</span>
-              <button class="as-nav-cta">Book Free Visit</button>
-            </div>
-          </div>
-
-          <!-- Hero -->
-          <div class="as-hero">
-            <div class="as-hero-bg" style="background-image:url('assets/tc-inline-2.jpg')"></div>
-            <div class="as-hero-overlay"></div>
-            <div class="as-hero-content">
-              <h1>Expert bathrooms &amp;<br><em>wet rooms,</em><br>done properly.</h1>
-              <p class="as-hero-sub">Fixed prices. Tidy work. No hidden costs.</p>
-              <div class="as-hero-actions">
-                <button class="as-hero-cta">Book a Free Home Visit →</button>
-                <button class="as-hero-call">☎ 0191 820 4400</button>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Trust strip -->
-          <div class="as-trust">
-            <div class="as-trust-item"><div class="as-trust-ico"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path d="M10 2l2.09 4.26L17 7.27l-3.5 3.41.83 4.82L10 13.27l-4.33 2.23.83-4.82L3 7.27l4.91-.71L10 2z" fill="#15603D" stroke="#15603D" stroke-width="1" stroke-linejoin="round"/></svg></div><div class="as-trust-text"><strong>4.9 on Checkatrade</strong><span>180+ reviews</span></div></div>
-            <div class="as-trust-item"><div class="as-trust-ico"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="#15603D" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#15603D" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="13.5" r="1" fill="#15603D"/></svg></div><div class="as-trust-text"><strong>Fixed-Price Guarantee</strong><span>No hidden extras</span></div></div>
-            <div class="as-trust-item"><div class="as-trust-ico"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path d="M10 2.5l6 2.25v5.25c0 3.5-2.5 6-6 7.5C4.5 16 2 13.5 2 10V4.75l8-2.25z" stroke="#15603D" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke="#15603D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="as-trust-text"><strong>Gas Safe Registered</strong><span>Cert. #547832</span></div></div>
-          </div>
-
-          <!-- Recent work -->
-          <div class="as-work-row">
-            <div class="as-work-label">Recent Work</div>
-            <div class="as-work-grid">
-              <div class="as-work-tile"></div>
-              <div class="as-work-tile"></div>
-              <div class="as-work-tile"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ── HANDLE ───────────────────────────────────────────────────── -->
-      <div class="tc-drag" id="tcDrag"></div>
-      <div class="tc-divider" id="tcDivider">
-        <div class="tc-knob">
-          <svg viewBox="0 0 18 18" fill="none" stroke="#0B1525" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6.5 4L3 9L6.5 14"/><path d="M11.5 4L15 9L11.5 14"/>
-          </svg>
-        </div>
-      </div>
-
-    </div><!-- /tc-stage-wrap -->
-    </div><!-- /tc-slider-group -->
-
-    <!-- Hint -->
-    <div class="tc-hint" id="tcHint">← drag to compare →</div>
-  </div>
-</section>
-
-<!-- ══ LOOPING VIDEO — PAIN POINTS ═══════════════════════════════════════════ -->
-<section class="section loop-section">
-  <div class="loop-inner">
-    <div class="loop-header reveal">
-      <div class="section-chip">See the problem</div>
-      <h2 class="light">Most trade websites<br><span class="em">work less than they should</span></h2>
-      <p style="color:rgba(255,255,255,.5);max-width:520px;margin:0 auto;line-height:1.7;">
-        Slow load. Weak mobile layout. No clear way to enquire. These are the small gaps that stop good customers taking the next step.
-      </p>
-    </div>
-    <div class="loop-video-wrap reveal">
-      <video
-        id="loopVid"
-        autoplay
-        muted
-        loop
-        playsinline
-        webkit-playsinline
-        preload="metadata"
-        style="width:100%;height:auto;display:block;"
-      >
-        <source src="media/promo-loop-1.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="loop-footer">
-      <button onclick="openBuyModal()" class="btn-orange">Fix My Trade Site →</button>
-      <a href="#scanner" class="btn-call">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-        Scan my trade site free
-      </a>
     </div>
   </div>
 </section>
@@ -3021,7 +2890,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
                   <div class="sc-hint">Optional — helps estimate opportunity</div>
                 </div>
               </div>
-              <button class="sc-btn-scan" id="sc-btn-scan" onclick="scStartScan()">Scan My Trade Site Now →</button>
+              <button class="sc-btn-scan" id="sc-btn-scan" onclick="scStartScan()">Scan My Website Now →</button>
               <div class="sc-trust-row">
                 <div class="sc-trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.545 5.09H13L9.727 7.582L11.273 11.673L7 9.18L2.727 11.673L4.273 7.582L1 5.09H5.455L7 1Z" fill="#f97316"/></svg>Live site scan</div>
                 <div class="sc-trust-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="6" width="10" height="7" rx="1.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" fill="none"/></svg>No login needed</div>
@@ -3233,6 +3102,173 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
       </section>
 
     </div><!-- /sc-app -->
+  </div>
+</section>
+
+
+<!-- ══ BEFORE / AFTER ════════════════════════════════════════════════════════ -->
+<section class="section ba-section">
+  <div class="container">
+    <div class="section-chip">The transformation</div>
+    <h2>Before <span class="em">vs</span> after</h2>
+    <p class="lead">The aim is not just a better-looking site. The aim is more direct enquiries, stronger proof, clearer next steps, and better-fit customers before they call.</p>
+
+    <!-- Minimal indicator labels + slider grouped -->
+    <div class="tc-slider-group">
+    <div class="tc-indicators">
+      <span class="tc-ind tc-ind-before"><span class="tc-ind-dot"></span>Before</span>
+      <span class="tc-ind tc-ind-after"><span class="tc-ind-dot"></span>After</span>
+    </div>
+    <div class="tc-stage-wrap" id="tcSlider">
+      <!-- ── BEFORE panel (bottom layer) ─────────────────────────────── -->
+      <div class="tc-before" id="tcBeforePanel">
+        <div class="tc-site bs" id="tcBeforeSite">
+
+          <!-- Nav -->
+          <div class="bs-nav">
+            <div class="bs-logo">MBP Plumbing &amp; Heating<small>Est. 2008 — Newcastle &amp; Surrounding Areas</small></div>
+            <div class="bs-nav-links">
+              <a href="#">Home</a><a href="#">Services</a><a href="#">Gallery</a>
+              <a href="#">About Us</a><a href="#">Testimonials</a><a href="#">Contact</a><a href="#">FAQ</a>
+            </div>
+            <div class="bs-nav-phone">Call: 07700 900123</div>
+          </div>
+
+          <!-- Ticker -->
+          <div class="bs-ticker">⚠️ LIMITED TIME OFFER — 10% OFF ALL BATHROOMS THIS MONTH ONLY — CALL NOW — FREE QUOTES — NO CALL OUT FEE — FULLY INSURED</div>
+
+          <!-- Hero -->
+          <div class="bs-hero">
+            <h1>Welcome To MBP Plumbing &amp; Heating!!<br>Your Local Bathroom Specialists</h1>
+            <div class="bs-hero-services">Bathrooms · Wet Rooms · Showers · Tiling · Boilers · Gas Safety · Emergency Repairs · Radiators · Underfloor Heating</div>
+            <div class="bs-btns">
+              <button class="bs-btn bs-btn-bl">Get A Quote</button>
+              <button class="bs-btn bs-btn-or">Call Us Now!</button>
+              <button class="bs-btn bs-btn-gr">Free Estimate</button>
+            </div>
+          </div>
+
+          <!-- Trust strip -->
+          <div class="bs-trust">
+            <span>✔ FULLY INSURED</span><span>✔ GAS SAFE REGISTERED</span>
+            <span>✔ 20+ YRS EXPERIENCE</span><span>✔ FREE QUOTES</span>
+          </div>
+
+          <!-- Services row -->
+          <div class="bs-services-row">
+            <div class="bs-srv-title">Our Services</div>
+            <div class="bs-srv-grid">
+              <div class="bs-srv-card"><div class="bs-srv-ph"></div><div class="bs-srv-name">Bathrooms</div></div>
+              <div class="bs-srv-card"><div class="bs-srv-ph"></div><div class="bs-srv-name">Wet Rooms</div></div>
+              <div class="bs-srv-card"><div class="bs-srv-ph"></div><div class="bs-srv-name">Boiler Install</div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── AFTER panel (clipped top layer) ──────────────────────────── -->
+      <div class="tc-after-clip" id="tcAfterPanel">
+        <div class="tc-site as" id="tcAfterSite">
+
+          <!-- Nav -->
+          <div class="as-nav">
+            <div class="as-logo">Swift<em>Fix</em></div>
+            <div class="as-nav-links">
+              <a href="#">Work</a><a href="#">Services</a><a href="#">Reviews</a><a href="#">About</a>
+            </div>
+            <div class="as-nav-right">
+              <span class="as-nav-phone">0191 820 4400</span>
+              <button class="as-nav-cta">Book Free Visit</button>
+            </div>
+          </div>
+
+          <!-- Hero -->
+          <div class="as-hero">
+            <div class="as-hero-bg" style="background-image:url('assets/tc-inline-2.jpg')"></div>
+            <div class="as-hero-overlay"></div>
+            <div class="as-hero-content">
+              <h1>Expert bathrooms &amp;<br><em>wet rooms,</em><br>done properly.</h1>
+              <p class="as-hero-sub">Fixed prices. Tidy work. No hidden costs.</p>
+              <div class="as-hero-actions">
+                <button class="as-hero-cta">Book a Free Home Visit →</button>
+                <button class="as-hero-call">☎ 0191 820 4400</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Trust strip -->
+          <div class="as-trust">
+            <div class="as-trust-item"><div class="as-trust-ico"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path d="M10 2l2.09 4.26L17 7.27l-3.5 3.41.83 4.82L10 13.27l-4.33 2.23.83-4.82L3 7.27l4.91-.71L10 2z" fill="#15603D" stroke="#15603D" stroke-width="1" stroke-linejoin="round"/></svg></div><div class="as-trust-text"><strong>4.9 on Checkatrade</strong><span>180+ reviews</span></div></div>
+            <div class="as-trust-item"><div class="as-trust-ico"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="#15603D" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="#15603D" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="13.5" r="1" fill="#15603D"/></svg></div><div class="as-trust-text"><strong>Fixed-Price Guarantee</strong><span>No hidden extras</span></div></div>
+            <div class="as-trust-item"><div class="as-trust-ico"><svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path d="M10 2.5l6 2.25v5.25c0 3.5-2.5 6-6 7.5C4.5 16 2 13.5 2 10V4.75l8-2.25z" stroke="#15603D" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" stroke="#15603D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="as-trust-text"><strong>Gas Safe Registered</strong><span>Cert. #547832</span></div></div>
+          </div>
+
+          <!-- Recent work -->
+          <div class="as-work-row">
+            <div class="as-work-label">Recent Work</div>
+            <div class="as-work-grid">
+              <div class="as-work-tile"></div>
+              <div class="as-work-tile"></div>
+              <div class="as-work-tile"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── HANDLE ───────────────────────────────────────────────────── -->
+      <div class="tc-drag" id="tcDrag"></div>
+      <div class="tc-divider" id="tcDivider">
+        <div class="tc-knob">
+          <svg viewBox="0 0 18 18" fill="none" stroke="#0B1525" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6.5 4L3 9L6.5 14"/><path d="M11.5 4L15 9L11.5 14"/>
+          </svg>
+        </div>
+      </div>
+
+    </div><!-- /tc-stage-wrap -->
+    </div><!-- /tc-slider-group -->
+
+    <!-- Hint -->
+    <div class="tc-hint" id="tcHint">← drag to compare →</div>
+  </div>
+
+    <p class="ba-caption-note">The upgrade is not just visual. The new site gives visitors clearer proof, clearer next steps, stronger trust signals, and an easier way to enquire.</p>
+</section>
+
+<!-- ══ LOOPING VIDEO — PAIN POINTS ═══════════════════════════════════════════ -->
+<section class="section loop-section">
+  <div class="loop-inner">
+    <div class="loop-header reveal">
+      <div class="section-chip">See the problem</div>
+      <h2 class="light">Most trade websites<br><span class="em">work less than they should</span></h2>
+      <p style="color:rgba(255,255,255,.5);max-width:520px;margin:0 auto;line-height:1.7;">
+        Slow load. Weak mobile layout. No clear way to enquire. These are the small gaps that stop good customers taking the next step.
+      </p>
+    </div>
+    <div class="loop-video-wrap reveal">
+      <video
+        id="loopVid"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="metadata"
+        style="width:100%;height:auto;display:block;"
+      >
+        <source src="media/promo-loop-1.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="loop-footer">
+      <button onclick="openBuyModal()" class="btn-orange">Fix My Trade Site →</button>
+      <a href="#scanner" class="btn-call">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        scan my website free
+      </a>
+    </div>
   </div>
 </section>
 
@@ -3454,16 +3490,16 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
     <h2 class="light">Six places your trade site could<br><span class="em">win better enquiries</span></h2>
     <p class="lead" style="color:rgba(255,255,255,.5)">Word of mouth is valuable. Your website should also catch the people searching, comparing, and ready to spend on serious trade work.</p>
     <div class="problems-grid reveal">
-      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div><div><div class="prob-title">Your number should be easy to act on</div><div class="prob-desc">When someone likes your work, calling or enquiring should feel instant — especially on mobile.</div></div></div>
-      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><div><div class="prob-title">Mobile needs to sell the job</div><div class="prob-desc">Customers compare trades on their phone. Your site needs to look credible, load fast, and make the next step obvious.</div></div></div>
+      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div><div><div class="prob-title">Make enquiry obvious</div><div class="prob-desc">When someone likes your work, calling or enquiring should feel instant — especially on mobile.</div></div></div>
+      <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><div><div class="prob-title">Mobile must do the selling</div><div class="prob-desc">Customers compare trades on their phone. Your site needs to look credible, load fast, and make the next step obvious.</div></div></div>
       <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="prob-title">Slow pages reduce confidence</div><div class="prob-desc">A fast site feels more professional and keeps people looking at your work instead of backing out.</div></div></div>
       <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="prob-title">Your best projects need to lead</div><div class="prob-desc">High-value trade jobs sell on proof. Before-and-after photos, project galleries, and reviews help people picture the result and trust the price.</div></div></div>
       <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div><div><div class="prob-title">Price clarity attracts better-fit leads</div><div class="prob-desc">People often need a realistic ballpark before they call. A guide range or quote flow filters low-budget enquiries without awkward conversations.</div></div></div>
       <div class="prob-card"><div class="prob-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="prob-title">Reviews should support the enquiry</div><div class="prob-desc">People hire who they trust. Reviews, guarantees, and proof should sit where they help someone decide to enquire.</div></div></div>
     </div>
     <div class="prob-cta reveal">
-      <p><strong>Scan your trade site free.</strong> We'll show you where your current trade site could work harder for better enquiries.</p>
-      <a href="#scanner" class="btn-orange">Scan My Trade Site Free →</a>
+      <p><strong>Scan your website free.</strong> We'll show you where your current trade site could work harder for better enquiries.</p>
+      <a href="#scanner" class="btn-orange">Scan My Website Free →</a>
     </div>
   </div>
 </section>
@@ -3474,49 +3510,31 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
   <div class="container">
     <div class="section-chip">What you get</div>
     <h2>Not just a website.<br><span class="em">A better-enquiry system.</span></h2>
-    <p class="lead" style="max-width:600px;">Every piece of the system is built to help high-value trades attract direct enquiries, show proof properly, set expectations early, and spend less time on poor-fit calls.</p>
-    <div class="feat-grid reveal">
+    <p class="lead" style="max-width:640px;">A cleaner site is only part of it. TradeConvert combines proof, pricing guidance, lead capture, and follow-up into one focused conversion system.</p>
+    <div class="feat-grid reveal feat-grid-compact">
 
       <div class="feat-card">
         <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <!-- FEATURE_VISUAL_1 -->
-        <div class="feat-title">Premium Website Rebuild</div>
-        <div class="feat-desc">Fast, mobile-first, and built to make your trade business look credible before someone speaks to you.</div>
+        <div class="feat-title">Premium Trade Website</div>
+        <div class="feat-desc">Fast, mobile-first, and built to make your work look credible before someone speaks to you.</div>
       </div>
 
       <div class="feat-card">
         <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7H6a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-3M13 3h8v8M17 7L9 15"/></svg></div>
-        <!-- FEATURE_VISUAL_2 -->
-        <div class="feat-title">Example Quote Estimator</div>
-        <div class="feat-desc">Visitors enter project details and get a realistic guide range. You speak to people who understand the likely budget before they enquire.</div>
+        <div class="feat-title">Quote / Estimator Tool</div>
+        <div class="feat-desc">Guide price expectations early so serious customers understand the likely budget before they enquire.</div>
       </div>
 
       <div class="feat-card">
         <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-        <!-- FEATURE_VISUAL_3 -->
         <div class="feat-title">Lead Qualification Flow</div>
-        <div class="feat-desc">Every enquiry answers the same key questions before it reaches you, so you can quickly spot the jobs worth following up.</div>
-      </div>
-
-      <div class="feat-card">
-        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <!-- FEATURE_VISUAL_4 -->
-        <div class="feat-title">Your Work, Front &amp; Centre</div>
-        <div class="feat-desc">Before-and-after galleries, project photos, trust signals, and reviews placed exactly where visitors need to see them.</div>
-      </div>
-
-      <div class="feat-card">
-        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.15 6.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.13 1 .4 1.97.7 2.9a2 2 0 01-.45 2.1L9.91 12a16 16 0 006.08 6.08l1.3-1.29a2 2 0 012.1-.45c.93.3 1.9.57 2.9.7A2 2 0 0122 16.92z"/></svg></div>
-        <!-- FEATURE_VISUAL_5 -->
-        <div class="feat-title">Click-to-Call on Every Page</div>
-        <div class="feat-desc">Your number is visible the moment someone loads the page. One tap on mobile. On every page, every time.</div>
+        <div class="feat-desc">Every enquiry captures the key details you need, so you can quickly spot the jobs worth following up.</div>
       </div>
 
       <div class="feat-card">
         <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <!-- FEATURE_VISUAL_6 -->
-        <div class="feat-title">Built to Make You Money</div>
-        <div class="feat-desc">Every decision — layout, copy, CTA placement — is built around one commercial goal: more of the trade jobs you actually want.</div>
+        <div class="feat-title">Simple Lead Dashboard</div>
+        <div class="feat-desc">Keep enquiries organised in one place so follow-up is clearer and fewer opportunities get missed.</div>
       </div>
 
     </div>
@@ -3560,7 +3578,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
           <div class="estimator-live-label">Live demo</div>
           <iframe id="tcBathroomEstimatorFrame" class="estimator-iframe" title="Bathroom budget estimator demo" loading="lazy"></iframe>
         </div>
-        <p class="estimator-demo-note">Presentation-only bathroom estimator example. The same quote-flow approach can be adapted for other high-value trades.</p>
+        <p class="estimator-demo-note">Presentation-only bathroom estimator example. The same quote-flow approach can be adapted for kitchens, landscaping, roofing, driveways, building work, and other high-value trades.</p>
       </div>
     </div>
   </div>
@@ -3582,12 +3600,12 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         <div class="roi-desc">A single high-value trade job can be worth several thousand pounds. One extra right-fit enquiry can change the maths quickly.</div>
       </div>
       <div class="roi-card">
-        <div class="roi-num">5h</div>
-        <div class="roi-label">less time on poor-fit calls</div>
+        <div class="roi-num">Less</div>
+        <div class="roi-label">time on poor-fit calls</div>
         <div class="roi-desc">Budget guidance and enquiry questions help filter people before they take up your evening.</div>
       </div>
       <div class="roi-card">
-        <div class="roi-num">3×</div>
+        <div class="roi-num">Clearer</div>
         <div class="roi-label">better-fit conversations</div>
         <div class="roi-desc">When budget and project details are clear upfront, you are not starting every conversation from zero.</div>
       </div>
@@ -3616,7 +3634,8 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
           <span class="roi-calc-val">+£58,500</span>
         </div>
       </div>
-    </div>
+    
+      <p class="roi-example-note">Example maths, not a guarantee.</p></div>
   </div>
 </section>
 
@@ -3643,7 +3662,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         </div>
         <div class="hiw-num">1</div>
         <div class="hiw-title">We scan the opportunity</div>
-        <p class="hiw-desc">Scan your trade site free. We identify where it could create more trust, clearer action, and better enquiry quality.</p>
+        <p class="hiw-desc">Scan your website free. We identify where it could create more trust, clearer action, and better enquiry quality.</p>
         <span class="hiw-time">Results in 30 seconds</span>
       </div>
       <div class="hiw-step active">
@@ -3687,61 +3706,6 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
     <div class="hiw-bottom reveal">
       <p>No call needed. Secure your slot with a deposit — we handle the rest.</p>
       <button onclick="openBuyModal()" class="btn-orange" style="cursor:pointer;">Get Started — From £150 Deposit →</button>
-    </div>
-  </div>
-</section>
-
-<!-- ══ TRUST / PROOF ════════════════════════════════════════════════════════ -->
-<section class="section proof-section simplified-proof">
-  <div class="container">
-    <div class="simplified-proof-grid">
-      <div class="simplified-proof-copy reveal">
-        <div class="section-chip">Built for how trades work</div>
-        <h2>Make customers trust you<br><span class="em">before they call.</span></h2>
-        <p class="lead">People do not just need your phone number. They need proof, confidence, and a clear next step.</p>
-        <p class="lead" style="font-size:1rem;margin-top:1rem;">TradeConvert rebuilds your site so your best projects, proof, and enquiry path are clear from the first visit.</p>
-        <div class="simplified-proof-actions">
-          <a href="#scanner" class="btn-orange">See What Your Site Is Missing →</a>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="simplified-proof-visual">
-          <img src="assets/proof-mobile-preview.png" alt="Premium trade website shown on laptop and mobile" loading="lazy">
-        </div>
-      </div>
-    </div>
-
-    <div class="simplified-proof-points reveal">
-      <div class="simplified-proof-point">
-        <div class="simplified-proof-point-top">
-          <span class="simplified-proof-point-icon">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="4 10 8 14 16 6"/></svg>
-          </span>
-          Look credible on mobile
-        </div>
-        <p>Most customers check you on their phone first. Your site needs to load fast, look sharp, and make enquiring easy.</p>
-      </div>
-
-      <div class="simplified-proof-point">
-        <div class="simplified-proof-point-top">
-          <span class="simplified-proof-point-icon">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="4 10 8 14 16 6"/></svg>
-          </span>
-          Show the work properly
-        </div>
-        <p>Your best projects, reviews, and trust signals are placed where they help customers decide.</p>
-      </div>
-
-      <div class="simplified-proof-point">
-        <div class="simplified-proof-point-top">
-          <span class="simplified-proof-point-icon">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="4 10 8 14 16 6"/></svg>
-          </span>
-          Turn interest into action
-        </div>
-        <p>Visitors can enquire, get pricing guidance, book, or pay a deposit when they are ready.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -3804,7 +3768,27 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
         </div>
       </div>
 
-    </div>
+    
+      <div class="obj-item" id="obj-6">
+        <button class="obj-trigger" onclick="objToggle('obj-6')">
+          <span class="obj-q">I already get work through word of mouth</span>
+          <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="obj-body">
+          <p>Good. The aim is not to replace referrals. It is to make your website support them and capture direct enquiries from people already comparing you online.</p>
+        </div>
+      </div>
+
+      <div class="obj-item" id="obj-7">
+        <button class="obj-trigger" onclick="objToggle('obj-7')">
+          <span class="obj-q">Do I need professional photos?</span>
+          <svg class="obj-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="obj-body">
+          <p>No. We can work with what you have, but better photos will always improve the result. We can also guide you on what to capture from future jobs.</p>
+        </div>
+      </div>
+</div>
 
     <p style="margin-top:2rem;text-align:center;font-size:.88rem;color:var(--mid);">
       Something else on your mind? <a href="#" onclick="scOpenBooking(event)" style="color:var(--orange);font-weight:700;text-decoration:underline;text-underline-offset:3px;">Book a free 10-min call →</a>
@@ -3899,7 +3883,7 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 
     </div><!-- /price-grid -->
 
-    <p class="price-note-bottom reveal">Not sure which is right? <strong>Scan your trade site free first</strong> — the results will tell you exactly what level of fix you need.
+    <p class="price-note-bottom reveal">Not sure which is right? <strong>Scan your website free first</strong> — the results will tell you exactly what level of fix you need.
     Or, <a href="#" onclick="scOpenBooking(event)" style="color:#f4600c;font-weight:700;text-decoration:underline;text-underline-offset:3px;">book a free 10-min review</a> and we'll walk you through it.
   </p>
   </div>
@@ -3916,16 +3900,12 @@ nav{box-shadow:0 1px 0 rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.18);}
 <section class="final-cta">
   <div class="section-chip" style="color:var(--orange);display:flex;justify-content:center;margin-bottom:1rem;">Ready to start?</div>
   <h2 class="light" style="margin-bottom:.75rem;">Better trade enquiries.<br><span class="em">More jobs worth quoting.</span></h2>
-  <p>Scan your trade site free to see where it could work harder. Or secure a build slot and start turning your website into a better-enquiry system.</p>
+  <p>Scan your website free to see where it could work harder. Or secure a build slot and start turning your website into a better-enquiry system.</p>
   <div class="final-actions">
-    <a href="#scanner" class="btn-orange" style="font-size:1.05rem;padding:1.1rem 2.5rem;">Scan My Trade Site Free →</a>
+    <a href="#scanner" class="btn-orange" style="font-size:1.05rem;padding:1.1rem 2.5rem;">Scan My Website Free →</a>
     <button onclick="openBuyModal()" class="btn-call" style="font-size:1rem;padding:1rem 2rem;cursor:pointer;">Get Started — From £150 →</button>
   </div>
   <p style="margin-top:1.5rem;color:rgba(255,255,255,.22);font-size:.78rem;">No call needed. First draft in 48–72 hours.</p>
-  <p style="margin-top:1rem;font-size:.85rem;">
-    <span style="color:rgba(255,255,255,.35);">Not sure yet? </span>
-    <a href="#" onclick="scOpenBooking(event)" style="color:#f4600c;font-weight:700;text-decoration:underline;text-underline-offset:3px;">Book a free 10-min site review →</a>
-  </p>
 </section>
 
 <!-- ══ FOOTER ════════════════════════════════════════════════════════════════ -->
